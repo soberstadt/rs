@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml"> 
+<head> 
+<title>Campus Crusade Carpool Coordinator</title> 
+<script type="text/javascript" src="http://www.google.com/jsapi?key=<%=GOOGLE_KEY%>"></script>
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.6.0/build/reset/reset-min.css" />
+<link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
+<style type="text/css">
+	body{
+		margin:10px;
+	}
+	table{
+		margin:10px 0;
+		width:450px;
+	}
+	h1{
+		font-size:2em;
+		font-weight:bold;
+		margin-bottom:.5em;
+	}
+	h2{
+		font-size:1.25em;
+		font-weight:bold;
+		margin-bottom:.5em;
+		margin-top:.25em;
+	}
+	strong{
+		font-weight:bold;
+	}
+	label, div.label{
+		display:block;
+		font-weight:bold;
+		text-align:right;
+	}
+	td, th{
+		padding:2px;
+	}
+	th{
+		background-color:#dddddd;
+		border:1px solid #000000;
+		border-bottom:3px solid #000000;
+		font-size:1.2em;
+		font-weight:bold;
+		text-align:center;
+	}
+	#disclaimer{
+		font-size:.85em;
+		margin:10px 0;
+		max-width:800px;
+	}
+	#copyright{
+		font-size:.8em;
+		margin-top:10px;
+	}
+	#map{
+		height:400px;
+		margin:0 auto;
+		text-align:center;
+		width:400px;
+	}
+	strong
+	#error{
+		background-color:#ffcccc;
+		border:1px solid #770000;
+		border-top:none;
+		color:#770000;
+		text-align:center;
+		<%="display:none;" if params[:js] == "false" && !@map_error%>
+	}
+	.error{
+		background-color:#ffcccc;
+		border:1px solid #770000;
+		color:#770000;
+		text-align:center;
+		padding:2px;
+		max-width:450px;
+	}
+	.done{
+		background-color:#ccffcc;
+		border:1px solid #007700;
+		color:#003300;
+		text-align:center;
+		padding:2px;
+		max-width:450px;
+	}
+	.example_email{
+		border:3px solid #000000;
+		margin-left:25px;
+		margin-right:25px;
+		margin-top:15px;
+		margin-bottom:15px;
+		padding-left:25px;
+		padding-right:25px;
+		padding-top:15px;
+		padding-bottom:15px;
+	}
+</style>
+</head>
+<body>
+<a href="/carpool/report">Back</a>
+<h1>Email Setup</h1>
+<%='<div class="error">'+@error+'</div>' unless @error.nil?%>
+<%='<div class="done">'+@notice+'</div>' unless @notice.nil?%>
+<%form_tag :action => 'email_submit' do %>
+	<strong>Each participant will receive an E-Mail with the following information for the car they are assigned to:</strong><br />
+	<div class="example_email">
+		<table class="report">
+			<thead>		
+		<tr><th colspan="7"><h3 style="width:auto;background-color:#e5e5e5">John Smith</h3></th></tr>
+				<tr>
+					<th>Name</th>
+					<th>Address</th>
+					<th>Email</th>
+					<th>Phone</th>
+					<th>Contact Method</th>
+					<th>Departure Time</th>
+				</tr>
+			</thead>
+			<tbody>
+					<tr class="driver">
+						<td>John Smith</td>
+						<td>12345 Example St.<br />Beverly Hills, CA 90210</td>
+						<td>jsmith@example.com</td>
+						<td>555-555-5555</td>
+						<td>Phone</td>
+						<td>12:00 PM</td>
+					</tr>
+					<div class="rider_block">
+						<tr class="rider">
+							<td class="indent">Jane Doe</td>
+							<td>23456 Example St.<br />Beverly Hills, CA 90210</td>
+							<td>jdoe@example.com</td>
+							<td>555-555-5555</td>
+							<td>Text</td>
+							<td>1:00 PM</td>
+						</tr>
+						<tr class="rider">
+							<td class="indent">Jesus Christ</td>
+							<td>1 Throne Room<br />Heaven</td>
+							<td>jesus@heaven</td>
+							<td>555-555-5555</td>
+							<td>Phone</td>
+							<td>12:30 PM</td>
+						</tr>
+							<tr class="rider">
+								<td class="far_indent" colspan="7"><em>Special Info: </em>I'm God</td>
+							</tr>
+					</div>
+			</tbody>
+		</table>
+	</div>
+	<strong>Please enter in any additional info for registrants (the default text can be changed)</strong><br /><br />
+	<% if @event.email_content.empty? %>
+		<% @event.email_content = "Riders, please call your drivers (the top person in the table) to confirm your pickup time and location.\r\n\r\nConference Name: "+@event.event_name+"\r\nStart Date & Time: \r\nEnd Date & Time: \r\nOn Site Registration Begins/Ends: \r\nAddress: \r\nStuff to Bring: \r\nOther Instructions: \r\n" %>
+	<% end %>
+	<%=text_area_tag "content", @event.email_content, :size => "125x10"%><br />
+	<%=submit_tag "Save", :id => "submit"%> or <%=submit_tag "Send Emails", :id => "submit"%>
+<%end%>
+<!--<div id="copyright">
+	&copy;2009-2011 USCM
+</div>-->
+</body>
+</html>
