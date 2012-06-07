@@ -1,5 +1,7 @@
 #custom added ignores
-vendor/ruby/*
+config/initializers/password.rb
+config/initializers/google.rb
+
 
 See http://help.github.com/ignore-files/ for more about ignoring files.
 #
