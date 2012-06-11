@@ -1,53 +1,57 @@
-<script type="text/javascript">
-	
-	function test(){test('testing');}
-
-	function test(value){
-		var v = String(value);
-		alert(v);
-	}
-
-</script>
-
-
-
-
 
 <body onload="<%="displayMessage('flash');" if @message%>setTimeout(updateList, 250);" onunload="GUnload()">
 
-<div class="test">
-	<button onClick="test('otehr');">Test</button>
-</div>
 
-<div class="help">
-	<table>
-		<tr>
-			<button onClick="$('legend').toggle();">Legend <img src="/images/arrow.png" alt="arrow" /></a></button>
-			<button><a href="http://wiki.uscm.org/display/CG/Conference+Registration+System+Ride+Share+Tool" target="_blank">Help?</a></button>
-		</tr>
-	</table>	
-<div>
+<div class="top">
+	<div class="left">		
+		<table class="shown">
+			<tr>
+				<td><a href="$('.topleft #legend-hide').toogle();">Legend <img src="/images/arrow.png" alt="arrow" /></a></td>
+				<td><a href="http://wiki.uscm.org/download/attachments/56492347/CRS+RideShare+Feature.ppt?version=1&modificationDate=1262886674000" target="_blank">Help?</a></td>
+			</tr>
+		</table>
+		<table class="hidden">
+			<tr>
+				<td><img src="/images/AD.png" alt="Available Driver" /></td>
+				<td>Available Driver</td>
+				<td><img src="/images/AR.png" alt="Available Rider" /></td>
+				<td>Available Rider</td>
+				<td><img src="/images/selected.png" alt="Selected" /></td>
+				<td>Selected Driver/Rider</td>
+			</tr>
+			<tr>
+				<td><img src="/images/UD.png" alt="Unavailable Driver" /></td>
+				<td>Driver with Full Car</td>
+				<td><img src="/images/UR.png" alt="Unavailable Rider" /></td>
+				<td>Assigned Rider</td>
+				<td><img src="/images/AD_AR_UD_UR.png" alt="Available Driver, Available Rider, Unavailable Driver, Unavailable Rider" /></td>
+				<td>Location with all four types</td>
+			</tr>
+		</table>
+	</div>
+	<div class="center">
+		<div class="title">
+			<h1>Rideshare Admin</h1>
+		</div>
+	</div>
+	<div class="right">
+		<div>
+			<a href="/carpool/report" 
+			title="This produces a printable list of all of the people organized by drivers"
+			>Printable Report</a><br/>
+			<a href="/carpool/email" 
+			title="This brings you to a page that allows you to set up an e-mail to notify everyone of their ride assignments">Email Setup</a><br/>
+			<a href="javascript:displayMessage('hidden_users');" 
+			title="This lists all of the people that are not included in RideShare, but have registered for the conference"
+			>Show Non-Participants</a>
+		</div>
+	</div>
+</div> <!-- class:top --> 
 
 
-<div class="legend">
-	<table id="legend">
-		<tr>
-			<td><img src="/images/AD.png" alt="Available Driver" /></td>
-			<td>Available Driver</td>
-			<td><img src="/images/AR.png" alt="Available Rider" /></td>
-			<td>Available Rider</td>
-			<td><img src="/images/selected.png" alt="Selected" /></td>
-			<td>Selected Driver/Rider</td>
-		</tr>
-		<tr>
-			<td><img src="/images/UD.png" alt="Unavailable Driver" /></td>
-			<td>Driver with Full Car</td>
-			<td><img src="/images/UR.png" alt="Unavailable Rider" /></td>
-			<td>Assigned Rider</td>
-			<td><img src="/images/AD_AR_UD_UR.png" alt="Available Driver, Available Rider, Unavailable Driver, Unavailable Rider" /></td>
-			<td>Location with all four types</td>
-		</tr>
-	</table>
+
+<div class="message">
+	
 </div>
 
 
@@ -106,6 +110,8 @@
 </div>
 
 
+
+
 <div id="driver_help_message" class="message">
 	<h2>Selecting a Driver</h2>
 	To "Select" a driver, click on their name in the list or icon (green) on the map. Click the "Select Driver" link in the pop-up bubble to begin assigning riders to the driver. To assign a rider, click their name/icon and click "Add to Car". To assign riders to a different car, select a different driver using the same method.
@@ -117,13 +123,10 @@
 	<a href="javascript:hideMessage('filters_help');" class="message_exit" onmouseclick="hideMessage('filters_help');">X</a>
 </div>
 
-<h1 id="header" style="margin-left:auto;margin-right:auto;text-align:center;">Rideshare Admin</h1>
-<div style="position:absolute;top:5px;right:5px;">
-	<a href="/carpool/report" title="This produces a printable list of all of the people organized by drivers">Printable Report</a><br />
-	<a href="/carpool/email" title="This brings you to a page that allows you to set up an e-mail to notify everyone of their ride assignments">Email Setup</a><br />
-	<a href="javascript:displayMessage('hidden_users');" title="This lists all of the people that are not included in RideShare, but have registered for the conference">Show Non-Participants</a>
-</div>
-<div id="map" style="position:absolute;left:504px;right:5px;top:100px;bottom:30px;"></div>
+
+<div id="map"></div>
+
+
 <h3 id="drivers_header" style="position:absolute;left:5px;top:100px;padding:2px;border:1px solid #000000;"><%=@drivers.size%> Drivers - <span id="spaces_remaining"><%=@spaces-@riders_done%></span>/<%=@spaces%> Seats</h3>
 <div id="drivers_none" style="position:absolute;left:5px;top:129px;padding:2px;border:1px solid #000000;background-color:#ffbbbb;text-align:center;width:240px;"><strong>No Driver Selected</strong><br /><a href="javascript:displayMessage('driver_help');"><strong>How do I select a driver?</strong></a></div>
 <div id="drivers" style="position:absolute;left:5px;top:175px;bottom:40px;width:244px;border:1px solid #000000;overflow:auto;">
