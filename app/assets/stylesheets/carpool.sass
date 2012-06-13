@@ -7,44 +7,48 @@
 	.left
 		.shown
 			position: absolute
-			top: 5px
+			top: 10px
 			left: 5px
+			width: 400px
 			height: 25px
 			border: 2px solid #456
 			tr td
 				padding: 2px bold
 				border: 1px solid #000000
 		.hidden
+			position: absolute
+			top: 45px
+			left: 10px
+			width: 600px
 			display: none
 			font-size: 12pt
+			border: 1px solid #000000
+			background-color: #ffffff
 			img
-				height: 50px
-				width: 50px
-
+				height: 30px
+				width: 30px
 	.center 
 		.title
 			margin-left: auto
 			margin-right: auto
 			text-align: center
-			padding-top: 25px 
-	
+			padding-top: 25px
 	.right
 		position: absolute
 		top: 5px
 		right: 5px
 
-table#legend 
-	position: relative
-	top: 31px
-	left: 5px
-	border: 1px solid #000000
-	background-color: #ffffff
-	table#legend td 
-		padding: 2px
-		table#legend td img 
-			height: 25px
-			width: 25px
-
+// table#legend 
+// 	position: relative
+// 	top: 31px
+// 	left: 5px
+// 	border: 1px solid #000000
+// 	background-color: #ffffff
+// 	table#legend td 
+// 		padding: 2px
+// 		table#legend td img 
+// 			height: 25px
+// 			width: 25px
 
 .message .flash
 	width: 600px
@@ -61,67 +65,117 @@ table#legend
 //  left side tables
 // -------------------------------------------------------------------------
 
-
-.drivers 
+@mixin tables()
 	position: absolute
-	left: 5px
 	top: 175px
 	bottom: 40px
-	width: 244px
+	width: 250px
 	border: 1px solid #000000
 	overflow: auto
-	
+	ul
+		padding: 2px
+
+@mixin header()
+	position: relative
+	text-align: center
+	vertical-align: sub
+	background-color: #ffbbbb
+	border: 1px solid #000000
+	height: 60px
+	top: -15px
+
+@mixin none()
+	position: relative
+	height: 50px
+	text-align: center
+	border: 1px solid #000000
+	background-color: #ffbbbb
+
+@mixin selected()
+	position: relative
+	left: 5px
+	border-bottom: 2px solid #000000
+	background-color: #bbffbb
+	display: none
+
+@mixin unselected()
+	positive: relative
+
+.drivers 
+	@include tables()
+	left: 5px
 	.header
-		position: relative
-		left: 5px
-		padding: 2px
-		border: 1px solid #000000
-
-	#drivers_none
-		position: relative
-		left: 5px
-		padding: 2px
-		border: 1px solid #000000
-		background-color: #ffbbbb
-		text-align: center
-		width: 240px
-	
-	ul
-		padding: 2px
-
+		@include header()
+	.none
+		@include none()
+		top: -31px
 	#selected_driver
-		border-bottom: 2px solid #000000
-		background-color: #bbffbb
-		position: absolute
-		top: 100px
-		left: 5px
-			
-		
+		@include selected()
+	#unselected
+		@include unselected()
 
-#riders 
-	position: absolute
-	left: 255px
-	top: 129px
-	bottom: 40px
-	width: 244px
-	border: 1px solid #000000
-	overflow: auto
-
-	ul
-		padding: 2px
-
+.riders 
+	@include tables()
+	left: 260px
+	.header
+		@include header()
+	.none
+		@include none()
+		top: -36px
 	#selected_riders
-		border-bottom: 2px solid #000000
-		background-color: #bbffbb
-
-	header
-		position: absolute
-		left: 255px
-		top: 100px
-		padding: 2px
-		border: 1px solid #000000
+		@include selected()
+	#unselected
+		@include unselected()
 
 	
+
+/* style="position:absolute;z-index:100;left:5px;bottom:37px;border:1px solid #000000;border-bottom:none;width:429px;height:60px;background-color:#ffffff;display:none; */
+
+// ========================================================================= 
+//  bottom options table(s)
+// -------------------------------------------------------------------------
+
+.options
+	height: 40px
+
+	table.room th
+		text-align: center
+		vertical-align: middle
+		font-weight: bold
+		background-color: #dddddd
+		table.room th a
+			text-decoration: none
+			color: #000000
+	table.room td,th
+		text-align: center
+		vertical-align: middle
+		padding: 2px
+	table.normal td
+		text-align:left
+		table.room td img
+			vertical-align: middle
+		
+	#options td #departure
+		border: 1px solid #000000
+
+	.showhide
+		position: relative
+		left: 6px
+		bottom: 5px 
+		width: 495px
+		height: 30px
+
+		#options_box_availability
+			position: relative
+			z-index: 100
+			left: 500px
+			bottom: 37px
+			border: 1px solid #000000
+			border-bottom: none
+			width: 120px
+			height: 115px
+			background-color: #ffffff
+			display:none
 
 
 // ========================================================================= 
@@ -132,7 +186,7 @@ table#legend
 	position: absolute
 	left: 504px
 	right: 5px
-	top: 100px
+	top: 1000px
 	bottom: 30px
 
 .message
@@ -169,37 +223,6 @@ table#legend
 	left: -20000px
 	width: 400px
 
-/* style="position:absolute;z-index:100;left:5px;bottom:37px;border:1px solid #000000;border-bottom:none;width:429px;height:60px;background-color:#ffffff;display:none; */
-
-// ========================================================================= 
-//  bottom options table(s)
-// -------------------------------------------------------------------------
-
-#options
-	height: 40px
-	width: 25%
-
-	table.room th
-		text-align: center
-		vertical-align: middle
-		font-weight: bold
-		background-color: #dddddd
-		table.room th a
-			text-decoration: none
-			color: #000000
-	table.room td,th
-		text-align: center
-		vertical-align: middle
-		padding: 2px
-	table.normal td
-		text-align:left
-		table.room td img
-			vertical-align: middle
-		
-	#options td
-		width: 25%
-		border: 1px solid #000000
-	
 
 // ========================================================================= 
 //  email report

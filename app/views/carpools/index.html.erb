@@ -19,8 +19,12 @@
 
 <div class="top">
 
+	
+
 	<div class="center">
+
 		<div class="title">
+			<button id="test">Testing</button>
 			<h1>Rideshare Admin</h1>
 		</div>
 	</div>
@@ -34,7 +38,6 @@
 						Legend &nbsp;&nbsp;&nbsp;<img src="/images/arrow.png" alt="arrow" />
 					</button>
 				</td>
-				
 				<td>
 					<button onClick="location.href=http://wiki.uscm.org/download/attachments/56492347/CRS+RideShare+Feature.ppt?version=1&modificationDate=1262886674000" target="_blank">
 						Help?
@@ -169,7 +172,11 @@
 	<div id="test">
 		<h2>Selecting a Driver</h2>
 		To "Select" a driver, click on their name in the list or icon (green) on the map. Click the "Select Driver" link in the pop-up bubble to begin assigning riders to the driver. To assign a rider, click their name/icon and click "Add to Car". To assign riders to a different car, select a different driver using the same method.
+		
+		<!-- comment_here 
 		<a href="javascript:hideMessage('driver_help');" class="message_exit" onmouseclick="hideMessage('driver_help');">X</a>
+		-->
+
 	</div>
 	<div id="filters_help_message">
 		<h2>Where did they go?</h2>
@@ -198,13 +205,13 @@
 		<%=@drivers.size%> Drivers - <span id="spaces_remaining"><%=@spaces-@riders_done%></span>/<%=@spaces%> Seats
 	</h3>
 	
-	<div id="drivers_none">
+	<div class="none">
 		<strong>No Driver Selected</strong><br/>
 		<button onClick="$('.message #test').toggle();"><strong>How do I select a driver?</strong></button>
 	</div>
 	
 	<div id="drivers" >
-		<ul id="selected_driver" style="display:none;">
+		<ul id="selected_driver">
 			<!-- Will be filled with current driver automagically -->
 		</ul>
 		<ul>
@@ -224,13 +231,14 @@
 	<!-- ====================================================================== -->
 	<!-- rider table -->
 <div class="riders">
-	
 	<h3 class="header">
 		<%=@riders.size%> Riders - (<span id="riders_remaining"><%=@riders.size - @riders_done%></span> Unassigned)
 	</h3>
-	
+	<div class="none" style="margin-top:20px;">
+		<button onClick="$('#filters_help_message').toggle();"><strong>Where did they go?</strong></button>
+	</div>
 	<div id="riders">
-		<ul id="selected_riders" style="display:none;">
+		<ul id="selected_riders">
 			<!-- Will be filled with riders automagically -->
 		</ul>
 		<ul>
@@ -242,9 +250,6 @@
 				</li>
 			<% end %>
 		</ul>
-		<div style="padding:2px;margin-top:20px;">
-			<a href="$('#filters_help_message').toggle();"><strong>Where did they go?</strong></a>
-		</div>
 	</div>
 
 </div>
@@ -256,120 +261,124 @@
 <!-- ====================================================================== -->
 <!-- options and filtering table -->
 
-<div class="options" id="options_box_departure_time">
-	<form action="javascript:updateDepartureTime();">
-		<table class="room">
-			<tr>
-				<th colspan="2">Earliest</th>
-				<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Latest</th>
-				<th><button onClick="javascript:closeDepartureTime();">X</button></th>
-			</tr>
-			<tr>
-				<td><img src="images/clock-icon.png" alt="clock" style="width:25px;height:25px;" />&nbsp;
-					<select name="options_box_departure_time_time1_hour" id="options_box_departure_time_time1_hour" onchange="updateDepartureTime1(true);">
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-						<option value="6">6</option>
-						<option value="7">7</option>
-						<option value="8">8</option>
-						<option value="9">9</option>
-						<option value="10">10</option>
-						<option value="11">11</option>
-						<option value="12">12</option>
-					</select>
+<div class="options">
+
+
+	<div id="options_box_departure_time">
+		<form action="javascript:updateDepartureTime();">
+			<table class="room">
+				<tr>
+					<th colspan="2">Earliest</th>
+					<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Latest</th>
+					<th><button onClick="javascript:closeDepartureTime();">X</button></th>
+				</tr>
+				<tr>
+					<td><img src="images/clock-icon.png" alt="clock" style="width:25px;height:25px;" />&nbsp;
+						
+						<select name="options_box_departure_time_time1_hour" id="options_box_departure_time_time1_hour" onchange="updateDepartureTime1(true);">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+						</select>
+						
+						<select name="options_box_departure_time_time1_minute" id="options_box_departure_time_time1_minute" onChange="updateDepartureTime1(true);">
+							<option value="00">00</option>
+							<option value="15">15</option>
+							<option value="30">30</option>
+							<option value="45">45</option>
+						</select>
 					
-					<select name="options_box_departure_time_time1_minute" id="options_box_departure_time_time1_minute" onChange="updateDepartureTime1(true);">
-						<option value="00">00</option>
-						<option value="15">15</option>
-						<option value="30">30</option>
-						<option value="45">45</option>
-					</select>
-				
-					<select name="options_box_departure_time_time1_ampm" id="options_box_departure_time_time1_ampm" onchange="updateDepartureTime1(true);">
-						<option value="0">AM</option>
-						<option value="12">PM</option>
-					</select>
-				</td>
-				<td>
-					<input type="checkbox" name="options_box_departure_time_use1" id="options_box_departure_time_use1" onclick="updateDepartureTime1(false);" />
-				</td>
-				
-				<td><img src="images/clock-icon.png" alt="clock" style="width:25px;height:25px;" />&nbsp;
-					<select name="options_box_departure_time_time2_hour" id="options_box_departure_time_time2_hour" onchange="updateDepartureTime2(true);">
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-						<option value="6">6</option>
-						<option value="7">7</option>
-						<option value="8">8</option>
-						<option value="9">9</option>
-						<option value="10">10</option>
-						<option value="11">11</option>
-						<option value="12">12</option>
-					</select>
-					<select name="options_box_departure_time_time2_minute" id="options_box_departure_time_time2_minute" onChange="updateDepartureTime2(true);">
-						<option value="00">00</option>
-						<option value="15">15</option>
-						<option value="30">30</option>
-						<option value="45">45</option>
-					</select>
-					<select name="options_box_departure_time_time2_ampm" id="options_box_departure_time_time2_ampm" onchange="updateDepartureTime2(true);">
-						<option value="0">AM</option>
-						<option value="12">PM</option>
-					</select>
-				</td>
-				<td>
-					<input type="checkbox" name="options_box_departure_time_use2" id="options_box_departure_time_use2" onclick="updateDepartureTime2(false);" />
-				</td>
-			</tr>
-		</table>
-	</form>
+						<select name="options_box_departure_time_time1_ampm" id="options_box_departure_time_time1_ampm" onchange="updateDepartureTime1(true);">
+							<option value="0">AM</option>
+							<option value="12">PM</option>
+						</select>
+					</td>
+					<td>
+						<input type="checkbox" name="options_box_departure_time_use1" id="options_box_departure_time_use1" onclick="updateDepartureTime1(false);" />
+					</td>
+					
+					<td><img src="images/clock-icon.png" alt="clock" style="width:25px;height:25px;" />&nbsp;
+						<select name="options_box_departure_time_time2_hour" id="options_box_departure_time_time2_hour" onchange="updateDepartureTime2(true);">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+						</select>
+						<select name="options_box_departure_time_time2_minute" id="options_box_departure_time_time2_minute" onChange="updateDepartureTime2(true);">
+							<option value="00">00</option>
+							<option value="15">15</option>
+							<option value="30">30</option>
+							<option value="45">45</option>
+						</select>
+						<select name="options_box_departure_time_time2_ampm" id="options_box_departure_time_time2_ampm" onchange="updateDepartureTime2(true);">
+							<option value="0">AM</option>
+							<option value="12">PM</option>
+						</select>
+					</td>
+					<td>
+						<input type="checkbox" name="options_box_departure_time_use2" id="options_box_departure_time_use2" onclick="updateDepartureTime2(false);" />
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+
+	<div id="options_box_availability">
+		<form action="javascript:updateAvailability();">
+			<table class="room">
+				<tr>
+					<th>Show and Hide</th>
+					<th><a href="javascript:closeAvailability();">X</a></th>
+				</tr>
+				<tr>
+					<td>Show riders without a ride and drivers with open seats:</td>
+					<td><input type="checkbox" name="options_box_availability_available" id="options_box_availability_available" checked="checked" onclick="updateList();" /></td>
+				</tr>
+				<tr>
+					<td>Show riders with a ride and drivers with a full car:</td>
+					<td><input type="checkbox" name="options_box_availability_assigned" id="options_box_availability_assigned" onclick="updateList();" /></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+
+	<!-- id="options"  -->
+	<table class="showhide" style="">
+		<tr>
+			<td id="departure_time">
+				<a href="javascript:showOption('departure_time');">Departure Time <img src="/images/up_arrow.png" alt="arrow" /></a>
+			</td>
+			<td id="options_availability" style="background-color:#bbffbb;">
+				<a href="javascript:showOption('availability');">Show and Hide <img src="/images/up_arrow.png" alt="arrow" style="height:12px;width:12px;vertical-align:middle;" />
+				</a>
+			</td>
+		</tr>
+	</table>
+
 </div>
 
-<!-- ====================================================================== -->
-<!-- botton options -->
 
 
-<div id="options_box_availability" style="position:absolute;z-index:100;left:253px;bottom:37px;border:1px solid #000000;border-bottom:none;width:246px;height:115px;background-color:#ffffff;display:none;">
-	<form action="javascript:updateAvailability();">
-		<table class="room">
-			<tr>
-				<th>Show and Hide</th>
-				<th><a href="javascript:closeAvailability();">X</a></th>
-			</tr>
-			<tr>
-				<td>Show riders without a ride and drivers with open seats:</td>
-				<td><input type="checkbox" name="options_box_availability_available" id="options_box_availability_available" checked="checked" onclick="updateList();" /></td>
-			</tr>
-			<tr>
-				<td>Show riders with a ride and drivers with a full car:</td>
-				<td><input type="checkbox" name="options_box_availability_assigned" id="options_box_availability_assigned" onclick="updateList();" /></td>
-			</tr>
-		</table>
-	</form>
-</div>
-
-
-<!-- ====================================================================== -->
-<!-- other options -->
-<table id="options" class="room" style="position:relative;left:6px;bottom:5px;width:495px;height:30px;">
-	<tr>
-		<td id="options_departure_time">
-			<button onClick="$('#departure_time').toggle();">Departure Time <img src="/images/up_arrow.png" alt="arrow" /></button>
-			<button href="javascript:showOption('departure_time');">Departure Time <img src="/images/up_arrow.png" alt="arrow" /></button>
-		</td>
-		<td id="options_availability" style="background-color:#bbffbb;">
-			<a href="javascript:showOption('availability');">Show and Hide <img src="/images/up_arrow.png" alt="arrow" style="height:12px;width:12px;vertical-align:middle;" />
-			</a>
-		</td>
-	</tr>
-</table>
 
 
 </body>
+
+
 </html> 
