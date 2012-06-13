@@ -2,98 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml"> 
 <head> 
 <title>Campus Crusade Carpool Coordinator</title> 
-<script type="text/javascript" src="http://www.google.com/jsapi?key=<%=GOOGLE_KEY%>"></script>
+<script type="text/javascript" src="http://www.google.com/jsapi?key=<%=GOOGLE_MAPS2_KEY%>"></script>
 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.6.0/build/reset/reset-min.css" />
 <link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
+
+
 <style type="text/css">
-	body{
-		margin:10px;
-	}
-	table{
-		margin:10px 0;
-		width:450px;
-	}
-	h1{
-		font-size:2em;
-		font-weight:bold;
-		margin-bottom:.5em;
-	}
-	h2{
-		font-size:1.25em;
-		font-weight:bold;
-		margin-bottom:.5em;
-		margin-top:.25em;
-	}
-	strong{
-		font-weight:bold;
-	}
-	label, div.label{
-		display:block;
-		font-weight:bold;
-		text-align:right;
-	}
-	td, th{
-		padding:2px;
-	}
-	th{
-		background-color:#dddddd;
-		border:1px solid #000000;
-		border-bottom:3px solid #000000;
-		font-size:1.2em;
-		font-weight:bold;
-		text-align:center;
-	}
-	#disclaimer{
-		font-size:.85em;
-		margin:10px 0;
-		max-width:800px;
-	}
-	#copyright{
-		font-size:.8em;
-		margin-top:10px;
-	}
-	#map{
-		height:400px;
-		margin:0 auto;
-		text-align:center;
-		width:400px;
-	}
-	strong
-	#error{
-		background-color:#ffcccc;
-		border:1px solid #770000;
-		border-top:none;
-		color:#770000;
-		text-align:center;
-		<%="display:none;" if params[:js] == "false" && !@map_error%>
-	}
-	.error{
-		background-color:#ffcccc;
-		border:1px solid #770000;
-		color:#770000;
-		text-align:center;
-		padding:2px;
-		max-width:450px;
-	}
-	.done{
-		background-color:#ccffcc;
-		border:1px solid #007700;
-		color:#003300;
-		text-align:center;
-		padding:2px;
-		max-width:450px;
-	}
-	.example_email{
-		border:3px solid #000000;
-		margin-left:25px;
-		margin-right:25px;
-		margin-top:15px;
-		margin-bottom:15px;
-		padding-left:25px;
-		padding-right:25px;
-		padding-top:15px;
-		padding-bottom:15px;
-	}
+	
 </style>
 </head>
 <body>
