@@ -9,7 +9,7 @@
 			position: absolute
 			top: 10px
 			left: 5px
-			width: 400px
+			width: 200px
 			height: 25px
 			border: 2px solid #456
 			tr td
@@ -38,27 +38,9 @@
 		top: 5px
 		right: 5px
 
-// table#legend 
-// 	position: relative
-// 	top: 31px
-// 	left: 5px
-// 	border: 1px solid #000000
-// 	background-color: #ffffff
-// 	table#legend td 
-// 		padding: 2px
-// 		table#legend td img 
-// 			height: 25px
-// 			width: 25px
-
 .message .flash
 	width: 600px
 	height: 360px
-
-// .message .hidden .riders {}
-// .message .hidden .drivers {}
-// .people .drivers { }
-// .people .riders { }
-
 
 
 // ========================================================================= 
@@ -68,7 +50,7 @@
 @mixin tables()
 	position: absolute
 	top: 175px
-	bottom: 40px
+	bottom: 50px
 	width: 250px
 	border: 1px solid #000000
 	overflow: auto
@@ -78,37 +60,36 @@
 @mixin header()
 	position: relative
 	text-align: center
-	vertical-align: sub
 	background-color: #ffbbbb
 	border: 1px solid #000000
-	height: 60px
-	top: -15px
+	h3
+		vertical-align: middle
 
 @mixin none()
 	position: relative
-	height: 50px
+	height: 60px
+	width: 250px
+	top: -8px
 	text-align: center
-	border: 1px solid #000000
 	background-color: #ffbbbb
+	border: 1px solid #000000	
 
 @mixin selected()
 	position: relative
 	left: 5px
-	border-bottom: 2px solid #000000
+	border-bottom: 1px solid #000000
 	background-color: #bbffbb
 	display: none
 
 @mixin unselected()
-	positive: relative
+	position: relative
 
 .drivers 
 	@include tables()
-	left: 5px
 	.header
 		@include header()
 	.none
 		@include none()
-		top: -31px
 	#selected_driver
 		@include selected()
 	#unselected
@@ -116,27 +97,61 @@
 
 .riders 
 	@include tables()
-	left: 260px
+	left: 265px
 	.header
 		@include header()
 	.none
 		@include none()
-		top: -36px
 	#selected_riders
 		@include selected()
 	#unselected
 		@include unselected()
 
-	
-
-/* style="position:absolute;z-index:100;left:5px;bottom:37px;border:1px solid #000000;border-bottom:none;width:429px;height:60px;background-color:#ffffff;display:none; */
 
 // ========================================================================= 
 //  bottom options table(s)
 // -------------------------------------------------------------------------
 
+@mixin cell()
+	border: 1px solid #000000	
+	background-color: #bbffbb
+	text-align: center
+	td
+		font-size: 1.2em
+	img  
+		height: 12px
+		width: 12px
+		vertical-align: middle
+
 .options
-	height: 40px
+	bottom: 0px
+
+	.foundation table
+		position: absolute
+		bottom: 5px
+		height: 40px
+		tr .left
+			width: 245px
+			@include cell()
+		tr .right
+			position: relative
+			left: 3px 
+			width: 246px
+			@include cell()
+			
+	.showhide
+		position: absolute
+		width: 200px
+		height: 30px
+		border: 1px solid #000000
+		background-color: #ffffff
+		table
+			th
+			tr td
+			
+
+	.departure_time
+		position: relative
 
 	table.room th
 		text-align: center
@@ -153,29 +168,7 @@
 	table.normal td
 		text-align:left
 		table.room td img
-			vertical-align: middle
-		
-	#options td #departure
-		border: 1px solid #000000
-
-	.showhide
-		position: relative
-		left: 6px
-		bottom: 5px 
-		width: 495px
-		height: 30px
-
-		#options_box_availability
-			position: relative
-			z-index: 100
-			left: 500px
-			bottom: 37px
-			border: 1px solid #000000
-			border-bottom: none
-			width: 120px
-			height: 115px
-			background-color: #ffffff
-			display:none
+			vertical-align: middle		
 
 
 // ========================================================================= 
@@ -311,9 +304,9 @@ table.report
 body
 	margin: 10px
 	
-table
-	margin: 10px 0
-	width: 450px
+// table
+// 	margin: 10px 0
+// 	width: 450px
 
 h1 
 	font-size:  2em
@@ -331,16 +324,16 @@ label, div.label
 	font-weight: bold
 	text-align: right
 
-td, th 
-	padding: 2px
+// td, th 
+// 	padding: 2px
 
-th 
-	background-color: #dddddd
-	border: 1px solid #000000
-	border-bottom: 3px solid #000000
-	font-size: 1.2em
-	font-weight: bold
-	text-align: center
+// th 
+// 	background-color: #dddddd
+// 	border: 1px solid #000000
+// 	border-bottom: 3px solid #000000
+// 	font-size: 1.2em
+// 	font-weight: bold
+//	text-align: center
 
 #disclaimer 
 	font-size: .85em

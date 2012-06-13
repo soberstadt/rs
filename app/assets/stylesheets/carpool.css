@@ -2,7 +2,7 @@
   position: absolute;
   top: 10px;
   left: 5px;
-  width: 400px;
+  width: 200px;
   height: 25px;
   border: 2px solid #445566; }
   .top .left .shown tr td {
@@ -37,74 +37,108 @@
 .drivers {
   position: absolute;
   top: 175px;
-  bottom: 40px;
+  bottom: 50px;
   width: 250px;
   border: 1px solid black;
-  overflow: auto;
-  left: 5px; }
+  overflow: auto; }
   .drivers ul {
     padding: 2px; }
   .drivers .header {
     position: relative;
     text-align: center;
-    vertical-align: sub;
     background-color: #ffbbbb;
-    border: 1px solid black;
-    height: 60px;
-    top: -15px; }
+    border: 1px solid black; }
+    .drivers .header h3 {
+      vertical-align: middle; }
   .drivers .none {
     position: relative;
-    height: 50px;
+    height: 60px;
+    width: 250px;
+    top: -8px;
     text-align: center;
-    border: 1px solid black;
     background-color: #ffbbbb;
-    top: -31px; }
+    border: 1px solid black; }
   .drivers #selected_driver {
     position: relative;
     left: 5px;
-    border-bottom: 2px solid black;
+    border-bottom: 1px solid black;
     background-color: #bbffbb;
     display: none; }
   .drivers #unselected {
-    positive: relative; }
+    position: relative; }
 
 .riders {
   position: absolute;
   top: 175px;
-  bottom: 40px;
+  bottom: 50px;
   width: 250px;
   border: 1px solid black;
   overflow: auto;
-  left: 260px; }
+  left: 265px; }
   .riders ul {
     padding: 2px; }
   .riders .header {
     position: relative;
     text-align: center;
-    vertical-align: sub;
     background-color: #ffbbbb;
-    border: 1px solid black;
-    height: 60px;
-    top: -15px; }
+    border: 1px solid black; }
+    .riders .header h3 {
+      vertical-align: middle; }
   .riders .none {
     position: relative;
-    height: 50px;
+    height: 60px;
+    width: 250px;
+    top: -8px;
     text-align: center;
-    border: 1px solid black;
     background-color: #ffbbbb;
-    top: -36px; }
+    border: 1px solid black; }
   .riders #selected_riders {
     position: relative;
     left: 5px;
-    border-bottom: 2px solid black;
+    border-bottom: 1px solid black;
     background-color: #bbffbb;
     display: none; }
   .riders #unselected {
-    positive: relative; }
+    position: relative; }
 
-/* style="position:absolute;z-index:100;left:5px;bottom:37px;border:1px solid #000000;border-bottom:none;width:429px;height:60px;background-color:#ffffff;display:none; */
 .options {
-  height: 40px; }
+  bottom: 0px; }
+  .options .foundation table {
+    position: absolute;
+    bottom: 5px;
+    height: 40px; }
+    .options .foundation table tr .left {
+      width: 245px;
+      border: 1px solid black;
+      background-color: #bbffbb;
+      text-align: center; }
+      .options .foundation table tr .left td {
+        font-size: 1.2em; }
+      .options .foundation table tr .left img {
+        height: 12px;
+        width: 12px;
+        vertical-align: middle; }
+    .options .foundation table tr .right {
+      position: relative;
+      left: 3px;
+      width: 246px;
+      border: 1px solid black;
+      background-color: #bbffbb;
+      text-align: center; }
+      .options .foundation table tr .right td {
+        font-size: 1.2em; }
+      .options .foundation table tr .right img {
+        height: 12px;
+        width: 12px;
+        vertical-align: middle; }
+  .options .showhide {
+    position: absolute;
+    width: 200px;
+    height: 30px;
+    border: 1px solid black;
+    background-color: white; }
+  .options .departure_time {
+    position: relative; }
   .options table.room th {
     text-align: center;
     vertical-align: middle;
@@ -119,24 +153,6 @@
     padding: 2px; }
   .options table.normal td table.room td img {
     vertical-align: middle; }
-  .options #options td #departure {
-    border: 1px solid black; }
-  .options .showhide {
-    position: relative;
-    left: 6px;
-    bottom: 5px;
-    width: 495px;
-    height: 30px; }
-    .options .showhide #options_box_availability {
-      position: relative;
-      z-index: 100;
-      left: 500px;
-      bottom: 37px;
-      border: 1px solid black;
-      border-bottom: none;
-      width: 120px;
-      height: 115px;
-      background-color: white; }
 
 .map {
   position: absolute;
@@ -240,10 +256,6 @@ table.report {
 body {
   margin: 10px; }
 
-table {
-  margin: 10px 0;
-  width: 450px; }
-
 h1 {
   font-size: 2em;
   font-weight: bold;
@@ -259,17 +271,6 @@ label, div.label {
   display: block;
   font-weight: bold;
   text-align: right; }
-
-td, th {
-  padding: 2px; }
-
-th {
-  background-color: #dddddd;
-  border: 1px solid black;
-  border-bottom: 3px solid black;
-  font-size: 1.2em;
-  font-weight: bold;
-  text-align: center; }
 
 #disclaimer {
   font-size: 0.85em;
