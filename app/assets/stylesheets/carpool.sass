@@ -47,65 +47,75 @@
 //  left side tables
 // -------------------------------------------------------------------------
 
-@mixin tables()
-	position: absolute
-	top: 175px
-	bottom: 50px
+@mixin title()
+	position: relative
 	width: 250px
 	border: 1px solid #000000
-	overflow: auto
-	ul
-		padding: 2px
+	text-align: center	
+	vertical-align: text-middle
 
-@mixin header()
+@mixin text()
 	position: relative
-	text-align: center
-	background-color: #ffbbbb
-	border: 1px solid #000000
-	h3
-		vertical-align: middle
-
-@mixin none()
-	position: relative
-	height: 60px
 	width: 250px
-	top: -8px
 	text-align: center
 	background-color: #ffbbbb
 	border: 1px solid #000000	
 
+@mixin tables()
+	position: absolute
+	top: 228px
+	border: 1px solid #000001
+	bottom: 50px
+	overflow: auto
+	width: 250px
+	ul
+		padding-left: 2px
+
 @mixin selected()
-	position: relative
 	left: 5px
 	border-bottom: 1px solid #000000
 	background-color: #bbffbb
 	display: none
 
 @mixin unselected()
-	position: relative
 
-.drivers 
-	@include tables()
-	.header
-		@include header()
-	.none
-		@include none()
-	#selected_driver
-		@include selected()
-	#unselected
-		@include unselected()
+#leftheader
+	position: absolute
+	top: 120px
+	background-color: #ffbbbb
+	.title
+		@include title()
+	.text
+		@include text()
 
-.riders 
-	@include tables()
+.drivers
+	.table
+		@include tables()
+		#selected_driver
+			@include selected()
+		#unselected
+			@include unselected()
+
+
+#rightheader
+	position: absolute
+	top: 120px
 	left: 265px
-	.header
-		@include header()
-	.none
-		@include none()
-	#selected_riders
-		@include selected()
-	#unselected
-		@include unselected()
+	background-color: #ffbbbb
+	.title
+		@include title()
+	.text
+		@include text()
+
+.riders
+	left:	265px
+	.table
+		left: 265px
+		@include tables()
+		#selected
+			@include selected()
+		#unselected
+			@include unselected()
 
 
 // ========================================================================= 
@@ -128,8 +138,8 @@
 
 	.foundation table
 		position: absolute
-		bottom: 5px
-		height: 40px
+		bottom: 3px
+		height: 30px
 		tr .left
 			width: 245px
 			@include cell()
@@ -140,35 +150,46 @@
 			@include cell()
 			
 	.showhide
-		position: absolute
-		width: 200px
-		height: 30px
+		z-index: +1
+		display: none
 		border: 1px solid #000000
 		background-color: #ffffff
+		bottom: 10px
+		width: 440px
+		left: 60px
 		table
 			th
+				background-color: #E4E4EE
+				height: 20px
 			tr td
-			
+				height: 20px
+				padding-left: 20px
 
 	.departure_time
-		position: relative
-
-	table.room th
-		text-align: center
-		vertical-align: middle
-		font-weight: bold
-		background-color: #dddddd
-		table.room th a
-			text-decoration: none
-			color: #000000
-	table.room td,th
-		text-align: center
-		vertical-align: middle
-		padding: 2px
-	table.normal td
-		text-align:left
-		table.room td img
-			vertical-align: middle		
+		z-index: +1
+		background-color: #ffffff
+		border: 1px solid #000000
+		width: 505px
+		table
+			.title
+				text-align: center
+				vertical-align: middle
+				font-weight: bold
+				background-color: #dddddd
+				width: 230px
+			.button
+				text-align: center
+				vertical-align: middle
+				font-weight: bold
+				background-color: #dddddd
+				width: 25px
+			td
+				text-align: center
+				vertical-align: middle
+				padding: 2px
+				text-align: left
+				img
+					vertical-align: middle
 
 
 // ========================================================================= 

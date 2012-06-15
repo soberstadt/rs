@@ -1,30 +1,15 @@
+<!DOCTYPE html>
 
+<html>
 <body onload="<%="displayMessage('flash');" if @message%>setTimeout(updateList, 250);" onunload="GUnload()">
-
-
-<script type="text/javascript">
-
-	function test() {
-		$('.top .left .hidden').toogle();
-	}
-
-	function showHide(selection) {
-		$(selection).toggle();
-	}
-
-</script>
 
 <!-- ====================================================================== -->
 <!-- top div -->
 
 <div class="top">
 
-	
-
 	<div class="center">
-
 		<div class="title">
-			<button id="test">Testing</button>
 			<h1>Rideshare Admin</h1>
 		</div>
 	</div>
@@ -73,8 +58,6 @@
 		</div>
 	</div>
 </div>
-
-
 
 
 <!-- ====================================================================== -->
@@ -169,7 +152,7 @@
 <!-- help messages -->
 
 <div class="message">
-	<div id="test">
+	<div id="how_select_driver">
 		<h2>Selecting a Driver</h2>
 		To "Select" a driver, click on their name in the list or icon (green) on the map. Click the "Select Driver" link in the pop-up bubble to begin assigning riders to the driver. To assign a rider, click their name/icon and click "Add to Car". To assign riders to a different car, select a different driver using the same method.
 		
@@ -178,7 +161,7 @@
 		-->
 
 	</div>
-	<div id="filters_help_message">
+	<div id="where_did_they_go">
 		<h2>Where did they go?</h2>
 		By default, only people who need attention are visible (i.e. drivers with empty spaces and riders with no ride), while people who don't need attention are hidden (i.e. drivers with full cars and riders with a ride). The "Show and Hide" link on the bottom left contains options for changing which riders/drivers are displayed. Similarly, people will be displayed based on departure time by using the "Departure Time" link below the lists - all departure times are shown by default.
 		<a href="javascript:hideMessage('filters_help');" class="message_exit" onmouseclick="hideMessage('filters_help');">X</a>
@@ -188,31 +171,185 @@
 
 
 <!-- ====================================================================== -->
-<!-- map -->
+<!-- google map -->
 
-<div id="map"></div>
+<script type="text/javascript" src="http://www.google.com/jsapi?key=<%=GOOGLE_KEY%>"></script>
+<script type="text/javascript"> 
+		
+	google.load("maps", "2", {"other_params":"sensor=false"});
+	var map;
+	var geocoder;
+	var drivers;
+	var riders;
+	var locations;
+	var current_driver = -1;
+	var riders_done = <%= @riders_done %>;
+	var riders_size = <%= @riders.size %>;
+	var spaces = <%= @spaces %>;
+	var zIndex = 9999999;
+	var icon;
+	//icons['driver']=new Array();
+	//icons['rider']=new Array();
+	
+	function initialize() {
+		map = new google.maps.Map2(document.getElementById("map"));
+		geocoder = new GClientGeocoder();
+		map.addControl(new GLargeMapControl());
+		map.enableScrollWheelZoom();
+		map.setCenter(new GLatLng( <%= @latitude_avg %>, <%= @longitude_avg %>), 11);
+		// only generate one icon, all the rest will be created by changing the image dynamically
+		icon=new GIcon(G_DEFAULT_ICON);
+		icon.image="/images/AD.png";
+		icon.shadow="/images/shadow.png";
+		icon.iconSize=new GSize(32, 32);
+		icon.shadowSize=new GSize(38, 32);
+		icon.imageMap=[2,10, 2,22, 10,30, 22,30, 30,22, 30,10, 22,2, 10,2];
+		/*icons['driver']['available']=new GIcon(G_DEFAULT_ICON);
+		icons['driver']['available'].image="/images/available-driver.png";
+		icons['driver']['available'].shadow="/images/shadow.png";
+		icons['driver']['available'].iconSize=new GSize(32, 32);
+		icons['driver']['available'].shadowSize=new GSize(38, 32);
+		icons['driver']['available'].imageMap=[2,10, 2,22, 10,30, 22,30, 30,22, 30,10, 22,2, 10,2];
+		icons['driver']['unavailable']=new GIcon(icons['driver']['available']);
+		icons['driver']['unavailable'].image="/images/unavailable-driver.png";
+		icons['driver']['selected']=new GIcon(icons['driver']['available']);
+		icons['driver']['selected'].image="/images/selected-driver.png";
+		icons['rider']['available']=new GIcon(icons['driver']['available']);
+		icons['rider']['available'].image="/images/available-rider.png";
+		icons['rider']['unavailable']=new GIcon(icons['driver']['available']);
+		icons['rider']['unavailable'].image="/images/unavailable-rider.png";
+		icons['rider']['selected']=new GIcon(icons['driver']['available']);
+		icons['rider']['selected'].image="/images/selected-rider.png";*/
+		drivers = new Object();
+		test = new Object();
+		<% @drivers.each do |driver| %>
+			<% i = driver.id %>
+			drivers[<%= i %>] = new Array();
+
+			//drivers[<%=i%>]['marker']=new GMarker(new GLatLng(<%=driver.latitude%>,<%=driver.longitude%>), {title: "<%=driver.person.full_name%>", zIndexProcess: doZIndex, icon: <%=(driver.numbercurrentpassengers.to_i < driver.number_passengers)?"icons['driver']['available']":"icons['driver']['unavailable']"%>});
+			//drivers[<%=i%>]['marker'].zIndex=zIndex--;
+			
+			drivers[<%=i%>]['id']="<%=driver.id%>";
+			drivers[<%=i%>]['address1']="<%=driver.address1%>";
+			drivers[<%=i%>]['address2']="<%=driver.address2%>";
+			drivers[<%=i%>]['city']="<%=driver.city%>";
+			drivers[<%=i%>]['state']="<%=driver.state%>";
+			drivers[<%=i%>]['zip']="<%=driver.zip%>";
+			drivers[<%=i%>]['name']="<%=driver.person.full_name%>";
+			drivers[<%=i%>]['phone']="<%=driver.phone%>";
+			drivers[<%=i%>]['contact_method']="<%=driver.contact_method%>";
+			drivers[<%=i%>]['number_passengers']="<%=driver.number_passengers%>";
+			drivers[<%=i%>]['depart_time']="<%=driver.departureTime%>";
+			drivers[<%=i%>]['depart_time_nice']="<%=driver.departureTimeNice%>";
+			drivers[<%=i%>]['special_info']=<%=driver.special_info.to_json%>;
+			drivers[<%=i%>]['show']=true;
+			drivers[<%=i%>]['riders']=new Object();
+			<% driver.rides.each do |rider| %>
+				<% if driver.id != rider.id %>
+					drivers[<%=i%>]['riders'][<%=rider.id%>]=<%=rider.id%>;
+				<% end %>
+			<% end %>
+			// ADD RIDERS FOR DRIVERS
+			/*GEvent.addListener(drivers[<%=i%>]['marker'], "infowindowbeforeclose", function() {
+				drivers[<%=i%>]['marker'].zIndex=zIndex--;
+			});
+			drivers[<%=i%>]['marker'].bindInfoWindowHtml(makeInfoboxHTML('driver',<%=i%>));
+			map.addOverlay(drivers[<%=i%>]['marker']);*/
+		<% end %>
+		riders=new Object()
+		<% @riders.each do |rider| %>
+			<% i=rider.id %>
+			riders[<%=i%>]=new Array();
+			//riders[<%=i%>]['marker']=new GMarker(new GLatLng(<%=rider.latitude%>,<%=rider.longitude%>), {title: "<%=rider.person.full_name%>", zIndexProcess: doZIndex, icon: <%=(rider.driver_ride_id == 0)?"icons['rider']['available']":"icons['rider']['unavailable']"%>});
+			//riders[<%=i%>]['marker'].zIndex=zIndex--;
+			riders[<%=i%>]['id']="<%=rider.id%>";
+			riders[<%=i%>]['driverID']="<%=rider.driver_ride_id%>";
+			riders[<%=i%>]['address1']="<%=rider.address1%>";
+			riders[<%=i%>]['address2']="<%=rider.address2%>";
+			riders[<%=i%>]['city']="<%=rider.city%>";
+			riders[<%=i%>]['state']="<%=rider.state%>";
+			riders[<%=i%>]['zip']="<%=rider.zip%>";
+			riders[<%=i%>]['name']="<%=rider.person.full_name%>";
+			riders[<%=i%>]['phone']="<%=rider.phone%>";
+			riders[<%=i%>]['contact_method']="<%=rider.contact_method%>";
+			riders[<%=i%>]['depart_time']="<%=rider.departureTime%>";
+			riders[<%=i%>]['depart_time_nice']="<%=rider.departureTimeNice%>";
+			riders[<%=i%>]['special_info']=<%=rider.special_info.to_json%>;
+			riders[<%=i%>]['show']=true;
+			/*GEvent.addListener(riders[<%=i%>]['marker'], "infowindowbeforeclose", function() {
+				riders[<%=i%>]['marker'].zIndex=zIndex--;
+			});
+			riders[<%=i%>]['marker'].bindInfoWindowHtml(makeInfoboxHTML('rider',<%=i%>));
+			map.addOverlay(riders[<%=i%>]['marker']);*/
+		<% end %>
+		locations=<%=@locations.to_json%>;
+		for (var i in locations) {
+			var title="";
+			var comma=false;
+			for (var j=0;j<locations[i]['rides'].length;j++) {
+				var k=locations[i]['rides'][j]['id'];
+				if (comma) {
+					title+=", ";
+				} else {
+					comma=true;
+				}
+				if (locations[i]['rides'][j]['type'] == "driver") {
+					title+=drivers[k]['name'];
+				} else {
+					title+=riders[k]['name'];
+				}
+			}
+			locations[i]['marker']=new GMarker(new GLatLng(locations[i]['latitude'], locations[i]['longitude']), {title: title, zIndexProcess: doZIndex, icon: icon});
+			locations[i]['marker'].zIndex=zIndex--;
+			for (var j=0;j<locations[i]['rides'].length;j++) {
+				var k=locations[i]['rides'][j]['id'];
+				if (locations[i]['rides'][j]['type'] == "driver") {
+					drivers[k]['marker']=locations[i]['marker'];
+					drivers[k]['location']=i;
+				} else {
+					riders[k]['marker']=locations[i]['marker'];
+					riders[k]['location']=i;
+				}
+			}
+			map.addOverlay(locations[i]['marker']);
+		}
+		<% @locations.each do |key, value| %>
+			GEvent.addListener(locations['<%=key%>']['marker'], "infowindowbeforeclose", function() {
+				locations['<%=key%>']['marker'].zIndex=zIndex--;
+				//show['<%=key%>']=locations['<%=key%>']['rides'][0]['id']; // Causes a bug with empty windows when the first one is hidden
+			});
+			GEvent.addListener(locations['<%=key%>']['marker'], "infowindowopen", function() {
+				onMarkerOpen('<%=key%>');
+			});
+			GEvent.addListener(locations['<%=key%>']['marker'], "dblclick", function() {
+				double_click_location('<%=key%>');
+			});
+		<% end %>
+		updateMarkers();
+	}
+	google.setOnLoadCallback(initialize);
+
+</script>
 
 
+<div id="map"> google map here </div>
 
 
+<!-- ====================================================================== -->
+<!-- driver table -->
 
-	<!-- ====================================================================== -->
-	<!-- driver table -->
+<div id="leftheader">
+	<h3 class="title">
+		<%=@drivers.size%> Drivers - <span id="spaces_remaining"><%=@spaces-@riders_done%></span>/<%=@spaces%> Seats
+	</h3>
+	<p class="text">
+		<button onClick="$('.message #test').toggle();"><strong>How do I select a driver?</strong></button><br/>
+		<strong>No Driver Selected</strong><br/>
+	</p>
+</div>
 
 <div class="drivers">
-	<div class="header">
-		<h3 class="title">
-			<%=@drivers.size%> Drivers - <span id="spaces_remaining"><%=@spaces-@riders_done%></span>/<%=@spaces%> Seats
-		</h3>
-	</div>
-	<div class="none">
-		<p class="text">
-			<button onClick="$('.message #test').toggle();"><strong>How do I select a driver?</strong></button><br/>
-			<strong>No Driver Selected</strong><br/>
-		</p>
-	</div>
-	
-	<div id="drivers" >
+	<div class="table" >
 		<ul id="selected_driver">
 			<!-- Will be filled with current driver automagically -->
 		</ul>
@@ -230,20 +367,20 @@
 	</div>
 </div>
 
-	<!-- ====================================================================== -->
-	<!-- rider table -->
+<!-- ====================================================================== -->
+<!-- rider table -->
+
+<div id="rightheader">
+	<h3 class="title">
+		<%=@riders.size%> Riders - (<span id="riders_remaining"><%=@riders.size - @riders_done%></span> Unassigned)
+	</h3>
+	<p class="title">
+		<button onClick="$('#filters_help_message').toggle();"><strong>Where did they go?</strong></button>
+	</p>
+</div>
+
 <div class="riders">
-	<div class="header">
-		<h3 class="title">
-			<%=@riders.size%> Riders - (<span id="riders_remaining"><%=@riders.size - @riders_done%></span> Unassigned)
-		</h3>
-	</div>
-	<div class="none">
-		<p class="text">
-			<button onClick="$('#filters_help_message').toggle();"><strong>Where did they go?</strong></button>
-		</p>
-	</div>
-	<div id="riders">
+	<div class="table">
 		<ul id="selected_riders">
 			<!-- Will be filled with riders automagically -->
 		</ul>
@@ -257,9 +394,7 @@
 			<% end %>
 		</ul>
 	</div>
-
 </div>
-
 
 
 
@@ -274,99 +409,101 @@
 	<!-- EARLIEST // LATEST -->
 
 	<div class="departure_time">
-		<form action="javascript:updateDepartureTime();">
-			<table class="room">
-				<tr>
-					<th colspan="2">Earliest</th>
-					<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Latest</th>
-					<th><button onClick="alert('close Earliest and Latest');">X</button></th>
-				</tr>
-				<tr>
-					<td><img src="images/clock-icon.png" alt="clock" style="width:25px;height:25px;" />&nbsp;
-						
-						<select name="options_box_departure_time_time1_hour" 
-										id="options_box_departure_time_time1_hour" 
-										onchange="updateDepartureTime1(true);">
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
-							<option value="8">8</option>
-							<option value="9">9</option>
-							<option value="10">10</option>
-							<option value="11">11</option>
-							<option value="12">12</option>
-						</select>
-						
-						<select name="options_box_departure_time_time1_minute" 
-										id="options_box_departure_time_time1_minute" 
-										onChange="updateDepartureTime1(true);">
-							<option value="00">00</option>
-							<option value="15">15</option>
-							<option value="30">30</option>
-							<option value="45">45</option>
-						</select>
+			
+		<table class="room">
+			<tr>
+				<th class="title" colspan="2">Earliest</th>
+				<th class="title" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Latest</th>
+				<th class="button" ><button onClick="$('.departure_time').hide();">&nbsp;X&nbsp;</button></th>
+			</tr>
+			<tr>
+				<td><img src="images/clock-icon.png" alt="clock" style="width:25px;height:25px;" />&nbsp;
 					
-						<select name="options_box_departure_time_time1_ampm" 
-										id="options_box_departure_time_time1_ampm" 
-										onchange="updateDepartureTime1(true);">
-							<option value="0">AM</option>
-							<option value="12">PM</option>
-						</select>
-					</td>
-					<td>
-						<input 	type="checkbox" 
-										name="options_box_departure_time_use1" 
-										id="options_box_departure_time_use1" 
-										onclick="updateDepartureTime1(false);" />
-					</td>
+					<select name="options_box_departure_time_time1_hour" 
+									id="options_box_departure_time_time1_hour" 
+									onchange="updateDepartureTime1(true);">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option value="12">12</option>
+					</select>
 					
-					<td><img 	src="images/clock-icon.png" 
-										alt="clock" 
-										style="width:25px;height:25px;" />&nbsp;
-						<select name="options_box_departure_time_time2_hour" 
-										id="options_box_departure_time_time2_hour" 
-										onchange="updateDepartureTime2(true);">
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
-							<option value="8">8</option>
-							<option value="9">9</option>
-							<option value="10">10</option>
-							<option value="11">11</option>
-							<option value="12">12</option>
-						</select>
-						<select name="options_box_departure_time_time2_minute" 
-										id="options_box_departure_time_time2_minute" 
-										onChange="updateDepartureTime2(true);">
-							<option value="00">00</option>
-							<option value="15">15</option>
-							<option value="30">30</option>
-							<option value="45">45</option>
-						</select>
-						<select name="options_box_departure_time_time2_ampm" 
-										id="options_box_departure_time_time2_ampm" 
-										onchange="updateDepartureTime2(true);">
-							<option value="0">AM</option>
-							<option value="12">PM</option>
-						</select>
-					</td>
-					<td>
-						<input type="checkbox" 
-						name="options_box_departure_time_use2" 
-						id="options_box_departure_time_use2" 
-						onclick="updateDepartureTime2(false);" />
-					</td>
-				</tr>
-			</table>
-		</form>
+					<select name="options_box_departure_time_time1_minute" 
+									id="options_box_departure_time_time1_minute" 
+									onChange="updateDepartureTime1(true);">
+						<option value="00">00</option>
+						<option value="15">15</option>
+						<option value="30">30</option>
+						<option value="45">45</option>
+					</select>
+				
+					<select name="options_box_departure_time_time1_ampm" 
+									id="options_box_departure_time_time1_ampm" 
+									onchange="updateDepartureTime1(true);">
+						<option value="0">AM</option>
+						<option value="12">PM</option>
+					</select>
+				</td>
+				
+
+				<td>
+					<input 	type="checkbox"
+									name="options_box_departure_time_use1"
+									id="options_box_departure_time_use1"
+									onclick="updateDepartureTime1(false);"
+									/>
+				</td>
+				
+				<td><img 	src="images/clock-icon.png" 
+									alt="clock" 
+									style="width:25px;height:25px;" />&nbsp;
+					<select name="options_box_departure_time_time2_hour" 
+									id="options_box_departure_time_time2_hour" 
+									onchange="updateDepartureTime2(true);">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option value="12">12</option>
+					</select>
+					<select name="options_box_departure_time_time2_minute" 
+									id="options_box_departure_time_time2_minute" 
+									onChange="updateDepartureTime2(true);">
+						<option value="00">00</option>
+						<option value="15">15</option>
+						<option value="30">30</option>
+						<option value="45">45</option>
+					</select>
+					<select name="options_box_departure_time_time2_ampm" 
+									id="options_box_departure_time_time2_ampm" 
+									onchange="updateDepartureTime2(true);">
+						<option value="0">AM</option>
+						<option value="12">PM</option>
+					</select>
+				</td>
+				<td>
+					<input type="checkbox" 
+					name="options_box_departure_time_use2" 
+					id="options_box_departure_time_use2" 
+					onclick="updateDepartureTime2(false);" />
+				</td>
+			</tr>
+		</table>
 	</div>
 
 	<!-- ====================================================================== -->
@@ -375,37 +512,27 @@
 	<!-- TODO FIX SHOW AND HIDE -->
 
 	<div class="showhide">
-		
-		<!-- comment_here
-		<form action="javascript:updateAvailability();">
-		 -->
-			<table>
-				<tr>
-					<th>Show and Hide</th>
-					<!-- 
-					<th><button onClick="$('.options .showhide').toggle(hide);">X</button></th>
-					-->
-					<th><button onClick="alert('showhide');">X</button></th>
-				</tr>
-				<tr>
-					<td>Show riders without a ride and drivers with open seats:</td>
-					<td><input type="checkbox" 
-											name="options_box_availability_available" 
-											id="options_box_availability_available" 
-											checked="checked" 
-											onclick="updateList();" /></td>
-				</tr>
-				<tr>
-					<td>Show riders with a ride and drivers with a full car:</td>
-					<td><input 	type="checkbox" 
-											name="options_box_availability_assigned" 
-											id="options_box_availability_assigned" 
-											onclick="updateList();" /></td>
-				</tr>
-			</table>
-			<!-- comment_here 
-		</form>
-		-->
+		<table>
+			<tr>
+				<th>Filtering Options</th>
+				<th><button onClick="$('.showhide').hide();">&nbsp;X&nbsp;</button></th>
+			</tr>
+			<tr>
+				<td>Show riders without a ride and drivers with open seats:</td>
+				<td><input type="checkbox" 
+										name="options_box_availability_available" 
+										id="options_box_availability_available" 
+										checked="checked" 
+										onClick="updateList();" /></td>
+			</tr>
+			<tr>
+				<td>Show riders with a ride and drivers with a full car:</td>
+				<td><input 	type="checkbox" 
+										name="options_box_availability_assigned" 
+										id="options_box_availability_assigned" 
+										onClick="updateList();" /></td>
+			</tr>
+		</table>
 	</div>
 
 	<!-- ====================================================================== -->
@@ -414,19 +541,18 @@
 	<div class="foundation">
 		<table>
 			<tr>
-				<td class="left"><button onClick="$('departure_time').toggle();">Departure Time <img src="/images/up_arrow.png" alt="arrow" /></button></td>
-				<td class="right"><button onClick="$('availability').toggle();">Show and Hide <img src="/images/up_arrow.png" alt="arrow"/></button>
+				<td class="left"><button onClick="$('.departure_time').toggle();">Departure Time <img src="/images/up_arrow.png" alt="arrow" /></button></td>
+				<td class="right"><button onClick="$('.showhide').toggle();">Filter Options<img src="/images/up_arrow.png" alt="arrow"/></button>
 				</td>
 			</tr>
 		</table>
 	</div>
 
-
-
+<!-- ====================================================================== -->
+<!-- end of options table -->
+</div>
 
 
 
 </body>
-
-
 </html> 

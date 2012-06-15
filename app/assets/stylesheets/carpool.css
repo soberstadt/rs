@@ -34,79 +34,80 @@
   width: 600px;
   height: 360px; }
 
-.drivers {
+#leftheader {
   position: absolute;
-  top: 175px;
-  bottom: 50px;
-  width: 250px;
-  border: 1px solid black;
-  overflow: auto; }
-  .drivers ul {
-    padding: 2px; }
-  .drivers .header {
+  top: 120px;
+  background-color: #ffbbbb; }
+  #leftheader .title {
     position: relative;
-    text-align: center;
-    background-color: #ffbbbb;
-    border: 1px solid black; }
-    .drivers .header h3 {
-      vertical-align: middle; }
-  .drivers .none {
-    position: relative;
-    height: 60px;
     width: 250px;
-    top: -8px;
+    border: 1px solid black;
+    text-align: center;
+    vertical-align: text-middle; }
+  #leftheader .text {
+    position: relative;
+    width: 250px;
     text-align: center;
     background-color: #ffbbbb;
     border: 1px solid black; }
-  .drivers #selected_driver {
-    position: relative;
+
+.drivers .table {
+  position: absolute;
+  top: 228px;
+  border: 1px solid #000001;
+  bottom: 50px;
+  overflow: auto;
+  width: 250px; }
+  .drivers .table ul {
+    padding-left: 2px; }
+  .drivers .table #selected_driver {
     left: 5px;
     border-bottom: 1px solid black;
     background-color: #bbffbb;
     display: none; }
-  .drivers #unselected {
-    position: relative; }
+
+#rightheader {
+  position: absolute;
+  top: 120px;
+  left: 265px;
+  background-color: #ffbbbb; }
+  #rightheader .title {
+    position: relative;
+    width: 250px;
+    border: 1px solid black;
+    text-align: center;
+    vertical-align: text-middle; }
+  #rightheader .text {
+    position: relative;
+    width: 250px;
+    text-align: center;
+    background-color: #ffbbbb;
+    border: 1px solid black; }
 
 .riders {
-  position: absolute;
-  top: 175px;
-  bottom: 50px;
-  width: 250px;
-  border: 1px solid black;
-  overflow: auto;
   left: 265px; }
-  .riders ul {
-    padding: 2px; }
-  .riders .header {
-    position: relative;
-    text-align: center;
-    background-color: #ffbbbb;
-    border: 1px solid black; }
-    .riders .header h3 {
-      vertical-align: middle; }
-  .riders .none {
-    position: relative;
-    height: 60px;
-    width: 250px;
-    top: -8px;
-    text-align: center;
-    background-color: #ffbbbb;
-    border: 1px solid black; }
-  .riders #selected_riders {
-    position: relative;
-    left: 5px;
-    border-bottom: 1px solid black;
-    background-color: #bbffbb;
-    display: none; }
-  .riders #unselected {
-    position: relative; }
+  .riders .table {
+    left: 265px;
+    position: absolute;
+    top: 228px;
+    border: 1px solid #000001;
+    bottom: 50px;
+    overflow: auto;
+    width: 250px; }
+    .riders .table ul {
+      padding-left: 2px; }
+    .riders .table #selected {
+      left: 5px;
+      border-bottom: 1px solid black;
+      background-color: #bbffbb;
+      display: none; }
 
 .options {
   bottom: 0px; }
   .options .foundation table {
     position: absolute;
-    bottom: 5px;
-    height: 40px; }
+    bottom: 3px;
+    height: 30px; }
     .options .foundation table tr .left {
       width: 245px;
       border: 1px solid black;
@@ -132,27 +133,43 @@
         width: 12px;
         vertical-align: middle; }
   .options .showhide {
-    position: absolute;
-    width: 200px;
-    height: 30px;
+    z-index: 1;
+    display: none;
     border: 1px solid black;
-    background-color: white; }
+    background-color: white;
+    bottom: 10px;
+    width: 440px;
+    left: 60px; }
+    .options .showhide table th {
+      background-color: #e4e4ee;
+      height: 20px; }
+    .options .showhide table tr td {
+      height: 20px;
+      padding-left: 20px; }
   .options .departure_time {
-    position: relative; }
-  .options table.room th {
-    text-align: center;
-    vertical-align: middle;
-    font-weight: bold;
-    background-color: #dddddd; }
-    .options table.room th table.room th a {
-      text-decoration: none;
-      color: black; }
-  .options table.room td, .options th {
-    text-align: center;
-    vertical-align: middle;
-    padding: 2px; }
-  .options table.normal td table.room td img {
-    vertical-align: middle; }
+    z-index: 1;
+    background-color: white;
+    border: 1px solid black;
+    width: 505px; }
+    .options .departure_time table .title {
+      text-align: center;
+      vertical-align: middle;
+      font-weight: bold;
+      background-color: #dddddd;
+      width: 230px; }
+    .options .departure_time table .button {
+      text-align: center;
+      vertical-align: middle;
+      font-weight: bold;
+      background-color: #dddddd;
+      width: 25px; }
+    .options .departure_time table td {
+      text-align: center;
+      vertical-align: middle;
+      padding: 2px;
+      text-align: left; }
+      .options .departure_time table td img {
+        vertical-align: middle; }
 
 .map {
   position: absolute;
