@@ -1,3 +1,25 @@
+function initialize() {
+  var myOptions = {
+    zoom: 8,
+    center: new google.maps.LatLng(-34.397, 150.644),
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  }
+  var map = new google.maps.Map(document.getElementById("map-index"), myOptions);
+}
+
+function loadScript() {
+  var script = document.createElement("script");
+  script.type = "text/javascript";
+  script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyBYZt7gPZCyszhbw5Xsw73-l9uwkjEQL98&sensor=true&callback=initialize";
+  document.body.appendChild(script);
+}
+
+window.onload = loadScript;
+
+// ------------------------------------------------------------
+//  old JS code
+// ------------------------------------------------------------
+
 var viewportWidth;
 var viewportHeight;
 var departure_time1 = "00:00";

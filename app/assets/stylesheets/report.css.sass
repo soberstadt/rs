@@ -1,0 +1,82 @@
+// Place all the styles related to the Report controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.top
+	.left
+		margin: 20px
+	.center
+		text-align: center
+
+table.report
+	margin: 20px
+	width: 95%
+	page-break-inside: avoid
+	page-break-after: always
+	margin-bottom: 1em
+	border: 1px solid #000000
+
+	// gloabal table styles
+	th, td 
+		padding-left: .02in
+	em
+		font-weight: bold
+		border: 1px
+	
+	// good
+	thead th 
+		font-weight: bold
+		border: .02in solid #000000
+		background-color: #e5e5e5
+	
+		h3 
+			width:  auto
+			// background-color:  #000000
+			background-color: #e5e5e5
+		
+	tbody
+		td
+			border:  .01in solid #cccccc
+			.indent 
+				padding-left:  .5in
+			.far_indent 
+				padding-left:  1in
+		
+		tr.driver td:first-child 
+			border-left:  .02in solid #000000
+		
+		table.report tbody tr.driver td
+			border-top:  .02in solid #000000
+		
+		table.report tbody tr.driver td:last-child 
+			border-right: .02in solid #000000
+		
+		table.report tbody tr.rider td:first-child 
+			border-left: .02in solid #000000
+		
+		table.report tbody tr.rider td:last-child 
+			border-right: .02in solid #000000
+		
+		table.report tbody tr:last-child td 
+			border-bottom: .02in solid #000000
+		
+		table.report tbody td.far_indent 
+			padding-left: 1in
+		
+		table.report tbody tr.driver td:first-child 
+			border-left: .02in solid #000000
+		
+		table.report tbody tr.driver td 
+			border-top: .02in solid #000000
+		
+		table.report tbody tr.driver td:last-child 
+			border-right: .02in solid #000000
+		
+		table.report tbody tr.rider td:first-child 
+			border-left: .02in solid #000000
+		
+		table.report tbody tr.rider td:last-child 
+			border-right: .02in solid #000000
+		
+		table.report tbody tr:last-child td 
+			border-bottom: .02in solid #000000

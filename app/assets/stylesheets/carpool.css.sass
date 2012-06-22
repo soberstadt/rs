@@ -28,6 +28,7 @@ body
 				padding: 2px bold
 				border: 1px solid #000000
 		.hidden
+			z-index: +1
 			position: absolute
 			top: 45px
 			left: 10px
@@ -208,12 +209,13 @@ body
 //  google map
 // -------------------------------------------------------------------------
 
-.map
-	position: absolute
-	left: 504px
-	right: 5px
-	top: 1000px
-	bottom: 30px
+#map-index
+	height: 87%
+	margin: 0 auto
+	text-align: center
+	float: right
+	width: 59%
+
 
 .message
 	background-color: #ffffff
@@ -250,88 +252,7 @@ body
 	width: 400px
 
 
-// ========================================================================= 
-//  email report
-// -------------------------------------------------------------------------
-
-
-body#report
-	margin: .1in
-
-div.marker_tabs
-	border-bottom: 2px solid #000000
-	padding-bottom: 5px
-	margin-bottom: 10px
-
-table.report
-	/*margin: .2in*/
-	width: 100%
-	page-break-inside: avoid
-	page-break-after: always
-	margin-bottom: 1em
-
-	table.report em
-		font-weight: bold
 	
-	table.report th, table.report td 
-		padding:  .02in
-	
-	table.report thead th 
-		font-weight: bold
-		border: .02in solid #000000
-		background-color: #e5e5e5
-	
-		table.report thead th h3 
-			width:  auto
-			background-color:  transparent
-		
-	table.report tbody td 
-		border:  .01in solid #cccccc
-	
-		table.report tbody td.indent 
-			padding-left:  .5in
-		
-		table.report tbody td.far_indent 
-			padding-left:  1in
-		
-		table.report tbody tr.driver td:first-child 
-			border-left:  .02in solid #000000
-		
-		table.report tbody tr.driver td
-			border-top:  .02in solid #000000
-		
-		table.report tbody tr.driver td:last-child 
-			border-right: .02in solid #000000
-		
-		table.report tbody tr.rider td:first-child 
-			border-left: .02in solid #000000
-		
-		table.report tbody tr.rider td:last-child 
-			border-right: .02in solid #000000
-		
-		table.report tbody tr:last-child td 
-			border-bottom: .02in solid #000000
-		
-		table.report tbody td.far_indent 
-			padding-left: 1in
-		
-		table.report tbody tr.driver td:first-child 
-			border-left: .02in solid #000000
-		
-		table.report tbody tr.driver td 
-			border-top: .02in solid #000000
-		
-		table.report tbody tr.driver td:last-child 
-			border-right: .02in solid #000000
-		
-		table.report tbody tr.rider td:first-child 
-			border-left: .02in solid #000000
-		
-		table.report tbody tr.rider td:last-child 
-			border-right: .02in solid #000000
-		
-		table.report tbody tr:last-child td 
-			border-bottom: .02in solid #000000
 
 	
 body

@@ -1,3 +1,5 @@
+# controller before refactored. keep around for reference and then delete
+
 class CarpoolsController < ApplicationController
 	def index
 		if session[:event_id] != params[:id].to_i || params[:id].nil?
