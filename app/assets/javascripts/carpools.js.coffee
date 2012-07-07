@@ -1,3 +1,4 @@
+
 initialize ->
   myOptions =
     zoom: 8
@@ -7,17 +8,19 @@ initialize ->
 
 loadScript ->
   script = document.createElement("script")
-  script.type = "text/javascript";
-  script.src = "http:#maps.googleapis.com/maps/api/js?key=AIzaSyBYZt7gPZCyszhbw5Xsw73-l9uwkjEQL98&sensor=true&callback=initialize";
-  document.body.appendChild(script);
+  script.type = "text/javascript"
+  script.src = "http:#maps.googleapis.com/maps/api/js?key=AIzaSyBYZt7gPZCyszhbw5Xsw73-l9uwkjEQL98&sensor=true&callback=initialize"
+  document.body.appendChild(script)
 
 
+window.onload = alert('window loaded coffeescript')
 # --------------------------------------------------------------------
 #  old JS code
 # --------------------------------------------------------------------
 
 viewportWidth
-viewportHeight;
+viewportHeight
+lastOption = ""
 departure_time1 = "00:00"
 departure_time2 = "00:00"
 
@@ -25,13 +28,11 @@ departure_time2 = "00:00"
 show = new Object()
 
 
-# --------------------------------------------------------------------
-# complex refactor
+# # complex refactor
 # if (typeof window.innerWidth != 'undefined') {viewportWidth=window.innerWidth;viewportHeight=window.innerHeight;}
 # else if (typeof document.documentElement != 'undefined' && typeof document.documentElement.clientWidth != 'undefined' && typeof document.documentElement.clientWidth != 0)
 # {viewportWidth=document.documentElement.clientWidth;viewportHeight=document.documentElement.clientHeight;}
 # else {viewportWidth=document.getElementsByTagName('body')[0].clientWidth;viewportHeight=document.getElementsByTagName('body')[0].clientHeight}
-# --------------------------------------------------------------------
 
 
 numProperties(object) ->
@@ -40,9 +41,6 @@ numProperties(object) ->
 	#  	count++;
 	#  }
 	# count
-
-# depricated
-# showHide(id) {}
 
 makeInfoboxHTML(type, i) ->
 	# var text;
@@ -426,8 +424,6 @@ prependChild(parent, node) ->
 # 	updateMarkers();
 # 	hideMessage("update_address");
 # }*/
-
-lastOption = ""
 
 showOption(name) ->
 	# # close all others
