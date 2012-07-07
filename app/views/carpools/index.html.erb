@@ -1,4 +1,13 @@
 <!-- ====================================================================== -->
+<!-- load the google map -->
+<script type="text/javascript">
+	// see carpool.js.coffe for the other JS
+	// window.onload = alert('window loaded');
+	window.onload = loadScript;
+
+</script>
+
+<!-- ====================================================================== -->
 <!-- top div -->
 
 <div class="top">
@@ -14,40 +23,34 @@
 			<tr>
 				<td>
 					<button onClick="$('.top .left .hidden').toggle();">
-						Legend &nbsp;&nbsp;&nbsp;<img src="/images/arrow.png" alt="arrow" />
+						Legend &nbsp;&nbsp;&nbsp;<% image_tag("arrow.png", :alt => "arrow") %>
 					</button>
 				</td>
 				<td>
-					<button onClick="location.href=http://wiki.uscm.org/download/attachments/56492347/CRS+RideShare+Feature.ppt?version=1&modificationDate=1262886674000" target="_blank">
-						Help?
+					<button onClick="location.href=http://wiki.uscm.org/download/attachments/56492347/CRS+RideShare+Feature.ppt?version=1&modificationDate=1262886674000" target="_blank">Help?
 					</button>
 				</td>
 			</tr>
 		</table>
 		<table class="hidden">
 			<tr>
-				<td><img src="/images/AD.png" alt="Available Driver" /></td><td>Available Driver</td>
-				<td><img src="/images/AR.png" alt="Available Rider" /></td><td>Available Rider</td>
-				<td><img src="/images/selected.png" alt="Selected" /></td><td>Selected Driver/Rider</td>
+				<td><% image_tag("AD.png", :alt => "Available Driver") %><td><td>Available Driver</td>
+				<td><% image_tag("AR.png", :alt => "Available Rider") %></td><td>Available Rider</td>
+				<td><% image_tag("selected.png", :alt => "Selected") %></td><td>Selected Driver/Rider</td>
 			</tr>
 			<tr>
-				<td><img src="/images/UD.png" alt="Unavailable Driver" /></td><td>Driver with Full Car</td>
-				<td><img src="/images/UR.png" alt="Unavailable Rider" /></td><td>Assigned Rider</td>
-				<td><img src="/images/AD_AR_UD_UR.png" alt="Available Driver, Available Rider, Unavailable Driver, Unavailable Rider" /></td><td>Location with all four types</td>
+				<td><% image_tag("UD.png", :alt => "Unavailable Driver") %></td><td>Driver with Full Car</td>
+				<td><% image_tag("UR.png", :alt => "Unavailable Rider") %></td><td>Assigned Rider</td>
+				<td><% image_tag("AD_AR_UD_UR.png", :alt => "Available Driver, Available Rider, Unavailable Driver, Unavailable Rider") %></td><td>Location with all four types</td>
 			</tr>
 		</table>
 	</div>
 
 	<div class="right">
 		<div>
-			<a href="/carpool/report" 
-			title="This produces a printable list of all of the people organized by drivers"
-			>Printable Report</a><br/>
-			<a href="/report/all" 
-			title="This brings you to a page that allows you to set up an e-mail to notify everyone of their ride assignments">Email Setup</a><br/>
-			<a href="javascript:displayMessage('hidden_users');" 
-			title="This lists all of the people that are not included in RideShare, but have registered for the conference"
-			>Show Non-Participants</a>
+			<a href="/carpool/report" title="This produces a printable list of all of the people organized by drivers">Printable Report</a><br/>
+			<a href="/report/all" title="This brings you to a page that allows you to set up an e-mail to notify everyone of their ride assignments">Email Setup</a><br/>
+			<a href="javascript:displayMessage('hidden_users');" title="This lists all of the people that are not included in RideShare, but have registered for the conference">Show Non-Participants</a>
 		</div>
 	</div>
 
@@ -106,9 +109,7 @@
 					<td>
 						<label for="update_address_address1">Address Line 1</label>:&nbsp;
 					</td>
-					<td>
-						<input type="text" name="address1" id="update_address_address1" size="30" />
-					</td>
+					<td><input type="text" name="address1" id="update_address_address1" size="30" /></td>
 				</tr>
 				<tr>
 					<td>
@@ -251,7 +252,7 @@
 				<th class="button" ><button onClick="$('.departure_time').hide();">&nbsp;X&nbsp;</button></th>
 			</tr>
 			<tr>
-				<td><img src="images/clock-icon.png" alt="clock" style="width:25px;height:25px;" />&nbsp;
+				<td><img src="/images/clock-icon.png" alt="clock" style="width:25px;height:25px;" />&nbsp;
 					
 					<select name="options_box_departure_time_time1_hour" 
 									id="options_box_departure_time_time1_hour" 
@@ -296,7 +297,7 @@
 									/>
 				</td>
 				
-				<td><img 	src="images/clock-icon.png" 
+				<td><img 	src="/images/clock-icon.png" 
 									alt="clock" 
 									style="width:25px;height:25px;" />&nbsp;
 					<select name="options_box_departure_time_time2_hour" 
@@ -376,9 +377,9 @@
 	<div class="foundation">
 		<table>
 			<tr>
-				<td class="left"><button onClick="$('.departure_time').toggle();">Departure Time <img src="/images/up_arrow.png" alt="arrow" /></button></td>
-				<td class="right"><button onClick="$('.showhide').toggle();">Filter Options<img src="/images/up_arrow.png" alt="arrow"/></button>
-				</td>
+				<td class="left">
+					<button onClick="$('.departure_time').toggle();">Departure Time <% image_tag('up_arrow.png', :alt => "arrow")%></button></td>
+				<td class="right"><button onClick="$('.showhide').toggle();">Filter Options<%image_tag("up_arrow.png", :alt => "arrow")%></button></td>
 			</tr>
 		</table>
 	</div>
