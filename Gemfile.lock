@@ -129,7 +129,6 @@ DEPENDENCIES
   json
   mysql2
   rails (~> 3.2.6)
-  rspec
   rspec-rails
   sass-rails (~> 3.2.3)
   uglifier (>= 1.0.3)
