@@ -1,6 +1,8 @@
 Rs::Application.routes.draw do
   
 
+  get "dashboard/index"
+
   # report controller convers rs1 "email" functionality
   get "report/all"  
   match 'carpool/report' => 'carpools#report'
