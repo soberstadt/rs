@@ -1,0 +1,89 @@
+# == Schema Information
+# Schema version: 17
+#
+# Table name: fsk_orders
+#
+#  id                 :integer(10)   not null, primary key
+#  location_name      :string(128)   
+#  updated_at         :datetime      
+#  allocation_id      :integer(10)   
+#  contact_first_name :string(30)    
+#  contact_last_name  :string(30)    
+#  contact_phone      :string(24)    
+#  contact_cell       :string(24)    
+#  contact_email      :string(50)    
+#  ship_first_name    :string(30)    
+#  ship_address1      :string(50)    
+#  ship_address2      :string(50)    
+#  ship_city          :string(30)    
+#  ship_state         :string(6)     
+#  ship_zip           :string(10)    
+#  ship_phone         :string(24)    
+#  total_kits         :integer(10)   
+#  business_unit      :string(10)    
+#  operating_unit     :string(10)    
+#  dept_id            :string(10)    
+#  project_id         :string(10)    
+#  type               :string(20)    
+#  order_year         :string(10)    
+#  ssm_id             :integer(10)   
+#  lock_version       :integer(10)   default(0), not null
+#  created_at         :datetime      
+#  ship_last_name     :string(255)   
+#
+
+--- 
+fsk_orders_001: 
+  ship_phone: 666-666-6666
+  ship_address1: 123 Somewhere St
+  project_id: "4"
+  ship_zip: "12231"
+  ship_address2: "#3304"
+  contact_cell: 554-545-4454
+  updated_at: 2006-04-12 10:13:51
+  ssm_id: "1"
+  operating_unit: "2"
+  total_kits: "1000"
+  order_year: "2006"
+  business_unit: "1"
+  ship_state: FL
+  ship_city: Orlando
+  ship_first_name: Matt Drees
+  contact_last_name: Starcher
+  lock_version: 0
+  type: KitOrder
+  contact_phone: 555-555-5555
+  allocation_id: 1
+  id: "38"
+  contact_email: josh.starcher@uscm.org
+  contact_first_name: Josh
+  created_at: 2006-04-12 10:13:51
+  dept_id: "3"
+  location_name: UC Davis
+fsk_orders_002: 
+  ship_phone: 32423-1
+  ship_address1: 789 Nowhere Pl
+  project_id: ''
+  ship_zip: "31244"
+  ship_address2: "876"
+  contact_cell: 888-888-8888
+  updated_at: 2006-04-12 10:15:01
+  ssm_id: "1"
+  operating_unit: chart
+  total_kits: 
+  order_year: "2006"
+  business_unit: my
+  ship_state: AL
+  ship_city: Jupiter
+  ship_first_name: Freddy Jr
+  contact_last_name: Franklin
+  lock_version: 0
+  type: ProductOrder
+  contact_phone: 777-777-7777
+  allocation_id: 5
+  id: "39"
+  contact_email: bob.franklin@yeahright.com
+  contact_first_name: Bob
+  created_at: 2006-04-12 10:15:01
+  dept_id: field
+  location_name: Orlando Metro

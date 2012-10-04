@@ -1,0 +1,84 @@
+# == Schema Information
+# Schema version: 17
+#
+# Table name: fsk_kit_categories
+#
+#  id           :integer(10)   not null, primary key
+#  name         :string(50)    default(), not null
+#  description  :string(2000)  
+#  lock_version :integer(10)   default(0), not null
+#  created_at   :datetime      
+#  updated_at   :datetime      
+#
+
+--- 
+fsk_kit_categories_010: 
+  name: Previous years music
+  updated_at: 2006-04-27 12:19:42
+  lock_version: "0"
+  id: "16"
+  description: 
+  created_at: 2006-04-27 12:19:42
+fsk_kit_categories_009: 
+  name: Silly Putty
+  updated_at: 2006-04-27 12:19:24
+  lock_version: "0"
+  id: "15"
+  description: 
+  created_at: 2006-04-27 12:19:24
+fsk_kit_categories_001: 
+  name: Laundry Bag
+  updated_at: 2006-04-21 13:06:34
+  lock_version: "2"
+  id: "1"
+  description: 
+  created_at: 
+fsk_kit_categories_002: 
+  name: Bottles
+  updated_at: 2006-04-27 12:17:37
+  lock_version: "1"
+  id: "4"
+  description: 
+  created_at: 2006-04-24 14:55:46
+fsk_kit_categories_003: 
+  name: Sticker
+  updated_at: 2006-04-24 14:56:23
+  lock_version: "1"
+  id: "5"
+  description: 
+  created_at: 2006-04-24 14:56:02
+fsk_kit_categories_004: 
+  name: Highlighter
+  updated_at: 2006-04-24 14:56:11
+  lock_version: "0"
+  id: "6"
+  description: 
+  created_at: 2006-04-24 14:56:11
+fsk_kit_categories_005: 
+  name: Bibles
+  updated_at: 2006-04-27 12:18:10
+  lock_version: "0"
+  id: "11"
+  description: 
+  created_at: 2006-04-27 12:18:10
+fsk_kit_categories_006: 
+  name: Books
+  updated_at: 2006-04-27 12:18:28
+  lock_version: "0"
+  id: "12"
+  description: 
+  created_at: 2006-04-27 12:18:28
+fsk_kit_categories_007: 
+  name: Music
+  updated_at: 2006-04-27 12:18:50
+  lock_version: "0"
+  id: "13"
+  description: 
+  created_at: 2006-04-27 12:18:50
+fsk_kit_categories_008: 
+  name: DVD & CD ROM
+  updated_at: 2006-04-27 12:19:08
+  lock_version: "0"
+  id: "14"
+  description: 
+  created_at: 2006-04-27 12:19:08

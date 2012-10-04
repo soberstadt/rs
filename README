@@ -1,0 +1,14 @@
+==============================================================================
+Volunteer Developer Notes (Weston Platter - westonplatter@gmail.com)
+
+ruby -v '1.8.7'
+rails -v '2.3.11'
+mysql
+
+to get the applicaiton running on localhost,
+http://localhost:3000/carpool/login/1163?key=R1d3shar3
+where 1163 is a [rideshare_event].[conference_id] value
+
+Google Maps API Key
+GOOGLE_KEY stored in /config/environments/*
+==============================================================================

@@ -1,0 +1,1377 @@
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+      <head>
+        <title>C0 code coverage information</title>
+        <style type='text/css'>body { background-color: rgb(240, 240, 245); }</style>
+        <style type='text/css'>span.cross-ref-title {
+ font-size: 140%;
+}
+span.cross-ref a {
+ text-decoration: none;
+}
+span.cross-ref {
+ background-color:#f3f7fa;
+ border: 1px dashed #333;
+ margin: 1em;
+ padding: 0.5em;
+ overflow: hidden;
+}
+a.crossref-toggle {
+ text-decoration: none;
+}
+span.marked0 {
+ background-color: rgb(185, 210, 200);
+ display: block;
+}
+span.marked1 {
+ background-color: rgb(190, 215, 205);
+ display: block;
+}
+span.inferred0 {
+ background-color: rgb(175, 200, 200);
+ display: block;
+}
+span.inferred1 {
+ background-color: rgb(180, 205, 205);
+ display: block;
+}
+span.uncovered0 {
+ background-color: rgb(225, 110, 110);
+ display: block;
+}
+span.uncovered1 {
+ background-color: rgb(235, 120, 120);
+ display: block;
+}
+span.overview {
+ border-bottom: 8px solid black;
+}
+div.overview {
+ border-bottom: 8px solid black;
+}
+body {
+ font-family: verdana, arial, helvetica;
+}
+div.footer {
+ font-size: 68%;
+ margin-top: 1.5em;
+}
+h1, h2, h3, h4, h5, h6 {
+ margin-bottom: 0.5em;
+}
+h5 {
+ margin-top: 0.5em;
+}
+.hidden {
+ display: none;
+}
+div.separator {
+ height: 10px;
+}
+/* Commented out for better readability, esp. on IE */
+/*
+table tr td, table tr th {
+ font-size: 68%;
+}
+td.value table tr td {
+ font-size: 11px;
+}
+*/
+table.percent_graph {
+ height: 12px;
+ border: #808080 1px solid;
+ empty-cells: show;
+}
+table.percent_graph td.covered {
+ height: 10px;
+ background: #00f000;
+}
+table.percent_graph td.uncovered {
+ height: 10px;
+ background: #e00000;
+}
+table.percent_graph td.NA {
+ height: 10px;
+ background: #eaeaea;
+}
+table.report {
+ border-collapse: collapse;
+ width: 100%;
+}
+table.report td.heading {
+ background: #dcecff;
+ border: #d0d0d0 1px solid;
+ font-weight: bold;
+ text-align: center;
+}
+table.report td.heading:hover {
+ background: #c0ffc0;
+}
+table.report td.text {
+ border: #d0d0d0 1px solid;
+}
+table.report td.value {
+ text-align: right;
+ border: #d0d0d0 1px solid;
+}
+table.report tr.light {
+ background-color: rgb(240, 240, 245);
+}
+table.report tr.dark {
+ background-color: rgb(230, 230, 235);
+}
+</style>
+        <script type='text/javascript'>
+// <![CDATA[
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make cross-references hidden by default
+  document.writeln( "<style type=\"text/css\">span.cross-ref { display: none }</style>" )
+  // ]]>
+</script>
+      </head>
+      <body>
+        <h3>C0 code coverage information</h3>
+        <p>Generated on Fri Jul 28 10:59:23 EDT 2006 with <a href='http://eigenclass.org/hiki.rb?rcov'>rcov 0.6.0</a>
+        </p>
+        <hr />    <table class='report'>
+      <thead>
+        <tr>
+          <td class='heading'>Name</td>
+          <td class='heading'>Total lines</td>
+          <td class='heading'>Lines of code</td>
+          <td class='heading'>Total coverage</td>
+          <td class='heading'>Code coverage</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class='light'>
+          <td>TOTAL</td>
+          <td class='value'>
+            <tt>1214</tt>
+          </td>
+          <td class='value'>
+            <tt>783</tt>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>93.4%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='93' />
+                      <td class='uncovered' width='7' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>89.9%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='90' />
+                      <td class='uncovered' width='10' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class='dark'>
+          <td>
+            <a href='-var-www-html-continuous_integration-fsk-app-controllers-application_rb.html'>/var/www/html/continuous_integration/fsk/app/controllers/application.rb</a>
+          </td>
+          <td class='value'>
+            <tt>61</tt>
+          </td>
+          <td class='value'>
+            <tt>45</tt>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>88.5%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='89' />
+                      <td class='uncovered' width='11' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>84.4%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='84' />
+                      <td class='uncovered' width='16' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class='light'>
+          <td>
+            <a href='-var-www-html-continuous_integration-fsk-app-controllers-customer-allocation_controller_rb.html'>/var/www/html/continuous_integration/fsk/app/controllers/customer/allocation_controller.rb</a>
+          </td>
+          <td class='value'>
+            <tt>116</tt>
+          </td>
+          <td class='value'>
+            <tt>98</tt>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>81.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='81' />
+                      <td class='uncovered' width='19' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>77.6%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='78' />
+                      <td class='uncovered' width='22' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class='dark'>
+          <td>
+            <a href='-var-www-html-continuous_integration-fsk-app-controllers-customer-order_controller_rb.html'>/var/www/html/continuous_integration/fsk/app/controllers/customer/order_controller.rb</a>
+          </td>
+          <td class='value'>
+            <tt>136</tt>
+          </td>
+          <td class='value'>
+            <tt>118</tt>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>96.3%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='96' />
+                      <td class='uncovered' width='4' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>96.6%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='97' />
+                      <td class='uncovered' width='3' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class='light'>
+          <td>
+            <a href='-var-www-html-continuous_integration-fsk-app-controllers-customer-summary_controller_rb.html'>/var/www/html/continuous_integration/fsk/app/controllers/customer/summary_controller.rb</a>
+          </td>
+          <td class='value'>
+            <tt>97</tt>
+          </td>
+          <td class='value'>
+            <tt>81</tt>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>80.4%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='80' />
+                      <td class='uncovered' width='20' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>76.5%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='77' />
+                      <td class='uncovered' width='23' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class='dark'>
+          <td>
+            <a href='-var-www-html-continuous_integration-fsk-app-helpers-application_helper_rb.html'>/var/www/html/continuous_integration/fsk/app/helpers/application_helper.rb</a>
+          </td>
+          <td class='value'>
+            <tt>5</tt>
+          </td>
+          <td class='value'>
+            <tt>2</tt>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class='light'>
+          <td>
+            <a href='-var-www-html-continuous_integration-fsk-app-helpers-customer-allocation_helper_rb.html'>/var/www/html/continuous_integration/fsk/app/helpers/customer/allocation_helper.rb</a>
+          </td>
+          <td class='value'>
+            <tt>2</tt>
+          </td>
+          <td class='value'>
+            <tt>2</tt>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class='dark'>
+          <td>
+            <a href='-var-www-html-continuous_integration-fsk-app-helpers-customer-order_helper_rb.html'>/var/www/html/continuous_integration/fsk/app/helpers/customer/order_helper.rb</a>
+          </td>
+          <td class='value'>
+            <tt>19</tt>
+          </td>
+          <td class='value'>
+            <tt>19</tt>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class='light'>
+          <td>
+            <a href='-var-www-html-continuous_integration-fsk-app-helpers-customer-summary_helper_rb.html'>/var/www/html/continuous_integration/fsk/app/helpers/customer/summary_helper.rb</a>
+          </td>
+          <td class='value'>
+            <tt>2</tt>
+          </td>
+          <td class='value'>
+            <tt>2</tt>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class='dark'>
+          <td>
+            <a href='-var-www-html-continuous_integration-fsk-app-models-allocation_rb.html'>/var/www/html/continuous_integration/fsk/app/models/allocation.rb</a>
+          </td>
+          <td class='value'>
+            <tt>79</tt>
+          </td>
+          <td class='value'>
+            <tt>48</tt>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class='light'>
+          <td>
+            <a href='-var-www-html-continuous_integration-fsk-app-models-field_rb.html'>/var/www/html/continuous_integration/fsk/app/models/field.rb</a>
+          </td>
+          <td class='value'>
+            <tt>15</tt>
+          </td>
+          <td class='value'>
+            <tt>4</tt>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class='dark'>
+          <td>
+            <a href='-var-www-html-continuous_integration-fsk-app-models-fsk_user_rb.html'>/var/www/html/continuous_integration/fsk/app/models/fsk_user.rb</a>
+          </td>
+          <td class='value'>
+            <tt>40</tt>
+          </td>
+          <td class='value'>
+            <tt>24</tt>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>92.5%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='93' />
+                      <td class='uncovered' width='7' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>87.5%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='88' />
+                      <td class='uncovered' width='12' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class='light'>
+          <td>
+            <a href='-var-www-html-continuous_integration-fsk-app-models-kit_category_rb.html'>/var/www/html/continuous_integration/fsk/app/models/kit_category.rb</a>
+          </td>
+          <td class='value'>
+            <tt>33</tt>
+          </td>
+          <td class='value'>
+            <tt>17</tt>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class='dark'>
+          <td>
+            <a href='-var-www-html-continuous_integration-fsk-app-models-kit_order_rb.html'>/var/www/html/continuous_integration/fsk/app/models/kit_order.rb</a>
+          </td>
+          <td class='value'>
+            <tt>70</tt>
+          </td>
+          <td class='value'>
+            <tt>29</tt>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class='light'>
+          <td>
+            <a href='-var-www-html-continuous_integration-fsk-app-models-line_item_rb.html'>/var/www/html/continuous_integration/fsk/app/models/line_item.rb</a>
+          </td>
+          <td class='value'>
+            <tt>27</tt>
+          </td>
+          <td class='value'>
+            <tt>11</tt>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class='dark'>
+          <td>
+            <a href='-var-www-html-continuous_integration-fsk-app-models-national_report_rb.html'>/var/www/html/continuous_integration/fsk/app/models/national_report.rb</a>
+          </td>
+          <td class='value'>
+            <tt>25</tt>
+          </td>
+          <td class='value'>
+            <tt>20</tt>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class='light'>
+          <td>
+            <a href='-var-www-html-continuous_integration-fsk-app-models-order_rb.html'>/var/www/html/continuous_integration/fsk/app/models/order.rb</a>
+          </td>
+          <td class='value'>
+            <tt>66</tt>
+          </td>
+          <td class='value'>
+            <tt>27</tt>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class='dark'>
+          <td>
+            <a href='-var-www-html-continuous_integration-fsk-app-models-order_mailer_rb.html'>/var/www/html/continuous_integration/fsk/app/models/order_mailer.rb</a>
+          </td>
+          <td class='value'>
+            <tt>27</tt>
+          </td>
+          <td class='value'>
+            <tt>24</tt>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>77.8%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='78' />
+                      <td class='uncovered' width='22' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>75.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='75' />
+                      <td class='uncovered' width='25' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class='light'>
+          <td>
+            <a href='-var-www-html-continuous_integration-fsk-app-models-product_rb.html'>/var/www/html/continuous_integration/fsk/app/models/product.rb</a>
+          </td>
+          <td class='value'>
+            <tt>83</tt>
+          </td>
+          <td class='value'>
+            <tt>57</tt>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>79.5%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='80' />
+                      <td class='uncovered' width='20' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>70.2%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='70' />
+                      <td class='uncovered' width='30' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class='dark'>
+          <td>
+            <a href='-var-www-html-continuous_integration-fsk-app-models-product_order_rb.html'>/var/www/html/continuous_integration/fsk/app/models/product_order.rb</a>
+          </td>
+          <td class='value'>
+            <tt>53</tt>
+          </td>
+          <td class='value'>
+            <tt>15</tt>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class='light'>
+          <td>
+            <a href='-var-www-html-continuous_integration-fsk-app-models-regional_report_rb.html'>/var/www/html/continuous_integration/fsk/app/models/regional_report.rb</a>
+          </td>
+          <td class='value'>
+            <tt>37</tt>
+          </td>
+          <td class='value'>
+            <tt>31</tt>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class='dark'>
+          <td>
+            <a href='-var-www-html-continuous_integration-fsk-app-models-report_record_rb.html'>/var/www/html/continuous_integration/fsk/app/models/report_record.rb</a>
+          </td>
+          <td class='value'>
+            <tt>45</tt>
+          </td>
+          <td class='value'>
+            <tt>32</tt>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class='light'>
+          <td>
+            <a href='-var-www-html-continuous_integration-fsk-app-models-role_rb.html'>/var/www/html/continuous_integration/fsk/app/models/role.rb</a>
+          </td>
+          <td class='value'>
+            <tt>7</tt>
+          </td>
+          <td class='value'>
+            <tt>5</tt>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class='dark'>
+          <td>
+            <a href='-var-www-html-continuous_integration-fsk-config-boot_rb.html'>/var/www/html/continuous_integration/fsk/config/boot.rb</a>
+          </td>
+          <td class='value'>
+            <tt>19</tt>
+          </td>
+          <td class='value'>
+            <tt>15</tt>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>94.7%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='95' />
+                      <td class='uncovered' width='5' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>93.3%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='93' />
+                      <td class='uncovered' width='7' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class='light'>
+          <td>
+            <a href='-var-www-html-continuous_integration-fsk-config-environment_rb.html'>/var/www/html/continuous_integration/fsk/config/environment.rb</a>
+          </td>
+          <td class='value'>
+            <tt>73</tt>
+          </td>
+          <td class='value'>
+            <tt>23</tt>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class='dark'>
+          <td>
+            <a href='-var-www-html-continuous_integration-fsk-config-routes_rb.html'>/var/www/html/continuous_integration/fsk/config/routes.rb</a>
+          </td>
+          <td class='value'>
+            <tt>22</tt>
+          </td>
+          <td class='value'>
+            <tt>5</tt>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class='light'>
+          <td>
+            <a href='test_all_rb.html'>test_all.rb</a>
+          </td>
+          <td class='value'>
+            <tt>17</tt>
+          </td>
+          <td class='value'>
+            <tt>13</tt>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class='dark'>
+          <td>
+            <a href='test_helper_rb.html'>test_helper.rb</a>
+          </td>
+          <td class='value'>
+            <tt>38</tt>
+          </td>
+          <td class='value'>
+            <tt>16</tt>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td>
+                  <tt>100.0%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='100' />
+                      <td class='uncovered' width='0' />
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table><hr />    <p>Generated using the <a href='http://eigenclass.org/hiki.rb?rcov'>rcov code coverage analysis tool for Ruby</a> version 0.6.0.</p><p>
+          <a href='http://validator.w3.org/check/referer'>
+            <img src='http://www.w3.org/Icons/valid-xhtml11' height='31' alt='Valid XHTML 1.1!' width='88' />
+          </a>
+          <a href='http://jigsaw.w3.org/css-validator/check/referer'>
+            <img src='http://jigsaw.w3.org/css-validator/images/vcss' alt='Valid CSS!' style='border:0;width:88px;height:31px' />
+          </a>
+        </p>
+      </body>
+    </html>

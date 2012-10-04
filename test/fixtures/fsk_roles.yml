@@ -1,0 +1,10 @@
+---
+national:
+  id: 1
+  name: national
+regional:
+  id: 2
+  name: regional
+local:
+  id: 3
+  name: local

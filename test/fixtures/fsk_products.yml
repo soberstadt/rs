@@ -1,0 +1,685 @@
+# == Schema Information
+# Schema version: 17
+#
+# Table name: fsk_products
+#
+#  id              :integer(10)   not null, primary key
+#  name            :string(100)   default(), not null
+#  description     :text          
+#  image_filename  :string(1000)  
+#  price           :float         
+#  quantity        :integer(10)   default(0), not null
+#  lock_version    :integer(10)   default(0), not null
+#  created_at      :datetime      
+#  updated_at      :datetime      
+#  kit_category_id :integer(10)   
+#  availability    :string(20)    default(both), not null
+#
+
+--- 
+fsk_products_040: 
+  name: "33-Listen - 2005"
+  updated_at: 2006-05-18 16:34:08
+  price: "0.5"
+  lock_version: "12"
+  quantity: "5100"
+  image_filename: 33_Listen.jpg
+  availability: individual
+  id: "46"
+  description: "Nine songs from EMI Christian music.\r
+
+    Includes artists like tobyMac, Nicole Nordeman and Sanctus Real. "
+  kit_category_id: "16"
+  created_at: 2006-04-27 19:57:19
+fsk_products_029: 
+  name: Jesus & the Hip-Hop Prophets
+  updated_at: 2006-05-01 10:38:56
+  price: "1"
+  lock_version: "3"
+  quantity: "10000"
+  image_filename: Jesus___the_Hip_Hop_Prophets.jpg
+  availability: both
+  id: "35"
+  description: "Jesus & The Hip Hop Prophets, Spiritual Insights from Lauryn Hill and 2PAC by
+    John Teter and Alex Gee."
+  kit_category_id: "12"
+  created_at: 2006-04-27 16:48:26
+fsk_products_018: 
+  name: EpicMovement.com Highlighter
+  updated_at: 2006-05-01 10:38:55
+  price: "0.3"
+  lock_version: "7"
+  quantity: "7000"
+  image_filename: Highlighter__Epicmovement.jpg
+  availability: both
+  id: "23"
+  description: A 4"x1" green highlighter with a website printed on one side.
+  kit_category_id: "6"
+  created_at: 2006-04-27 14:38:01
+fsk_products_007: 
+  name: 800 ml EveryStudent.com bottle
+  updated_at: 2006-05-03 19:11:21
+  price: "1"
+  lock_version: "5"
+  quantity: "1600"
+  image_filename: bottles__2005.jpg
+  availability: individual
+  id: "9"
+  description: This is last years bottle.  It has a volume scale and a website printed on it.  There are four colors. Each box of 48 bottles contains 12 of each color.
+  kit_category_id: "4"
+  created_at: 2006-04-27 13:22:53
+fsk_products_041: 
+  name: "The Buzz - 2005"
+  updated_at: 2006-05-18 14:51:57
+  price: "0.5"
+  lock_version: "6"
+  quantity: "3900"
+  image_filename: The_Buzz__2005.jpg
+  availability: individual
+  id: "47"
+  description: "Alternative Rock from Tooth and Nail Records.\r
+
+    Eleven songs including artists like Underoath, Mae, Anberlin, Spoken, Number One
+    Gun, Discover America, and more!\r
+
+    "
+  kit_category_id: "16"
+  created_at: 2006-04-27 20:10:33
+fsk_products_030: 
+  name: More Than a Carpenter/The Life of Jesus
+  updated_at: 2006-05-22 17:34:52
+  price: "0"
+  lock_version: "5"
+  quantity: "49500"
+  image_filename: Flip_Book.jpg
+  availability: kit
+  id: "36"
+  description: "This flip book (it has two books printed back-to-back with two front covers)
+    contains The Life of Jesus on one side and More Than a Carpenter on the flip
+    side. The Life of Jesus is a chronological journey through the life and
+    teachings of Jesus, as portrayed in all four Gospels. This simple compilation of
+    Bible readings is designed to introduce people to the story of Jesus. The
+    easy-to-understand language of the New Living Translation makes the events of
+    Jesus' life come alive in a fresh way. A helpful index at the end allows the
+    reader to compare the text of a standard Bible with this harmony of the Gospels.
+    More Than a Carpenter is one of the best-selling Christian books ever and
+    answers many of the historical questions people ask about Jesus."
+  kit_category_id: "12"
+  created_at: 2006-04-27 17:13:12
+fsk_products_019: 
+  name: EveryStudent.com Highlighter
+  updated_at: 2006-05-01 10:38:55
+  price: "0.3"
+  lock_version: "2"
+  quantity: "48000"
+  image_filename: Highlighter__Everystudent.jpg
+  availability: both
+  id: "25"
+  description: A 4"x1" green highlighter with a website printed on one side.
+  kit_category_id: "6"
+  created_at: 2006-04-27 15:38:26
+fsk_products_008: 
+  name: 800 ml Notyourmamasreligion.com bottle
+  updated_at: 2006-05-18 16:21:17
+  price: "1"
+  lock_version: "5"
+  quantity: "800"
+  image_filename: bottles__2005.jpg
+  availability: individual
+  id: "10"
+  description: This is last years bottle.  It has a volume scale and a website printed on it.  There are four colors. Each box of 48 bottles contains 12 of each color.
+  kit_category_id: "4"
+  created_at: 2006-04-27 13:25:16
+fsk_products_042: 
+  name: "DIM - 2004"
+  updated_at: 2006-05-18 16:41:22
+  price: "0"
+  lock_version: "7"
+  quantity: "7600"
+  image_filename: DIM_Music_CD__2004.jpg
+  availability: individual
+  id: "48"
+  description: "Pop/Rock\r
+
+    \r
+
+    DIM - From EMI Christian music.\r
+
+    Includes artists like Audio Adrenaline, Rebecca St. James and Bethany Dillon.\r
+
+    "
+  kit_category_id: "16"
+  created_at: 2006-04-27 20:25:43
+fsk_products_031: 
+  name: Being Latino In Christ by Orlando Crespo
+  updated_at: 2006-05-03 19:30:11
+  price: "1.3"
+  lock_version: "8"
+  quantity: "4400"
+  image_filename: Being-Latino.jpg
+  availability: both
+  id: "37"
+  description: "Orlando Crespo has taken his own journey from Puerto Rico to an immigrant
+    neighborhood in Springfield, MA, and back again to his Latino roots. In this
+    book he helps readers reflect on their own journeys of self-understanding and
+    what it means to have a mixed heritage from the days of the original Spanish
+    Conquest to the present.\r
+
+    His straightforward approach also takes him to what the Bible says about Ethnic
+    identity, about a people who were often oppressed by more powerful cultures. He
+    helps us see how Jesus' own humanity unfolded in the context of a people who
+    were considered to be inferior. Thus Crespo finds both realism and hope in the
+    good news of Jesus."
+  kit_category_id: "12"
+  created_at: 2006-04-27 18:02:39
+fsk_products_020: 
+  name: NIV New Testament Bible
+  updated_at: 2006-05-17 13:28:17
+  price: "0.8"
+  lock_version: "4"
+  quantity: "35000"
+  image_filename: NIV_NT__2006.jpg
+  availability: both
+  id: "26"
+  description: The NIV New Testament will have a new cover for 2006.  It is a great campus Bible with Life@Large inside the front cover and other helpful information  for spiritually interested college students.
+  kit_category_id: "11"
+  created_at: 2006-04-27 16:01:42
+fsk_products_009: 
+  name: 800 ml MyDestino.com bottle
+  updated_at: 2006-05-05 16:29:11
+  price: "1"
+  lock_version: "4"
+  quantity: "1100"
+  image_filename: bottles__2005.jpg
+  availability: individual
+  id: "11"
+  description: This is last years bottle.  It has a volume scale and a website printed on it.  There are four colors. Each box of 48 bottles contains 12 of each color.
+  kit_category_id: "4"
+  created_at: 2006-04-27 13:26:12
+fsk_products_043: 
+  name: "Soul Vibe - 2004"
+  updated_at: 2006-05-05 16:14:22
+  price: "0"
+  lock_version: "5"
+  quantity: "500"
+  image_filename: SoulVibe.jpg
+  availability: individual
+  id: "49"
+  description: "Soul Vibe from EMI Gospel and Gotee Records.  Includes artists like Brent Jones
+    and the T.P. Mobb, Cross Movement and LiL iRocc Williams."
+  kit_category_id: "16"
+  created_at: 2006-04-27 20:28:23
+fsk_products_032: 
+  name: How to Survive in the US
+  updated_at: 2006-05-03 19:31:29
+  price: "1.3"
+  lock_version: "5"
+  quantity: "20000"
+  image_filename: How_to_Survive.jpg
+  availability: both
+  id: "38"
+  description: A handbook for Internationals. This small book answers a plethora of questions that someone might have about how to function in the US.  It also contains information to help someone understand our culture.
+  kit_category_id: "12"
+  created_at: 2006-04-27 18:04:33
+fsk_products_021: 
+  name: NIV Whole Bible
+  updated_at: 2006-05-25 14:06:40
+  price: "2"
+  lock_version: "5"
+  quantity: "10000"
+  image_filename: NIV_Whole_Bible.jpg
+  availability: individual
+  id: "27"
+  description: The complete NIV Bible from International Bible Society.  A great Bible for a spiritually interested student on campus.
+  kit_category_id: "11"
+  created_at: 2006-04-27 16:07:58
+fsk_products_010: 
+  name: 800 ml Epicmovement.com bottle
+  updated_at: 2006-05-03 19:19:20
+  price: "1"
+  lock_version: "3"
+  quantity: "100"
+  image_filename: bottles__2005.jpg
+  availability: neither
+  id: "12"
+  description: This is last years bottle.  It has a volume scale and a website printed on it.  There are four colors. Each box of 48 bottles contains 12 of each color.
+  kit_category_id: "4"
+  created_at: 2006-04-27 13:26:55
+fsk_products_044: 
+  name: The Buzz-2004
+  updated_at: 2006-05-01 10:38:56
+  price: "0"
+  lock_version: "2"
+  quantity: "7000"
+  image_filename: The_Buzz_CD__2004.jpg
+  availability: individual
+  id: "50"
+  description: "Alternative Rock - from Tooth and Nail Records.\r
+
+    Twelve songs including artists like FM Static, Kutless, Anberlin, Spoken and
+    more!\r
+
+    "
+  kit_category_id: "16"
+  created_at: 2006-04-27 20:32:58
+fsk_products_033: 
+  name: "The DaVinci Code: A Quest for Answers"
+  updated_at: 2006-05-01 10:38:56
+  price: "0"
+  lock_version: "4"
+  quantity: "10000"
+  image_filename: DaVinci_Code.jpg
+  availability: kit
+  id: "39"
+  description: "In this book Josh addresses questions raised by Dan Brown's book, The DaVinci
+    Code. Josh's story is about 3 students reading The DaVinci Code and discovering
+    what is true and what is fiction.  Drawing on the mountains of historical
+    evidence, McDowell skillfully separates fact from fallacy and presents
+    unassailable truths that readers can depend on to be rock solid. Well received
+    by students this spring on campus. "
+  kit_category_id: "12"
+  created_at: 2006-04-27 18:06:26
+fsk_products_022: 
+  name: ESV New Testament Bible
+  updated_at: 2006-05-01 10:38:55
+  price: "0.8"
+  lock_version: "3"
+  quantity: "25000"
+  image_filename: ESV_NT__2006.jpg
+  availability: both
+  id: "28"
+  description: The English Standard Version is a very readable translation.  It is a great campus Bible with Life@Large inside the front cover and other helpful information  for spiritually interested college students.
+  kit_category_id: "11"
+  created_at: 2006-04-27 16:11:03
+fsk_products_011: 
+  name: EveryStudent.com Laundry bag
+  updated_at: 2006-05-01 10:38:55
+  price: "0.75"
+  lock_version: "4"
+  quantity: "1400"
+  image_filename: Laundry_Bags__2004.jpg
+  availability: individual
+  id: "15"
+  description: A 20x30 inch laundry bag with a website logo.  There are four colors. Each box of 100 bags contains 25 of each color.
+  kit_category_id: "1"
+  created_at: 2006-04-27 14:00:32
+fsk_products_045: 
+  name: Waymore.org Silly Putty
+  updated_at: 2006-05-03 19:37:57
+  price: "0"
+  lock_version: "2"
+  quantity: "8400"
+  image_filename: Silly_putty_Eggs.jpg
+  availability: individual
+  id: "51"
+  description: From the fall 2004 FSK.
+  kit_category_id: "15"
+  created_at: 2006-04-27 20:38:41
+fsk_products_034: 
+  name: Downloadable music card
+  updated_at: 2006-05-01 10:38:56
+  price: "0.1"
+  lock_version: "4"
+  quantity: "80000"
+  image_filename: Photo_not_available.jpg
+  availability: both
+  id: "40"
+  description: "A downloadable card for free songs from a website set up just for FSK.  Students
+    will be able to choose the genre of music they want. Styles include Hip Hop,
+    Alternative, Pop/Rock and possibly more. It's a download world! Have fun
+    exploring this on campus. "
+  kit_category_id: "13"
+  created_at: 2006-04-27 19:22:38
+fsk_products_023: 
+  name: ESV Whole Bible
+  updated_at: 2006-05-01 10:38:55
+  price: "2"
+  lock_version: "5"
+  quantity: "10000"
+  image_filename: Photo_not_available.jpg
+  availability: individual
+  id: "29"
+  description: The English Standard Version Bible is an excellent choice.  A great Bible for the spiritually interested college student.
+  kit_category_id: "11"
+  created_at: 2006-04-27 16:13:36
+fsk_products_012: 
+  name: EveryStudent.com Sticker
+  updated_at: 2006-05-03 19:25:57
+  price: "0.1"
+  lock_version: "5"
+  quantity: "80000"
+  image_filename: ESC_sticker.jpg
+  availability: both
+  id: "16"
+  description: A 3"x4" vinyl sticker that displays a website.
+  kit_category_id: "5"
+  created_at: 2006-04-27 14:04:33
+fsk_products_001: 
+  name: Laundry Bag
+  updated_at: 2006-05-22 17:47:02
+  price: "0.8"
+  lock_version: "14"
+  quantity: "80000"
+  image_filename: Laundry_Bag__2006.jpg
+  availability: both
+  id: "2"
+  description: A 20x30 black laundry bag.  No website is displayed on the laundry bag.
+  kit_category_id: "1"
+  created_at: 2006-04-24 15:46:09
+fsk_products_046: 
+  name: EveryStudent.com Silly Putty
+  updated_at: 2006-05-05 16:27:17
+  price: "0"
+  lock_version: "3"
+  quantity: "18300"
+  image_filename: Silly_putty_Eggs.jpg
+  availability: individual
+  id: "52"
+  description: From the fall 2004 FSK.
+  kit_category_id: "15"
+  created_at: 2006-04-27 20:39:41
+fsk_products_035: 
+  name: "Cross Movement Sampler, Why Hip Hop"
+  updated_at: 2006-05-01 10:47:03
+  price: "0"
+  lock_version: "5"
+  quantity: "2500"
+  image_filename: why-hip-hop-cover.jpg
+  availability: kit
+  id: "41"
+  description: "This sampler CD comes to you as an enhanced, multi-functional music CD-ROM
+    specifically designed to be a resource tool for the consumer, seeker, and the
+    Body of Christ.  On this CD, you will find a special collection of new songs and
+    interludes from some  of today's most prolific Christian Hip Hop artists.  Their
+    goal is to give an answer with beats and rhymes to the question \"why does the
+    hip hop culture need to be reached with the Gospel?\".  The answer is the Great
+    Commission conveyed like you've never  heard before.\r
+
+    "
+  kit_category_id: "13"
+  created_at: 2006-04-27 19:24:29
+fsk_products_024: 
+  name: TNIV Whole Bible
+  updated_at: 2006-05-25 14:06:59
+  price: "2"
+  lock_version: "5"
+  quantity: "10000"
+  image_filename: TNIV_Whole_Bible.jpg
+  availability: individual
+  id: "30"
+  description: "Today's New International Version Bible is a gender accurate update of the
+    original NIV.  A great Bible for the spiritually interested college student."
+  kit_category_id: "11"
+  created_at: 2006-04-27 16:19:43
+fsk_products_013: 
+  name: MyDestino.com Sticker
+  updated_at: 2006-05-01 10:38:55
+  price: "0.1"
+  lock_version: "5"
+  quantity: "20000"
+  image_filename: DESTINO_sticker.jpg
+  availability: both
+  id: "17"
+  description: A 3"x4" vinyl sticker that displays a website.
+  kit_category_id: "5"
+  created_at: 2006-04-27 14:12:31
+fsk_products_002: 
+  name: Waymore.org laundry bag
+  updated_at: 2006-05-01 10:38:55
+  price: "0.75"
+  lock_version: "4"
+  quantity: "500"
+  image_filename: Laundry_Bags__2004.jpg
+  availability: individual
+  id: "3"
+  description: A 20x30 inch laundry bag with a website logo.  There are four colors. Each box of 100 bags contains 25 of each color.
+  kit_category_id: "1"
+  created_at: 2006-04-27 13:06:38
+fsk_products_047: 
+  name: Impactmovement.com Silly Putty
+  updated_at: 2006-05-05 14:15:29
+  price: "0"
+  lock_version: "2"
+  quantity: "7800"
+  image_filename: Silly_putty_Eggs.jpg
+  availability: individual
+  id: "53"
+  description: From the fall 2004 FSK.
+  kit_category_id: "15"
+  created_at: 2006-04-27 20:40:38
+fsk_products_036: 
+  name: "The Track, Cross Movement"
+  updated_at: 2006-05-01 10:38:56
+  price: "1"
+  lock_version: "4"
+  quantity: "1800"
+  image_filename: Cross_Mvmt__2005.jpg
+  availability: kit
+  id: "42"
+  description: "Hip Hop, Rap and Gospel - This release from the band Cross Movement is a mix of
+    conversation and music geared toward reaching the cities with the gospel.\r\r"
+  kit_category_id: "13"
+  created_at: 2006-04-27 19:28:37
+fsk_products_025: 
+  name: 2005 NIV New Testament
+  updated_at: 2006-05-18 16:29:30
+  price: "0.75"
+  lock_version: "5"
+  quantity: "13200"
+  image_filename: NIV_NT__First_Aid.jpg
+  availability: both
+  id: "31"
+  description: This NIV New Testament was in the FSK the past two years.  It is a great campus Bible with Life@Large inside the front cover and other helpful information  for spiritually interested college students.
+  kit_category_id: "11"
+  created_at: 2006-04-27 16:31:42
+fsk_products_014: 
+  name: Notyourmamasreligion.com Sticker
+  updated_at: 2006-05-01 10:38:55
+  price: "0.1"
+  lock_version: "6"
+  quantity: "25000"
+  image_filename: IMPACT_sticker.jpg
+  availability: both
+  id: "18"
+  description: A 3"x4" vinyl sticker that displays a website.
+  kit_category_id: "5"
+  created_at: 2006-04-27 14:13:28
+fsk_products_003: 
+  name: Notyourmamasreligion.com laundry bag
+  updated_at: 2006-05-18 16:26:15
+  price: "0.75"
+  lock_version: "6"
+  quantity: "1000"
+  image_filename: Laundry_Bags__2005.jpg
+  availability: individual
+  id: "5"
+  description: A 20x30 inch laundry bag with a website logo.  There are four colors. Each box of 100 bags contains 25 of each color.
+  kit_category_id: "1"
+  created_at: 2006-04-27 13:11:59
+fsk_products_048: 
+  name: EpicMovement.com Silly Putty
+  updated_at: 2006-05-05 16:26:50
+  price: "0"
+  lock_version: "3"
+  quantity: "4800"
+  image_filename: Silly_putty_Eggs.jpg
+  availability: individual
+  id: "54"
+  description: From the fall 2004 FSK.
+  kit_category_id: "15"
+  created_at: 2006-04-27 20:41:31
+fsk_products_037: 
+  name: Impact 2006 DVD
+  updated_at: 2006-05-03 19:32:08
+  price: "1"
+  lock_version: "8"
+  quantity: "15000"
+  image_filename: Impact_DVD__2006.jpg
+  availability: kit
+  id: "43"
+  description: "The Impact 2006 DVD is an exciting introduction to The Impact Movement.  This
+    year you will find a Sneek Peak of Impact 2006, talks from 2004 speakers, Keith
+    Battle and Priscilla Shirer, an excerpt from Impact 2004 concert with Israel and
+    New Breed concert, and an interview from Impact 2006 music ministry artist, Da
+    T.R.U..T.H.   Check it out, it is sure to encourage students to attend Impact
+    2006.\""
+  kit_category_id: "14"
+  created_at: 2006-04-27 19:30:32
+fsk_products_026: 
+  name: Blue Like Jazz
+  updated_at: 2006-05-01 10:38:56
+  price: "1"
+  lock_version: "4"
+  quantity: "50000"
+  image_filename: Blue-Like-Jazz.jpg
+  availability: both
+  id: "32"
+  description: "Author Donald Miller's personal insights into his journey of faith will engage
+    people who are starting at a point much different than our own. His chronicle of
+    the experiences he has had is both humorous and deeply insightful. Blue Like
+    Jazz is a departure from modern apologetics and an immersion into the story of
+    what it looks like to fall in love with Christ. John Ortberg says, \"It's hard
+    to find people who write about God from a position of commitment but still sound
+    as if they are being human and honest...Donald Miller is such a person.\" 242
+    pages, Thomas Nelson publishers"
+  kit_category_id: "12"
+  created_at: 2006-04-27 16:37:38
+fsk_products_015: 
+  name: EpicMovement.com Sticker
+  updated_at: 2006-05-01 10:38:55
+  price: "0.1"
+  lock_version: "3"
+  quantity: "20000"
+  image_filename: EPIC_sticker.jpg
+  availability: both
+  id: "19"
+  description: A 3"x4" vinyl sticker that displays a website.
+  kit_category_id: "5"
+  created_at: 2006-04-27 14:20:40
+fsk_products_004: 
+  name: Mydestino.com laundry bag
+  updated_at: 2006-05-01 10:38:55
+  price: "0.75"
+  lock_version: "3"
+  quantity: "5200"
+  image_filename: Laundry_Bags__2004.jpg
+  availability: individual
+  id: "6"
+  description: A 20x30 inch laundry bag with a website logo.  There are four colors. Each box of 100 bags contains 25 of each color.
+  kit_category_id: "1"
+  created_at: 2006-04-27 13:12:48
+fsk_products_038: 
+  name: Jesus Film CD ROM
+  updated_at: 2006-05-01 10:38:56
+  price: "1"
+  lock_version: "3"
+  quantity: "15000"
+  image_filename: Jesus_CD__Brown.jpg
+  availability: both
+  id: "44"
+  description: Real Audio has made it possible to combine multiple languages on one CD ROM. This is a great tool to use with international students.
+  kit_category_id: "14"
+  created_at: 2006-04-27 19:38:16
+fsk_products_027: 
+  name: Case For Christ
+  updated_at: 2006-05-03 19:29:13
+  price: "1.1"
+  lock_version: "7"
+  quantity: "20000"
+  image_filename: CaseforChrist.jpg
+  availability: both
+  id: "33"
+  description: "The Case for Christ by Lee Strobel. The Project: Determine if there's credible
+    evidence that Jesus of Nazareth really is the Son of God. The Reporter: Lee
+    Strobel, educated at Yale Law School is an award-winning former legal editor of
+    the Chicago Tribune - with a background in atheism. The Experts: A dozen
+    scholars with doctorates from top institutions. The Story: Retracing his own
+    spiritual journey, Strobel cross-examines the experts with tough, point-blank
+    questions like, \"How reliable is the New Testament?\" and \"Does evidence exist
+    for Jesus outside the Bible?\" Written like a captivating, fast paced novel. 270
+    pages."
+  kit_category_id: "12"
+  created_at: 2006-04-27 16:42:52
+fsk_products_016: 
+  name: Notyourmamasreligion.com Highlighter
+  updated_at: 2006-05-01 10:38:55
+  price: "0.3"
+  lock_version: "7"
+  quantity: "15000"
+  image_filename: Highlighter__Notyourmamasreligion.jpg
+  availability: both
+  id: "21"
+  description: A 4"x1" green highlighter with a website printed on one side.
+  kit_category_id: "6"
+  created_at: 2006-04-27 14:31:16
+fsk_products_005: 
+  name: Epicmovement.com laundry bag
+  updated_at: 2006-05-01 10:38:55
+  price: "0.75"
+  lock_version: "3"
+  quantity: "2700"
+  image_filename: Laundry_Bags__2004.jpg
+  availability: individual
+  id: "7"
+  description: A 20x30 inch laundry bag with a website logo.  There are four colors. Each box of 100 bags contains 25 of each color.
+  kit_category_id: "1"
+  created_at: 2006-04-27 13:13:53
+fsk_products_039: 
+  name: Uncensored DVD
+  updated_at: 2006-05-22 17:37:34
+  price: "0"
+  lock_version: "5"
+  quantity: "66000"
+  image_filename: Uncensored_DVD.jpg
+  availability: kit
+  id: "45"
+  description: "UNCENSORED is a highly entertaining action sports DVD that presents God's truth
+    through 15 athletes who are currently top performers. Also, included in the DVD
+    are two lifestyle models who address issues of interest to women. With its
+    balance of high impact entertainment and uncompromising gospel, UNCENSORED
+    provides the viewer with a unique user experience as they explore over three and
+    a half hours of content including a variety of apologetic topics."
+  kit_category_id: "14"
+  created_at: 2006-04-27 19:41:38
+fsk_products_028: 
+  name: Case for Faith
+  updated_at: 2006-05-25 17:51:21
+  price: "1.1"
+  lock_version: "7"
+  quantity: "10000"
+  image_filename: case_for_faith.jpg
+  availability: both
+  id: "34"
+  description: "They say, \"If God is love, then what about all the suffering in our world?\"
+    Or, \"If Jesus is the door to heaven, then what about the millions who have
+    never heard?\" Or, \"If God cares for everyone, then why does he eternally
+    torture some in hell?\" Strobel  turns his tenacious investigative skills to the
+    eight \"heart\" barriers to faith. This book is for those who may be feeling
+    attracted to Jesus but who are faced with formidable intellectual barriers
+    standing squarely in their faith. 304 pages. "
+  kit_category_id: "12"
+  created_at: 2006-04-27 16:43:58
+fsk_products_017: 
+  name: MyDestino.com Highlighter
+  updated_at: 2006-05-01 10:38:55
+  price: "0.3"
+  lock_version: "3"
+  quantity: "5000"
+  image_filename: Highlighter__My_Destino.jpg
+  availability: both
+  id: "22"
+  description: A 4"x1" green highlighter with a website printed on one side.
+  kit_category_id: "6"
+  created_at: 2006-04-27 14:37:06
+fsk_products_006: 
+  name: 500 ml Polycarbonate bottle
+  updated_at: 2006-05-22 17:47:18
+  price: "1"
+  lock_version: "5"
+  quantity: "85000"
+  image_filename: Bottle__2006.jpg
+  availability: both
+  id: "8"
+  description: "There is a volume scale printed on the bottle, but no website."
+  kit_category_id: "4"
+  created_at: 2006-04-27 13:18:39
