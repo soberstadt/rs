@@ -3,7 +3,9 @@ rvm:
   - 1.9.3
 env:
   - DB=mysql
-script:
-  - RAILS_ENV=test bundle exec rake --trace db:migrate test
+
 before_script:
   - mysql -e 'create database prod_test'
+  - 'cp config/database.example.yml config/database.yml'
+script:
+  - RAILS_ENV=test bundle exec rake --trace db:migrate test
