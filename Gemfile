@@ -7,6 +7,8 @@ gem 'jquery-rails'
 gem 'barista'
 gem 'json'
 gem 'coffee-rails', '~> 3.2.1'
+gem 'simplecov'
+
 
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'
