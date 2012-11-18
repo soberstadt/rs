@@ -1,4 +1,5 @@
 class Email < ActionMailer::Base
+	
 	def car(driver_ride_id)
 		driver = Ride.find(driver_ride_id)
 		event = Event.find(driver.event_id)
@@ -15,5 +16,4 @@ class Email < ActionMailer::Base
 		@body['event'] = event
 		@content_type = "text/html"
 	end
-
 end
