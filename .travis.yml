@@ -8,4 +8,4 @@ before_script:
   - mysql -e 'create database prod_test'
   - 'cp config/database.example.yml config/database.yml'
 script:
-  - RAILS_ENV=test bundle exec rake --trace rake db:schema:load db:migrate spec
+  - RAILS_ENV=test bundle exec rake --trace db:schema:load db:migrate spec
