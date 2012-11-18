@@ -1,38 +1,3 @@
-# == Schema Information
-# Schema version: 17
-#
-# Table name: ministry_newaddress
-#
-#  AddressID            :integer(10)   not null, primary key
-#  deprecated_startDate :string(25)    
-#  deprecated_endDate   :string(25)    
-#  address1             :string(55)    
-#  address2             :string(55)    
-#  address3             :string(55)    
-#  address4             :string(55)    
-#  city                 :string(50)    
-#  state                :string(50)    
-#  zip                  :string(10)    
-#  country              :string(64)    
-#  homePhone            :string(25)    
-#  workPhone            :string(25)    
-#  cellPhone            :string(25)    
-#  fax                  :string(25)    
-#  email                :string(200)   
-#  url                  :string(100)   
-#  contactName          :string(50)    
-#  contactRelationship  :string(50)    
-#  addressType          :string(20)    
-#  dateCreated          :datetime      
-#  dateChanged          :datetime      
-#  createdBy            :string(50)    
-#  changedBy            :string(50)    
-#  fk_PersonID          :integer(10)   
-#  email2               :string(200)   
-#  start_date           :datetime      
-#  end_date             :datetime      
-#
-
 class Address < ActiveRecord::Base
   self.table_name = "ministry_newaddress"
   self.primary_key = "addressID"

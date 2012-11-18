@@ -1,22 +1,24 @@
 class Person < ActiveRecord::Base 
-  has_many :rides, :foreign_key => "fk_personID"
   
   self.table_name = "ministry_person"
   self.primary_key = "personID"
-  
+
   
 
   # other Cru::CampusMinstry ActiveRecord relationships, keep but not important for RideShare
 
-  belongs_to              :user, :foreign_key => "fk_ssmUserId"  #Link it to SSM
+  belongs_to :user, :foreign_key => "fk_ssmUserId"  #Link it to SSM
 
-  has_one                 :staff
-
+  has_one    :staff
+  
   # Addresses
-  has_one                 :current_address, :foreign_key => "fk_PersonID", :conditions => "addressType = 'current'", :class_name => 'Address'
-  has_one                 :permanent_address, :foreign_key => "fk_PersonID", :conditions => "addressType = 'permanent'", :class_name => 'Address'
-  has_one                 :emergency_address1, :foreign_key => "fk_PersonID", :conditions => "addressType = 'emergency1'", :class_name => 'Address'
-  has_many                :addresses, :foreign_key => "fk_PersonID" 
+  # rideshare specific relationships
+  has_one    :current_address, :foreign_key => "fk_PersonID", :conditions => "addressType = 'current'", :class_name => 'Address'
+  has_one    :permanent_address, :foreign_key => "fk_PersonID", :conditions => "addressType = 'permanent'", :class_name => 'Address'
+  has_one    :emergency_address1, :foreign_key => "fk_PersonID", :conditions => "addressType = 'emergency1'", :class_name => 'Address'
+  has_many   :addresses, :foreign_key => "fk_PersonID" 
+  has_many   :rides #, :foreign_key => "fk_personID"
+  has_many   :events
   
   
   # Cru Commons
@@ -42,12 +44,10 @@ class Person < ActiveRecord::Base
   # has_many                :sp_applications
   # has_one                 :current_application, :conditions => "year = '#{SpApplication::YEAR}'", :class_name => 'SpApplication'
   
-  #Rideshare Application
-   has_many                :rides, :foreign_key => "fk_personID"
     
   # General
-  attr_accessor           :school
-  
+  attr_accessor :school
+    
   # File Column
   # file_column             :image, :fix_file_extensions => true,
                           # :magick => { :size => '400x400!', :crop => '1:1',
@@ -83,7 +83,7 @@ class Person < ActiveRecord::Base
       write_attribute("region", self.school.region)
     end
   end
-  
+
   def target_area
     if (self.school)
       self.school

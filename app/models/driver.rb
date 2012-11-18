@@ -1,0 +1,2 @@
+class Driver < Traveler
+end

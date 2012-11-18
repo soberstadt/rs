@@ -1,10 +1,9 @@
 class Ride < ActiveRecord::Base
+	self.table_name_prefix = 'rideshare_'
+
 	belongs_to :person, :foreign_key => "person_id"
 	belongs_to :event, 	:foreign_key => "event_id"
 	has_many :rides, 		:foreign_key => "driver_ride_id"
-	
-	# self.primary_key = "id"
-	self.table_name = "rideshare_ride"
 	
 	def address
 		returnval=address1
