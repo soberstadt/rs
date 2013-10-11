@@ -2,7 +2,7 @@ class CarpoolsController < ApplicationController
 	def index
 		if session[:event_id] != params[:id].to_i || params[:id].nil?
 			unless params[:id].nil?
-				@event = Event.find(:first, :conditions => {:conference_id => params[:id].to_i})
+        @event = Event.where(:conference_id => params[:id]).first 
 				if @event.nil?
 					render :text => 'No registrants from your conference have registered with Rideshare yet.' and return
 				end
@@ -270,4 +270,6 @@ class CarpoolsController < ApplicationController
 		end
 	end
 
+  def empty
+  end
 end
