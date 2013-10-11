@@ -1,8 +1,9 @@
 class Email < ActionMailer::Base
+	
 	def car(driver_ride_id)
 		driver = Ride.find(driver_ride_id)
 		event = Event.find(driver.event_id)
-		emails = Array.new
+		emails = []
 		emails << driver.email
 		driver.rides.each do |rider|
 			emails << rider.email
