@@ -1,339 +1,204 @@
-.top .left .shown {
-  position: absolute;
-  top: 10px;
-  left: 5px;
-  width: 200px;
-  height: 25px;
-  border: 2px solid #445566; }
-  .top .left .shown tr td {
-    padding: 2px bold;
-    border: 1px solid black; }
-.top .left .hidden {
-  position: absolute;
-  top: 45px;
-  left: 10px;
-  width: 600px;
-  display: none;
-  font-size: 12pt;
-  border: 1px solid black;
-  background-color: white; }
-  .top .left .hidden img {
-    height: 30px;
-    width: 30px; }
-.top .center .title {
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  padding-top: 25px; }
-.top .right {
-  position: absolute;
-  top: 5px;
-  right: 5px; }
+h1{
+  font-weight:bold;
+  font-size:3em;
+}
+h2{
+  font-weight:bold;
+  font-size:1.8em;
+  text-align:center;
+  margin-bottom:.5em;
+}
+h3{
+  font-size:20px;
+  height:25px;
+  width:240px;
+  font-weight:bold;
+  background-color:#dddddd;
+  text-align:center;
+}
+h4{
+  font-size:1.2em;
+  font-weight:bold;
+}
+/*#drivers{
+  
+}*/
+  #drivers ul,#riders ul{
+    padding:2px;
+  }
+  #drivers #selected_driver,#riders #selected_riders{
+    border-bottom:2px solid #000000;
+    background-color:#bbffbb;
+  }
+.message{
+  background-color:#ffffff;
+  border:2px solid #000000;
+  padding:10px;
+  z-index:10000001;
+  overflow:auto;
+  display:none;
+}
+  .message a.message_exit{
+    display:block;
+    position:absolute;
+    top:5px;
+    right:8px;
+    font-weight:bold;
+    color:#000000;
+    text-decoration:none;
+  }
+#message_block{
+  display:none;
+  background-color:#dddddd;
+  background:url('../images/black25.png');
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  z-index:1000000
+}
+#size_box{
+  position:absolute;
+  top:-20000px;
+  left:-20000px;
+  width:400px;
+}
+strong{
+  font-weight:bold;
+}
+table.room{
+  width:100%;
+}
+#options{
+  height:100%;
+}
+  table.room th{
+    text-align:center;
+    vertical-align:middle;
+    font-weight:bold;
+    background-color:#dddddd;
+  }
+    table.room th a{
+      text-decoration:none;
+      color:#000000;
+    }
+  table.room td,th{
+    text-align:center;
+    vertical-align:middle;
+    padding:2px;
+  }
+  table.normal td{
+    text-align:left;
+  }
+    table.room td img{
+      vertical-align:middle;
+    }
+  #options td{
+    width:25%;
+    border:1px solid #000000;
+  }
+body#report{
+  margin:.1in;
+}
+div.marker_tabs{
+  border-bottom:2px solid #000000;
+  padding-bottom:5px;
+  margin-bottom:10px;
+}
+table.report{
+  /*margin:.2in;*/
+  width:100%;
+  page-break-inside:avoid;
+  page-break-after:always;
+  margin-bottom:1em;
+}
+  table.report em{
+    font-weight:bold;
+  }
+  table.report th, table.report td{
+    padding:.02in;
+  }
+  table.report thead th{
+    font-weight:bold;
+    border:.02in solid #000000;
+    background-color:#e5e5e5;
+  }
+    table.report thead th h3{
+      width:auto;
+      background-color:transparent;
+    }
+  table.report tbody td{
+    border:.01in solid #cccccc;
+  }
+    table.report tbody td.indent{
+      padding-left:.5in;
+    }
+    table.report tbody td.far_indent{
+      padding-left:1in;
+    }
+    table.report tbody tr.driver td:first-child{
+      border-left:.02in solid #000000;
+    }
+    table.report tbody tr.driver td{
+      border-top:.02in solid #000000;
+    }
+    table.report tbody tr.driver td:last-child{
+      border-right:.02in solid #000000;
+    }
+    table.report tbody tr.rider td:first-child{
+      border-left:.02in solid #000000;
+    }
+    table.report tbody tr.rider td:last-child{
+      border-right:.02in solid #000000;
+    }
+    table.report tbody tr:last-child td{
+      border-bottom:.02in solid #000000;
+    }
+    table.report tbody td.far_indent{
+      padding-left:1in;
+    }
+    table.report tbody tr.driver td:first-child{
+      border-left:.02in solid #000000;
+    }
+    table.report tbody tr.driver td{
+      border-top:.02in solid #000000;
+    }
+    table.report tbody tr.driver td:last-child{
+      border-right:.02in solid #000000;
+    }
+    table.report tbody tr.rider td:first-child{
+      border-left:.02in solid #000000;
+    }
+    table.report tbody tr.rider td:last-child{
+      border-right:.02in solid #000000;
+    }
+    table.report tbody tr:last-child td{
+      border-bottom:.02in solid #000000;
+    }
+table#legend{
+  position:absolute;
+  top:31px;
+  left:5px;
+  border:1px solid #000000;
+  background-color:#ffffff;
+}
+  table#legend td{
+    padding:2px;
+  }
+    table#legend td img{
+      height:25px;
+      width:25px;
+    }
 
-.message .flash {
-  width: 600px;
-  height: 360px; }
 
-#leftheader {
-  position: absolute;
-  top: 120px;
-  background-color: #ffbbbb; }
-  #leftheader .title {
-    position: relative;
-    width: 250px;
-    border: 1px solid black;
-    text-align: center;
-    vertical-align: text-middle; }
-  #leftheader .text {
-    position: relative;
-    width: 250px;
-    text-align: center;
-    background-color: #ffbbbb;
-    border: 1px solid black; }
+@media print {
+  BODY { font-size: 9pt}
+  h1   { font-size: 14pt}
+  h2   { font-size: 12pt}
+  h3   { font-size: 10pt}
+  report_table {  page-break-inside:avoid}
+  TABLE {page: auto; page-break-after: right }
+  rider_block { page-break-inside:avoid }
 
-.drivers .table {
-  position: absolute;
-  top: 228px;
-  border: 1px solid #000001;
-  bottom: 50px;
-  overflow: auto;
-  width: 250px; }
-  .drivers .table ul {
-    padding-left: 2px; }
-  .drivers .table #selected_driver {
-    left: 5px;
-    border-bottom: 1px solid black;
-    background-color: #bbffbb;
-    display: none; }
-
-#rightheader {
-  position: absolute;
-  top: 120px;
-  left: 265px;
-  background-color: #ffbbbb; }
-  #rightheader .title {
-    position: relative;
-    width: 250px;
-    border: 1px solid black;
-    text-align: center;
-    vertical-align: text-middle; }
-  #rightheader .text {
-    position: relative;
-    width: 250px;
-    text-align: center;
-    background-color: #ffbbbb;
-    border: 1px solid black; }
-
-.riders {
-  left: 265px; }
-  .riders .table {
-    left: 265px;
-    position: absolute;
-    top: 228px;
-    border: 1px solid #000001;
-    bottom: 50px;
-    overflow: auto;
-    width: 250px; }
-    .riders .table ul {
-      padding-left: 2px; }
-    .riders .table #selected {
-      left: 5px;
-      border-bottom: 1px solid black;
-      background-color: #bbffbb;
-      display: none; }
-
-.options {
-  bottom: 0px; }
-  .options .foundation table {
-    position: absolute;
-    bottom: 3px;
-    height: 30px; }
-    .options .foundation table tr .left {
-      width: 245px;
-      border: 1px solid black;
-      background-color: #bbffbb;
-      text-align: center; }
-      .options .foundation table tr .left td {
-        font-size: 1.2em; }
-      .options .foundation table tr .left img {
-        height: 12px;
-        width: 12px;
-        vertical-align: middle; }
-    .options .foundation table tr .right {
-      position: relative;
-      left: 3px;
-      width: 246px;
-      border: 1px solid black;
-      background-color: #bbffbb;
-      text-align: center; }
-      .options .foundation table tr .right td {
-        font-size: 1.2em; }
-      .options .foundation table tr .right img {
-        height: 12px;
-        width: 12px;
-        vertical-align: middle; }
-  .options .showhide {
-    z-index: 1;
-    display: none;
-    border: 1px solid black;
-    background-color: white;
-    bottom: 10px;
-    width: 440px;
-    left: 60px; }
-    .options .showhide table th {
-      background-color: #e4e4ee;
-      height: 20px; }
-    .options .showhide table tr td {
-      height: 20px;
-      padding-left: 20px; }
-  .options .departure_time {
-    z-index: 1;
-    background-color: white;
-    border: 1px solid black;
-    width: 505px; }
-    .options .departure_time table .title {
-      text-align: center;
-      vertical-align: middle;
-      font-weight: bold;
-      background-color: #dddddd;
-      width: 230px; }
-    .options .departure_time table .button {
-      text-align: center;
-      vertical-align: middle;
-      font-weight: bold;
-      background-color: #dddddd;
-      width: 25px; }
-    .options .departure_time table td {
-      text-align: center;
-      vertical-align: middle;
-      padding: 2px;
-      text-align: left; }
-      .options .departure_time table td img {
-        vertical-align: middle; }
-
-.map {
-  position: absolute;
-  left: 504px;
-  right: 5px;
-  top: 1000px;
-  bottom: 30px; }
-
-.message {
-  background-color: white;
-  border: 2px solid black;
-  padding: 10px;
-  z-index: 10000001;
-  overflow: auto;
-  display: none; }
-
-.message a.message_exit {
-  display: block;
-  position: absolute;
-  top: 5px;
-  right: 8px;
-  font-weight: bold;
-  color: black;
-  text-decoration: none; }
-
-#message_block {
-  display: none;
-  background-color: #dddddd;
-  background: url("../images/black25.png");
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000000; }
-
-#size_box {
-  position: absolute;
-  top: -20000px;
-  left: -20000px;
-  width: 400px; }
-
-body#report {
-  margin: 0.1in; }
-
-div.marker_tabs {
-  border-bottom: 2px solid black;
-  padding-bottom: 5px;
-  margin-bottom: 10px; }
-
-table.report {
-  /*margin: .2in */
-  width: 100%;
-  page-break-inside: avoid;
-  page-break-after: always;
-  margin-bottom: 1em; }
-  table.report table.report em {
-    font-weight: bold; }
-  table.report table.report th, table.report table.report td {
-    padding: 0.02in; }
-  table.report table.report thead th {
-    font-weight: bold;
-    border: 0.02in solid black;
-    background-color: #e5e5e5; }
-    table.report table.report thead th table.report thead th h3 {
-      width: auto;
-      background-color: transparent; }
-  table.report table.report tbody td {
-    border: 0.01in solid #cccccc; }
-    table.report table.report tbody td table.report tbody td.indent {
-      padding-left: 0.5in; }
-    table.report table.report tbody td table.report tbody td.far_indent {
-      padding-left: 1in; }
-    table.report table.report tbody td table.report tbody tr.driver td:first-child {
-      border-left: 0.02in solid black; }
-    table.report table.report tbody td table.report tbody tr.driver td {
-      border-top: 0.02in solid black; }
-    table.report table.report tbody td table.report tbody tr.driver td:last-child {
-      border-right: 0.02in solid black; }
-    table.report table.report tbody td table.report tbody tr.rider td:first-child {
-      border-left: 0.02in solid black; }
-    table.report table.report tbody td table.report tbody tr.rider td:last-child {
-      border-right: 0.02in solid black; }
-    table.report table.report tbody td table.report tbody tr:last-child td {
-      border-bottom: 0.02in solid black; }
-    table.report table.report tbody td table.report tbody td.far_indent {
-      padding-left: 1in; }
-    table.report table.report tbody td table.report tbody tr.driver td:first-child {
-      border-left: 0.02in solid black; }
-    table.report table.report tbody td table.report tbody tr.driver td {
-      border-top: 0.02in solid black; }
-    table.report table.report tbody td table.report tbody tr.driver td:last-child {
-      border-right: 0.02in solid black; }
-    table.report table.report tbody td table.report tbody tr.rider td:first-child {
-      border-left: 0.02in solid black; }
-    table.report table.report tbody td table.report tbody tr.rider td:last-child {
-      border-right: 0.02in solid black; }
-    table.report table.report tbody td table.report tbody tr:last-child td {
-      border-bottom: 0.02in solid black; }
-
-body {
-  margin: 10px; }
-
-h1 {
-  font-size: 2em;
-  font-weight: bold;
-  margin-bottom: 0.5em; }
-
-h2 {
-  font-size: 1.25em;
-  font-weight: bold;
-  margin-bottom: 0.5em;
-  margin-top: 0.25em; }
-
-label, div.label {
-  display: block;
-  font-weight: bold;
-  text-align: right; }
-
-#disclaimer {
-  font-size: 0.85em;
-  margin: 10px 0;
-  max-width: 800px; }
-
-#copyright {
-  font-size: 0.8em;
-  margin-top: 10px; }
-
-#map {
-  height: 400px;
-  margin: 0 auto;
-  text-align: center;
-  width: 400px; }
-
-#error {
-  background-color: #ffcccc;
-  border: 1px solid #770000;
-  border-top: none;
-  color: #770000;
-  text-align: center; }
-
-.error {
-  background-color: #ffcccc;
-  border: 1px solid #770000;
-  color: #770000;
-  text-align: center;
-  padding: 2px;
-  max-width: 450px; }
-
-.done {
-  background-color: #ccffcc;
-  border: 1px solid #007700;
-  color: #003300;
-  text-align: center;
-  padding: 2px;
-  max-width: 450px; }
-
-.example_email {
-  border: 3px solid black;
-  margin-left: 25px;
-  margin-right: 25px;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  padding-left: 25px;
-  padding-right: 25px;
-  padding-top: 15px;
-  padding-bottom: 15px; }
+}
