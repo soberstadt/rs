@@ -6,6 +6,7 @@ rvm:
   
 before_script:
   - mysql -e 'create database cru_test;'
+  - cp config/database.example.yml config/database.yml
   - rake db:schema:load
 
 script: rake
