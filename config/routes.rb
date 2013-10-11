@@ -1,14 +1,14 @@
 Rs::Application.routes.draw do
   
-  match 'carpool/login/:id'         => 'carpools#login'
-  match 'carpool/email'             => 'carpools#email'
-  match 'carpool/email_submit'      => 'carpools#email_submit'
-  match 'carpool/get_coordinates'   => 'carpools#get_coordinates'
-  match 'carpool/report'            => 'carpools#report'
-  match 'carpool/register'          => 'carpools#register'
-  match 'carpool/update_addresses'  => 'carpools#update_addresses'
-  match 'carpool/:id'               => 'carpools#index'
-  match 'carpool'                   => 'carpools#index'
+  get 'carpool/login/:id'         => 'carpools#login', via: [:get, :post]
+  get 'carpool/email'             => 'carpools#email'
+  get 'carpool/email_submit'      => 'carpools#email_submit', via: [:get, :post]
+  get 'carpool/get_coordinates'   => 'carpools#get_coordinates'
+  get 'carpool/report'            => 'carpools#report'
+  get 'carpool/register'          => 'carpools#register'
+  get 'carpool/update_addresses'  => 'carpools#update_addresses', via: [:get, :update]
+  get 'carpool/:id'               => 'carpools#index'
+  get 'carpool'                   => 'carpools#index'
   
   root :to => 'carpool#index'
 

@@ -1,7 +1,8 @@
 class Person < ActiveRecord::Base 
-  has_many :rides, :foreign_key => "fk_personID"
-  set_table_name   "ministry_person"
-  set_primary_key  "personID"
+  self.table_name = "ministry_person"
+  self.primary_key = "personID"
+  
+  has_many                :rides, :foreign_key => "fk_personID"
   
   belongs_to              :user, :foreign_key => "fk_ssmUserId"  #Link it to SSM
 
