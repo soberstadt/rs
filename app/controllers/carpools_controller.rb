@@ -32,6 +32,10 @@ class CarpoolsController < ApplicationController
       if @riders.size == 0 || @drivers.size == 0
         redirect_to :action => :empty
       end
+      
+      @drivers.sort! { |a,b| (!a.special_info.blank? && !b.special_info.blank?) || (a.special_info.blank? && b.special_info.blank?)?(a.person.full_name+"" <=> b.person.full_name+""):((a.special_info.blank? && !b.special_info.blank?)?(1):(-1))}
+      @riders.sort! { |a,b| (!a.special_info.blank? && !b.special_info.blank?) || (a.special_info.blank? && b.special_info.blank?)?(a.person.full_name+"" <=> b.person.full_name+""):((a.special_info.blank? && !b.special_info.blank?)?(1):(-1))}
+      
       @spaces=0
       @riders_done=0
       @drivers.each do |driver|
