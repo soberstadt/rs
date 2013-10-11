@@ -7,7 +7,7 @@ Rs::Application.routes.draw do
   get 'carpool/report'            => 'carpools#report'
   get 'carpool/register'          => 'carpools#register'
   get 'carpool/update_addresses'  => 'carpools#update_addresses', via: [:get, :update]
-  get 'carpool/empty/:id'         => 'carpools#empty'
+  get 'carpool/:id/empty'         => 'carpools#empty'
   get 'carpool/:id'               => 'carpools#index'
   get 'carpool'                   => 'carpools#index'
   
