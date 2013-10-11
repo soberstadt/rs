@@ -77,9 +77,10 @@ class CarpoolsController < ApplicationController
         @latitude_avg=0
         @longitude_avg=0
       end
-      @message=false
-      @help_rides = Ride.where(:latitude => 0, :longitude => 0, :event_id => session[:event_local_id]).includes(:person)
-      @message=true if @help_rides.size > 0
+      @message =false
+      @help_rides = Ride.where(:latitude => 0, :longitude => 0, :event_id => @event.id).includes(:person)
+      @message = true if @help_rides.size > 0
+      
   end
 
   def report
