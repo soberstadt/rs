@@ -227,7 +227,7 @@
 			<% i = driver.id %>
 			drivers[<%= i %>] = new Array();
 
-			//drivers[<%=i%>]['marker']=new GMarker(new GLatLng(<%=driver.latitude%>,<%=driver.longitude%>), {title: "<%=driver.person.full_name%>", zIndexProcess: doZIndex, icon: <%=(driver.numbercurrentpassengers.to_i < driver.number_passengers)?"icons['driver']['available']":"icons['driver']['unavailable']"%>});
+			//drivers[<%=i%>]['marker']=new GMarker(new GLatLng(<%=driver.latitude%>,<%=driver.longitude%>), {title: "<%=driver.person.full_name%>", zIndexProcess: doZIndex, icon: <%=(driver.current_passengers_number < driver.number_passengers)?"icons['driver']['available']":"icons['driver']['unavailable']"%>});
 			//drivers[<%=i%>]['marker'].zIndex=zIndex--;
 			
 			drivers[<%=i%>]['id']="<%=driver.id%>";
@@ -358,7 +358,7 @@
 			<% @drivers.each do |driver| %>
 				<li id="driver<%=driver.id%>">
 					<a href="javascript:map.setCenter(drivers[<%=driver.id%>]['marker'].getLatLng(), 14);showMarker(drivers[<%=driver.id%>]['location'], <%=driver.id%>);" ondblclick="double_click_driver(<%=driver.id%>);return false;"><%= driver.person.full_name %>
-					</a> (<%= driver.numbercurrentpassengers %>/<%= driver.number_passengers %>)
+					</a> (<%= driver.current_passengers_number %>/<%= driver.number_passengers %>)
 				</li>
 			<% end %>
 		</ul>

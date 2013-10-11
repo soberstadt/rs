@@ -6,6 +6,16 @@ class Ride < ActiveRecord::Base
 	belongs_to :event, :foreign_key => "event_id"
 	has_many :rides, :foreign_key => "driver_ride_id"
 	
+	def current_passengers_number
+		return nil unless drive_willingness.between?(1, 3)
+		current_passengers.length
+	end
+	
+	def current_passengers
+		return nil unless drive_willingness.between?(1, 3)
+		self.class.where(:driver_ride_id => id).where("id != driver_ride_id")
+	end
+	
 	def address
 		returnval=address1
 		returnval+="<br />"+address2 unless address2.empty?
