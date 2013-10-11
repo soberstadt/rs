@@ -276,7 +276,7 @@
 	</ul>
 	<ul>
 		<% @riders.each do |rider| %>
-			<li id="rider<%=rider.id%>"><%='<img src="/images/check.png" alt="Done" title="This person has already been assigned." />' if rider.driver_ride_id != 0%><a href="javascript:map.setCenter(riders[<%=rider.id%>]['marker'].getLatLng(), 14);showMarker(riders[<%=rider.id%>]['location'], <%=rider.id%>);" ondblclick="double_click_rider(<%=rider.id%>);return false;"><%= rider.person.full_name %></a> (<%= rider.city %>)</li>
+			<li id="rider<%=rider.id%>"><%='<img src="/images/check.png" alt="Done" title="This person has already been assigned." />'.html_safe if rider.driver_ride_id != 0%><a href="javascript:map.setCenter(riders[<%=rider.id%>]['marker'].getLatLng(), 14);showMarker(riders[<%=rider.id%>]['location'], <%=rider.id%>);" ondblclick="double_click_rider(<%=rider.id%>);return false;"><%= rider.person.full_name %></a> (<%= rider.city %>)</li>
 		<% end %>
 	</ul>
 	<div style="padding:2px;margin-top:20px;">
