@@ -5,6 +5,7 @@ rvm:
   - 2.0.0
   
 before_script:
+  - mysql -e 'create database cru_test;'
   - rake db:schema:load
 
 script: rake
