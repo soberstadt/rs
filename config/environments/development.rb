@@ -30,4 +30,9 @@ Rs::Application.configure do
   
   # rails 4 upgrade
   config.eager_load = false
+  
+  # using the mailcatcher gem to test mailing.
+  # http://mailcatcher.me/
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
 end

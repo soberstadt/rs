@@ -2,7 +2,7 @@ Rs::Application.routes.draw do
   
   get 'carpool/login/:id'         => 'carpools#login', via: [:get, :post]
   get 'carpool/email'             => 'carpools#email'
-  get 'carpool/email_submit'      => 'carpools#email_submit', via: [:get, :post]
+  post 'carpool/email'            => 'carpools#email_submit'
   get 'carpool/get_coordinates'   => 'carpools#get_coordinates'
   get 'carpool/report'            => 'carpools#report'
   get 'carpool/register/:id'      => 'carpools#register'
