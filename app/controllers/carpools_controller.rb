@@ -1,5 +1,10 @@
 class CarpoolsController < ApplicationController
   def index
+    
+    # @event = Event.where(:conference_id => params[:id]).first
+    # session[:event_local_id] = @event.id
+    # session[:event_id] = @event.conference_id
+        
 		if session[:event_id] != params[:id].to_i || params[:id].nil?
 			unless params[:id].nil?
       @event = Event.where(:conference_id => params[:id]).first
@@ -64,9 +69,9 @@ class CarpoolsController < ApplicationController
         @longitude_avg=0
       end
       @message =false
-      @help_rides = Ride.where(:latitude => 0, :longitude => 0, :event_id => @event.id).includes(:person)
+      @help_rides = Ride.where(:latitude => 0, :longitude => 0, :event_id => session[:event_local_id]).includes(:person)
       @message = true if @help_rides.size > 0
-      
+    end
   end
 
   def report
