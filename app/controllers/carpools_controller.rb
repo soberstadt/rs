@@ -105,7 +105,8 @@ class CarpoolsController < ApplicationController
       render :text => '' and return
     else
       @event = Event.find(session[:event_local_id])
-      @drivers=Ride.find(:all, :conditions => {:drive_willingness => 1, :event_id => session[:event_local_id]}, :include => :person, :select => "*, id as outID, (SELECT count(*) FROM rideshare_ride WHERE driver_ride_id=outID and driver_ride_id != id) as numbercurrentpassengers")
+      @drivers = Ride.where(:drive_willingness => 1).where(:event_id => session[:event_local_id]).includes(:person)
+      
       @event.email_content = params[:content]
       @event.save!
       if params[:commit] == "Save"
@@ -122,7 +123,7 @@ class CarpoolsController < ApplicationController
   end
   
   def get_coordinates
-    @rides=Ride.find(:all, :conditions => {:latitude => 0, :longitude => 0})
+    @rides = Ride.where(:latitude => 0, :longitude => 0)
     sleep_time=1;
     @rides.each do |ride|
       address=(ride.address2 =~ /^\d/) ? ride.address2 : ride.address1
