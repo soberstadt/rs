@@ -199,7 +199,6 @@ class CarpoolsController < ApplicationController
     end
   end
 
-  #Registration Stuff
   def register
     if !params[:id].nil?
       ride=Ride.find(params[:id])
@@ -223,8 +222,8 @@ class CarpoolsController < ApplicationController
       session[:first_name]=params[:first_name]
       session[:last_name]=params[:last_name]
       session[:contact_method]=params[:contact_method]
-      person=Person.find(:first, :conditions => {:personID => params[:person_id]})
-      @event=Event.find(:first, :conditions => {:conference_id => params[:conference_id].to_i})
+      person = Person.where(:personID => params[:person_id]).first
+      @event = Event.where(:conference_id => params[:conference_id]).first
       if @event.nil?
         @event=Event.new(:email_content=>'',:event_name => params[:conference_name], :conference_id => params[:conference_id].to_i, :password => Digest::MD5.hexdigest(RIDESHARE_PASSWORD))
         @event.save!
@@ -233,7 +232,7 @@ class CarpoolsController < ApplicationController
     end
     if !person.nil?
           if person.first_name == params[:first_name] && person.last_name == params[:last_name] && (person.yearInSchool == params[:school_year]||(person.yearInSchool.nil?&&(params[:school_year]=="null"||params[:school_year]=="")) )
-          ride=Ride.find(:first, :conditions => {:person_id => person.personID, :event_id => @event.id})
+        ride = Ride.where(:person_id => person.personID, :event_id => @event.id).first
         end
         if !ride.nil?
           params[:situation]=(ride.drive_willingness == 0)? 'ride':(ride.drive_willingness == 1 || ride.drive_willingness == 3) ? 'drive':'done'
@@ -264,11 +263,7 @@ class CarpoolsController < ApplicationController
           params[:ride]=(ride.drive_willingness == 3) ? 'yes':'no'
           @done="You have already finished this registration. You can update your information here or <a href='"+params[:redirect]+"'>Go Back</a>"
         end
-      #else
-      # render :text => "You seem to be trying to steal someone else's session." and return # invalid keys
-      #end
     end
-    # We need their name...
   end
 
   def login
