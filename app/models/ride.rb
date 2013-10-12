@@ -2,9 +2,31 @@ class Ride < ActiveRecord::Base
 	self.table_name = "rideshare_ride"
 	self.primary_key = "id"
 	
-	belongs_to :person, :foreign_key => "person_id"
-	belongs_to :event, :foreign_key => "event_id"
+	belongs_to :person
+	belongs_to :event
 	has_many :rides, :foreign_key => "driver_ride_id"
+	
+	def self.drivers_by_event_id(event_id)
+		result = where('rideshare_ride.drive_willingness in (1, 2, 3)').
+			where('rideshare_ride.event_id' => event_id).
+			includes(:person)
+		result
+	end
+	
+	def self.riders_by_event_id(event_id)
+		result = where(:drive_willingness => 0).
+      where(:event_id => event_id).
+       includes(:person)
+    result
+	end
+	
+	def self.hidden_drivers_by_event_id(event_id)
+		result = where(:drive_willingness => 2).
+      where(:event_id => event_id).
+      includes(:person)
+    result
+	end
+	
 	
 	def current_passengers_number
 		return nil unless drive_willingness.between?(1, 3)

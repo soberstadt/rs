@@ -11,23 +11,9 @@ class CarpoolsController < ApplicationController
 				render :text => '' and return
 			end
 		else
-			#@drivers=Ride.find(:all, :conditions => {:drive_willingness => 1}, :include => :person)
-			@drivers.sort! { |a,b| (!a.special_info.blank? && !b.special_info.blank?) || (a.special_info.blank? && b.special_info.blank?)?(a.person.full_name+"" <=> b.person.full_name+""):((a.special_info.blank? && !b.special_info.blank?)?(1):(-1))}
-			@riders.sort! { |a,b| (!a.special_info.blank? && !b.special_info.blank?) || (a.special_info.blank? && b.special_info.blank?)?(a.person.full_name+"" <=> b.person.full_name+""):((a.special_info.blank? && !b.special_info.blank?)?(1):(-1))}
-      @drivers = Ride.
-        where('rideshare_ride.drive_willingness in (1, 2, 3)').
-        where('rideshare_ride.event_id' => @event.id).
-        includes(:person)
-      
-      @riders = Ride.
-        where(:drive_willingness => 0).
-        where(:event_id => @event.id).
-        includes(:person)
-      
-      @hidden_rides = Ride.
-        where(:drive_willingness => 2).
-        where(:event_id => session[:event_local_id]).
-        includes(:include => :person)
+      @drivers = Ride.drivers_by_event_id(session[:event_local_id])
+      @riders = Ride.riders_by_event_id(session[:event_local_id])
+      @hidden_rides = Ride.hidden_drivers_by_event_id(session[:event_local_id])      
       
       if @riders.size == 0 || @drivers.size == 0
         redirect_to :action => :empty
@@ -199,7 +185,7 @@ class CarpoolsController < ApplicationController
       render :text => "failure"
     end
   end
-
+  
   def register
     if !params[:id].nil?
       ride=Ride.find(params[:id])
@@ -232,38 +218,38 @@ class CarpoolsController < ApplicationController
       session[:event]=@event.id
     end
     if !person.nil?
-          if person.first_name == params[:first_name] && person.last_name == params[:last_name] && (person.yearInSchool == params[:school_year]||(person.yearInSchool.nil?&&(params[:school_year]=="null"||params[:school_year]=="")) )
+      if person.first_name == params[:first_name] && person.last_name == params[:last_name] && (person.yearInSchool == params[:school_year]||(person.yearInSchool.nil?&&(params[:school_year]=="null"||params[:school_year]=="")) )
         ride = Ride.where(:person_id => person.personID, :event_id => @event.id).first
-        end
-        if !ride.nil?
-          params[:situation]=(ride.drive_willingness == 0)? 'ride':(ride.drive_willingness == 1 || ride.drive_willingness == 3) ? 'drive':'done'
-          #params[:time]=(ride.drive_willingness == 2) ? nil:ride.departureTime
-          params[:time]=ride.departureTime
-          if !params[:time].nil?
-            params[:time_hour] = params[:time][0,2].to_i
-            params[:time_minute] = params[:time][3,5].to_i
-            if (params[:time_hour] < 12)
-              params[:time_am_pm] = "AM"
-            else
-              params[:time_am_pm] = "PM"
-              params[:time_hour] = params[:time_hour]-12
-            end
+      end
+      if !ride.nil?
+        params[:situation]=(ride.drive_willingness == 0)? 'ride':(ride.drive_willingness == 1 || ride.drive_willingness == 3) ? 'drive':'done'
+        #params[:time]=(ride.drive_willingness == 2) ? nil:ride.departureTime
+        params[:time]=ride.departureTime
+        if !params[:time].nil?
+          params[:time_hour] = params[:time][0,2].to_i
+          params[:time_minute] = params[:time][3,5].to_i
+          if (params[:time_hour] < 12)
+            params[:time_am_pm] = "AM"
           else
-            params[:time_hour] = 12
-            params[:time_minute] = 0
             params[:time_am_pm] = "PM"
+            params[:time_hour] = params[:time_hour]-12
           end
-          params[:spaces]=ride.number_passengers
-          params[:address_1]=ride.address1
-          params[:address_2]=ride.address2
-          params[:city]=ride.city
-          params[:state]=ride.state
-          params[:zip]=ride.zip
-          params[:special_info]=ride.special_info
-          params[:contact_method]=ride.contact_method
-          params[:ride]=(ride.drive_willingness == 3) ? 'yes':'no'
-          @done="You have already finished this registration. You can update your information here or <a href='"+params[:redirect]+"'>Go Back</a>"
+        else
+          params[:time_hour] = 12
+          params[:time_minute] = 0
+          params[:time_am_pm] = "PM"
         end
+        params[:spaces]=ride.number_passengers
+        params[:address_1]=ride.address1
+        params[:address_2]=ride.address2
+        params[:city]=ride.city
+        params[:state]=ride.state
+        params[:zip]=ride.zip
+        params[:special_info]=ride.special_info
+        params[:contact_method]=ride.contact_method
+        params[:ride]=(ride.drive_willingness == 3) ? 'yes':'no'
+        @done="You have already finished this registration. You can update your information here or <a href='"+params[:redirect]+"'>Go Back</a>"
+      end
     end
   end
 
@@ -274,11 +260,11 @@ class CarpoolsController < ApplicationController
       return
     end
     if params[:key] # && Digest::MD5.hexdigest(params[:key]) == @event.password
-#     if request.env['REQUEST_METHOD'] == 'GET' && request.env['HTTP_REFERER'] && (request.env['HTTP_REFERER'].include?('conferenceregistrationtool.com') || request.env['HTTP_REFERER'].include?('crs.int.uscm.org')) 
+      # if request.env['REQUEST_METHOD'] == 'GET' && request.env['HTTP_REFERER'] && (request.env['HTTP_REFERER'].include?('conferenceregistrationtool.com') || request.env['HTTP_REFERER'].include?('crs.int.uscm.org')) 
         session[:event_id] = @event.conference_id
         session[:event_local_id] = @event.id
         redirect_to :action => :index, :id => @event.conference_id
-#     end
+      # end
     end
   end
   
