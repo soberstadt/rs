@@ -113,7 +113,7 @@ class CarpoolsController < ApplicationController
       else
         @event.email_content = @event.email_content.gsub("\n", '<br />') if !@event.email_content.nil?
         @drivers.each do |driver|
-          Email.deliver_car(driver.id)
+          Email.car(driver.id).deliver
         end
         @notice = 'Emails successfully sent.'
       end
