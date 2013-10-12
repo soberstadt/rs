@@ -7,9 +7,7 @@ class Ride < ActiveRecord::Base
 	has_many :rides, :foreign_key => "driver_ride_id"
 	
 	def self.drivers_by_event_id(event_id)
-		result = where('rideshare_ride.drive_willingness in (1, 2, 3)').
-			where('rideshare_ride.event_id' => event_id).
-			includes(:person)
+		result = Ride.where('rideshare_ride.drive_willingness in (1, 2, 3)').where('rideshare_ride.event_id' => event_id).includes(:person)
 		result
 	end
 	
@@ -63,6 +61,7 @@ class Ride < ActiveRecord::Base
 			end
 		end
 	end
+	
 	def departureTimeNice
 		if (depart_time.nil?)
 			"12:00 AM"
