@@ -87,8 +87,8 @@ class CarpoolsController < ApplicationController
     if session[:event_id].nil?
       render :text => '' and return
     else
-      @drivers=Ride.find(:all, :conditions => {:drive_willingness => 1, :event_id => session[:event_local_id]}, :include => :person, :select => "*, id as outID, (SELECT count(*) FROM rideshare_ride WHERE driver_ride_id=outID and driver_ride_id != id) as numbercurrentpassengers")
-      @unassigned_riders=Ride.find(:all, :conditions => {:drive_willingness => 0, :driver_ride_id => 0, :event_id => session[:event_local_id]}, :include => :person)
+      @drivers = Ride.where(:drive_willingness => 1).where(:event_id => session[:event_local_id]).includes(:person)
+      @unassigned_riders = Ride.where(:drive_willingness => 0).where(:driver_ride_id => 0, :event_id => session[:event_local_id]).includes(:person)
     end
   end
 
