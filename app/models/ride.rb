@@ -7,7 +7,9 @@ class Ride < ActiveRecord::Base
 	has_many :rides, :foreign_key => "driver_ride_id"
 	
 	def self.drivers_by_event_id(event_id)
-		result = Ride.where('rideshare_ride.drive_willingness in (1, 2, 3)').where('rideshare_ride.event_id' => event_id).includes(:person)
+		result = Ride.where('rideshare_ride.drive_willingness in (1, 2, 3)').
+			where('rideshare_ride.event_id' => event_id).
+			includes(:person)
 		result
 	end
 	
@@ -24,7 +26,6 @@ class Ride < ActiveRecord::Base
       includes(:person)
     result
 	end
-	
 	
 	def current_passengers_number
 		return nil unless drive_willingness.between?(1, 3)
