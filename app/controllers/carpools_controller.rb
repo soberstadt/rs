@@ -127,7 +127,7 @@ class CarpoolsController < ApplicationController
     sleep_time=1;
     @rides.each do |ride|
       address=(ride.address2 =~ /^\d/) ? ride.address2 : ride.address1
-      @status, @accuracy, @latitude, @longitude=open("http://maps.google.com/maps/geo?q="+CGI::escape(address+", "+ride.city+", "+ride.state+" "+ride.zip)+"&output=csv&sensor=false&key="+GOOGLE_KEY).gets.split(',')
+      @status, @accuracy, @latitude, @longitude=open("http://maps.google.com/maps/geo?q="+CGI::escape(address+", "+ride.city+", "+ride.state+" "+ride.zip)+"&output=csv&sensor=false&key="+GOOGLE_MAPS2_KEY).gets.split(',')
       sleep(sleep_time)
       if @status == 620
         sleep_time+=1
@@ -160,7 +160,7 @@ class CarpoolsController < ApplicationController
     sleep_time=0
     while @status == 620
       address=(temp.address2 =~ /^\d/) ? temp.address2 : temp.address1
-      @status, @accuracy, @latitude, @longitude=open("http://maps.google.com/maps/geo?q="+CGI::escape(address+", "+temp.city+", "+temp.state+" "+temp.zip)+"&output=csv&sensor=false&key="+GOOGLE_KEY).gets.split(',')
+      @status, @accuracy, @latitude, @longitude=open("http://maps.google.com/maps/geo?q="+CGI::escape(address+", "+temp.city+", "+temp.state+" "+temp.zip)+"&output=csv&sensor=false&key="+GOOGLE_MAPS2_KEY).gets.split(',')
       sleep(sleep_time)
       if @status == 620
         sleep_time+=1
