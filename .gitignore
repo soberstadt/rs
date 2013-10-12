@@ -3,7 +3,7 @@ password.rb
 google.rb
 
 # ignore any assets outside the asset pipeline
-public/assets/application*
+public/assets
 public/images
 public/javascripts
 public/stylesheets
