@@ -1,21 +1,18 @@
 class CarpoolsController < ApplicationController
+  before_filter :dev_hack_session
+  
   def index
-    
-    # @event = Event.where(:conference_id => params[:id]).first
-    # session[:event_local_id] = @event.id
-    # session[:event_id] = @event.conference_id
-        
-		if session[:event_id] != params[:id].to_i || params[:id].nil?
+    if session[:event_id].to_i != params[:id].to_i || params[:id].nil?
 			unless params[:id].nil?
-      @event = Event.where(:conference_id => params[:id]).first
-				if @event.nil?
-					render :text => 'No registrants from your conference have registered with Rideshare yet.' and return
-				end
-				render :action => :login
+        @event = Event.where(:conference_id => params[:id]).first
+			  if @event.nil?
+			  	render :text => 'No registrants from your conference have registered with Rideshare yet.' and return
+			  end
+        render :action => :login
 			else
-				render :text => '' and return
-			end
-		else
+        render :text => '' and return
+		  end
+    else
       @drivers = Ride.drivers_by_event_id(session[:event_local_id])
       @riders = Ride.riders_by_event_id(session[:event_local_id])
       @hidden_rides = Ride.hidden_drivers_by_event_id(session[:event_local_id])      
@@ -274,5 +271,19 @@ class CarpoolsController < ApplicationController
   end
   
   def empty
+  end
+  
+  
+  private 
+  
+  def dev_hack_session  
+    if Rails.env.development?
+      
+      # event_id is the rideshare_event.conference_id
+      session[:event_id]= params[:event_id] if params[:event_id]
+      
+      # event_local_id is the rideshare_event.event_id
+      session[:event_local_id] = params[:event_local_id] if params[:event_local_id]
+    end
   end
 end
