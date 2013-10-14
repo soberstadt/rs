@@ -208,7 +208,7 @@ class Person < ActiveRecord::Base
   # file_column picture
   def pic(size = "mini")
     if image.nil?
-      "/images/nophoto_" + size + ".gif"
+      "/assets/nophoto_" + size + ".gif"
     else
       url_for_file_column(self, "image", size)
     end
