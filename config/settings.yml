@@ -1,0 +1,6 @@
+production: &shared
+  GOOGLE_MAPS2_KEY: 
+
+development:
+  <<: *shared
+
