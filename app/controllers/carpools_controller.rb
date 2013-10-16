@@ -312,10 +312,10 @@ class CarpoolsController < ApplicationController
     if Rails.env.development?
 
       # event_id is the rideshare_event.conference_id
-      session[:event_id]= params[:event_id] if params[:event_id]
+      session[:event_id] = params[:event_id].to_i if params[:event_id]
 
       # event_local_id is the rideshare_event.event_id
-      session[:event_local_id] = params[:event_local_id] if params[:event_local_id]
+      session[:event_local_id] = params[:event_local_id].to_i if params[:event_local_id]
     end
   end
 end
