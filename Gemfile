@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '~> 4.0.0'
+gem 'choices'
 gem 'airbrake'
 gem 'mysql2'
 gem 'jquery-rails'
