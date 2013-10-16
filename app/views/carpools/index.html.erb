@@ -60,18 +60,18 @@
 				//drivers[<%=i%>]['marker']=new GMarker(new GLatLng(<%=driver.latitude%>,<%=driver.longitude%>), {title: "<%=driver.person.full_name%>", zIndexProcess: doZIndex, icon: <%=(driver.current_passengers_number < driver.number_passengers)?"icons['driver']['available']":"icons['driver']['unavailable']"%>});
 				//drivers[<%=i%>]['marker'].zIndex=zIndex--;
 				drivers[<%=i%>]['id']="<%=driver.id%>";
-				drivers[<%=i%>]['address1']="<%=driver.address1%>";
-				drivers[<%=i%>]['address2']="<%=driver.address2%>";
+				drivers[<%=i%>]['address1']="<%= j(driver.address1) %>";
+				drivers[<%=i%>]['address2']="<%= j(driver.address2) %>";
 				drivers[<%=i%>]['city']="<%=driver.city%>";
 				drivers[<%=i%>]['state']="<%=driver.state%>";
 				drivers[<%=i%>]['zip']="<%=driver.zip%>";
-				drivers[<%=i%>]['name']="<%=driver.person.full_name%>";
+				drivers[<%=i%>]['name']="<%= j(driver.person.full_name) %>";
 				drivers[<%=i%>]['phone']="<%=driver.phone%>";
 				drivers[<%=i%>]['contact_method']="<%=driver.contact_method%>";
 				drivers[<%=i%>]['number_passengers']="<%=driver.number_passengers%>";
 				drivers[<%=i%>]['depart_time']="<%=driver.departureTime%>";
 				drivers[<%=i%>]['depart_time_nice']="<%=driver.departureTimeNice%>";
-				drivers[<%=i%>]['special_info']= "<%=driver.special_info %>";
+				drivers[<%=i%>]['special_info']= "<%= j(driver.special_info.to_s.strip) %>";
 				drivers[<%=i%>]['show']=true;
 				drivers[<%=i%>]['riders']=new Object();
 				<% driver.rides.each do |rider| %>
@@ -94,17 +94,17 @@
 				//riders[<%=i%>]['marker'].zIndex=zIndex--;
 				riders[<%=i%>]['id']="<%=rider.id%>";
 				riders[<%=i%>]['driverID']="<%=rider.driver_ride_id%>";
-				riders[<%=i%>]['address1']="<%=rider.address1%>";
+				riders[<%=i%>]['address1']="<%= j(rider.address1) %>";
 				riders[<%=i%>]['address2']="<%=rider.address2%>";
 				riders[<%=i%>]['city']="<%=rider.city%>";
 				riders[<%=i%>]['state']="<%=rider.state%>";
 				riders[<%=i%>]['zip']="<%=rider.zip%>";
-				riders[<%=i%>]['name']="<%=rider.person.full_name%>";
+				riders[<%=i%>]['name']="<%=j(rider.person.full_name)%>";
 				riders[<%=i%>]['phone']="<%=rider.phone%>";
 				riders[<%=i%>]['contact_method']="<%=rider.contact_method%>";
 				riders[<%=i%>]['depart_time']="<%=rider.departureTime%>";
-				riders[<%=i%>]['depart_time_nice']="<%=rider.departureTimeNice%>";
-				riders[<%=i%>]['special_info']= "<%=rider.special_info %>";
+				riders[<%=i%>]['depart_time_nice']="<%=j(rider.departureTimeNice)%>";
+				riders[<%=i%>]['special_info']= "<%=j(rider.special_info.to_s.strip) %>";
 				riders[<%=i%>]['show']=true;
 				/*GEvent.addListener(riders[<%=i%>]['marker'], "infowindowbeforeclose", function() {
 					riders[<%=i%>]['marker'].zIndex=zIndex--;
@@ -192,7 +192,7 @@
 		<%= @through %>
 		<h2>Invalid Addresses</h2>
 		These locations cannot be computed. Please change to a valid address (Address Line 1 is street address, Address Line 2 is extra information - Apartment, Room #, etc.).
-		<% form_tag :action => :update_addresses do %>
+		<%= form_tag :action => :update_addresses do %>
 			<% i=0; %>
 			<% @help_rides.each do |ride| %>
 				<h4><%=ride.person.full_name%></h4>
@@ -275,7 +275,7 @@
 	</ul>
 	<ul>
 		<% @riders.each do |rider| %>
-			<li id="rider<%=rider.id%>"><%='<img src="' + asset_path("check.png") + '" alt="Done" title="This person has already been assigned." />'.html_safe if rider.driver_ride_id != 0%><a href="javascript:map.setCenter(riders[<%=rider.id%>]['marker'].getLatLng(), 14);showMarker(riders[<%=rider.id%>]['location'], <%=rider.id%>);" ondblclick="double_click_rider(<%=rider.id%>);return false;"><%= rider.person.full_name %></a> (<%= rider.city %>)</li>
+			<li id="rider<%=rider.id%>"><%= image_tag("check.png", alt: "Done", title: "This person has already been assigned.") if rider.driver_ride_id != 0 %><a href="javascript:map.setCenter(riders[<%=rider.id%>]['marker'].getLatLng(), 14);showMarker(riders[<%=rider.id%>]['location'], <%=rider.id%>);" ondblclick="double_click_rider(<%=rider.id%>);return false;"><%= rider.person.full_name %></a> (<%= rider.city %>)</li>
 		<% end %>
 	</ul>
 	<div style="padding:2px;margin-top:20px;">
@@ -291,9 +291,9 @@
 				<th><a href="javascript:closeDepartureTime();">X</a></th>
 			</tr>
 			<tr>
-				<td><img src="<%= asset_path "check-icon.png" %>" alt="clock" style="width:25px;height:25px;" />&nbsp;<select name="options_box_departure_time_time1_hour" id="options_box_departure_time_time1_hour" onchange="updateDepartureTime1(true);"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select><select name="options_box_departure_time_time1_minute" id="options_box_departure_time_time1_minute" onChange="updateDepartureTime1(true);"><option value="00">00</option><option value="15">15</option><option value="30">30</option><option value="45">45</option></select><select name="options_box_departure_time_time1_ampm" id="options_box_departure_time_time1_ampm" onchange="updateDepartureTime1(true);"><option value="0">AM</option><option value="12">PM</option></select></td>
+				<td><img src="<%= asset_path "check.png" %>" alt="clock" style="width:25px;height:25px;" />&nbsp;<select name="options_box_departure_time_time1_hour" id="options_box_departure_time_time1_hour" onchange="updateDepartureTime1(true);"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select><select name="options_box_departure_time_time1_minute" id="options_box_departure_time_time1_minute" onChange="updateDepartureTime1(true);"><option value="00">00</option><option value="15">15</option><option value="30">30</option><option value="45">45</option></select><select name="options_box_departure_time_time1_ampm" id="options_box_departure_time_time1_ampm" onchange="updateDepartureTime1(true);"><option value="0">AM</option><option value="12">PM</option></select></td>
 				<td><input type="checkbox" name="options_box_departure_time_use1" id="options_box_departure_time_use1" onclick="updateDepartureTime1(false);" /></td>
-				<td><img src="<%= asset_path "check-icon.png" %>" alt="clock" style="width:25px;height:25px;" />&nbsp;<select name="options_box_departure_time_time2_hour" id="options_box_departure_time_time2_hour" onchange="updateDepartureTime2(true);"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select><select name="options_box_departure_time_time2_minute" id="options_box_departure_time_time2_minute" onChange="updateDepartureTime2(true);"><option value="00">00</option><option value="15">15</option><option value="30">30</option><option value="45">45</option></select><select name="options_box_departure_time_time2_ampm" id="options_box_departure_time_time2_ampm" onchange="updateDepartureTime2(true);"><option value="0">AM</option><option value="12">PM</option></select></td>
+				<td><img src="<%= asset_path "check.png" %>" alt="clock" style="width:25px;height:25px;" />&nbsp;<select name="options_box_departure_time_time2_hour" id="options_box_departure_time_time2_hour" onchange="updateDepartureTime2(true);"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select><select name="options_box_departure_time_time2_minute" id="options_box_departure_time_time2_minute" onChange="updateDepartureTime2(true);"><option value="00">00</option><option value="15">15</option><option value="30">30</option><option value="45">45</option></select><select name="options_box_departure_time_time2_ampm" id="options_box_departure_time_time2_ampm" onchange="updateDepartureTime2(true);"><option value="0">AM</option><option value="12">PM</option></select></td>
 				<td><input type="checkbox" name="options_box_departure_time_use2" id="options_box_departure_time_use2" onclick="updateDepartureTime2(false);" /></td>
 			</tr>
 		</table>
