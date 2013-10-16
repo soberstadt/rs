@@ -6,9 +6,12 @@ Rs::Application.routes.draw do
   get 'carpool/get_coordinates'   => 'carpools#get_coordinates'
   get 'carpool/report'            => 'carpools#report'
   
-  get 'carpool/register/:id'      => 'carpools#register'
+  get  'carpool/register/:id'     => 'carpools#register'
   post 'carpool/register'         => 'carpools#register', as: 'register_submit'
   put  'carpool/register/:id'     => 'carpools#register_update', as: 'register_update'
+  
+  put 'carpool/add_rider'         => 'carpools#add_rider'
+  put 'carpool/remove_rider'      => 'carpools#remove_rider'
   
   get 'carpool/update_addresses'  => 'carpools#update_addresses', via: [:get, :update]
   get 'carpool/:id/empty'         => 'carpools#empty'

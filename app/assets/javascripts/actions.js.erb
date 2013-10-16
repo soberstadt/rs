@@ -698,7 +698,7 @@
 		} else {
 			if (!(i in drivers[current_driver]['riders'])) {
 				var j=current_driver;
-				new Ajax.Request('/carpool/add_rider?driver='+current_driver+'&rider='+i, {method:'get', onSuccess:function(transport){
+				new Ajax.Request('/carpool/add_rider?driver='+current_driver+'&rider='+i, {method:'put', onSuccess:function(transport){
 					if (!(i in drivers[j]['riders'])) {
 						drivers[j]['riders'][i]=i;
 						document.getElementById("driver"+j).innerHTML="<a href=\"javascript:map.setCenter(drivers["+j+"]['marker'].getLatLng(), 15);showMarker(drivers["+j+"]['location'], "+j+");\" ondblclick=\"double_click_driver("+j+");return false;\">"+drivers[j]['name']+"</a> ("+numProperties(drivers[j]['riders'])+"/"+drivers[j]['number_passengers']+")";
@@ -727,7 +727,7 @@
 		if (riders[i]['driverID'] == 0) {
 			alert("This rider is not assigned to any car and thus cannot be removed from a car.");
 		} else {
-			new Ajax.Request('/carpool/remove_rider?rider='+i, {method:'get', onSuccess:function(transport){
+			new Ajax.Request('/carpool/remove_rider?rider='+i, {method:'put', onSuccess:function(transport){
 				var old_driver=riders[i]['driverID'];
 				delete drivers[old_driver]['riders'][i];
 				document.getElementById("driver"+old_driver).innerHTML="<a href=\"javascript:map.setCenter(drivers["+old_driver+"]['marker'].getLatLng(), 15);showMarker(drivers["+old_driver+"]['location'], "+old_driver+");\" ondblclick=\"double_click_driver("+old_driver+");return false;\">"+drivers[old_driver]['name']+"</a> ("+numProperties(drivers[old_driver]['riders'])+"/"+drivers[old_driver]['number_passengers']+")";
