@@ -246,7 +246,7 @@ class CarpoolsController < ApplicationController
       person = Person.where(:personID => params[:person_id]).first
       @event = Event.where(:conference_id => params[:conference_id]).first
       if @event.nil?
-        @event = Event.new(:email_content=>'',:event_name => params[:conference_name], :conference_id => params[:conference_id].to_i, :password => Digest::MD5.hexdigest(Rails.configuration.rideshare_password))
+        @event = Event.new(:email_content=>'',:event_name => params[:conference_name], :conference_id => params[:conference_id].to_i, :password => "")
         @event.save!
       end
       session[:event]=@event.id
