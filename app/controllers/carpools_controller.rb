@@ -188,6 +188,38 @@ class CarpoolsController < ApplicationController
     end
   end
 
+  def register_update
+    # ride has already been created
+    
+    ride = Ride.find(params[:id])
+    
+    # TODO this and Geocoding update should be abstracted into a model instance method
+    ride.address1 = params[:address_1]
+    ride.address2 = params[:address_2]
+    ride.city     = params[:city]
+    ride.state    = params[:state]
+    ride.zip      = params[:zip]
+    
+    coordinates = Geocoder.coordinates(ride.address_single_line)
+    @latitude  = coordinates[0]
+    @longitude = coordinates[1]
+    
+    ride.latitude   = @latitude
+    ride.longitude  = @longitude
+     
+    # @status, @accuracy, @status are legacy code variables possibly used in the HTML/JS. :(
+    # TODO - go back and remove
+    @status    = 620
+    @status    = 0
+    @accuracy  = 0
+    
+    if ride.save!
+      redirect_to "/carpool/#{ride.event.conference_id}"
+    else
+      redirect_to "/carpool/register/#{ride.id}"
+    end
+  end
+
   def register
     if !params[:id].nil?
       ride=Ride.find(params[:id])
@@ -280,10 +312,10 @@ class CarpoolsController < ApplicationController
     if Rails.env.development?
 
       # event_id is the rideshare_event.conference_id
-      session[:event_id]= params[:event_id] if params[:event_id]
+      session[:event_id] = params[:event_id].to_i if params[:event_id]
 
       # event_local_id is the rideshare_event.event_id
-      session[:event_local_id] = params[:event_local_id] if params[:event_local_id]
+      session[:event_local_id] = params[:event_local_id].to_i if params[:event_local_id]
     end
   end
 end

@@ -298,7 +298,12 @@
 	<h1>Carpool Questions</h1>
 	<%= "<div class='error'> #{@error} </div>".html_safe unless @error.nil?%>
 	<%= "<div class='done'> #{@done} </div>".html_safe unless @done.nil?%>
-	<%= form_tag :url => 'register_submit_path' do %>
+	
+	<%# conditionally route to Carpools#regiseter and Carpools#register_update  %>
+	<% url = @ride.nil? ? register_submit_path  : register_update_path(id: @ride.id) %>
+	<% method = @ride.nil? ? :post : :put %>
+	<%= form_tag(url, :method => method) do %>
+	
 		<table>
 			<tbody id="conference">
 				<tr>

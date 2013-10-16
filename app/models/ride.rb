@@ -43,6 +43,16 @@ class Ride < ActiveRecord::Base
 		returnval+="<br />"+city+", "+state+" "+zip
 	end
 	
+	def address_single_line
+		r = ""
+		r += address1.strip
+		r += ", " + address2.strip if address2.present?
+		r += ", " + city.strip
+		r += ", " + state.strip
+		r += ", " + zip.strip
+		r
+	end
+	
 	def departureTime
 		if (depart_time.nil?)
 			"24:00"
