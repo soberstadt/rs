@@ -220,8 +220,8 @@ class CarpoolsController < ApplicationController
     end
   end
 
-  def register  
-    if !params[:id].nil?
+  def register
+    if params[:id].present?
       ride=Ride.find(params[:id])
       if session[:event_id] != ride.event.conference_id
         render :text => "" and return
