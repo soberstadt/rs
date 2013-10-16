@@ -187,7 +187,7 @@ class CarpoolsController < ApplicationController
       render :text => "failure"
     end
   end
-
+  
   def register_update
     # ride has already been created
     
@@ -220,24 +220,24 @@ class CarpoolsController < ApplicationController
     end
   end
 
-  def register
+  def register  
     if !params[:id].nil?
       ride=Ride.find(params[:id])
       if session[:event_id] != ride.event.conference_id
         render :text => "" and return
       end
-      person=ride.person
-      @event=ride.event
+      person = ride.person
+      @event = ride.event
       params[:redirect]="/"+ride.event.conference_id.to_s
       session[:redirect]=params[:redirect]
       session[:event]=@event.id
       session[:personID]=person.personID
     else
-      session[:personID]=params[:person_id]
-      session[:country]=params[:country]
-      session[:phone]=params[:phone]
-      session[:email]=params[:email]
-      session[:gender]=params[:gender]
+      session[:personID] = params[:person_id]
+      session[:country]  = params[:country]
+      session[:phone]    = params[:phone]
+      session[:email]    = params[:email]
+      session[:gender]   = params[:gender]
       session[:school_year]=params[:school_year]
       session[:redirect]=params[:redirect]
       session[:first_name]=params[:first_name]
@@ -246,7 +246,7 @@ class CarpoolsController < ApplicationController
       person = Person.where(:personID => params[:person_id]).first
       @event = Event.where(:conference_id => params[:conference_id]).first
       if @event.nil?
-        @event=Event.new(:email_content=>'',:event_name => params[:conference_name], :conference_id => params[:conference_id].to_i, :password => Digest::MD5.hexdigest(RIDESHARE_PASSWORD))
+        @event = Event.new(:email_content=>'',:event_name => params[:conference_name], :conference_id => params[:conference_id].to_i, :password => Digest::MD5.hexdigest(Rails.configuration.rideshare_password))
         @event.save!
       end
       session[:event]=@event.id
@@ -256,7 +256,7 @@ class CarpoolsController < ApplicationController
         ride = Ride.where(:person_id => person.personID, :event_id => @event.id).first
       end
       if !ride.nil?
-        params[:situation]=(ride.drive_willingness == 0)? 'ride':(ride.drive_willingness == 1 || ride.drive_willingness == 3) ? 'drive':'done'
+        params[:situation]=(ride.drive_willingness == 0)? 'ride':(ride.drive_willingness == 1 || ride.drive_willingness == 3) ? 'drive' : 'done'
         #params[:time]=(ride.drive_willingness == 2) ? nil:ride.departureTime
         params[:time]=ride.departureTime
         if !params[:time].nil?
