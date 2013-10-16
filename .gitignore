@@ -20,3 +20,4 @@ public/stylesheets
 vendor/ruby
 config/settings.local.yml
 database.yml
+.idea
