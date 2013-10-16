@@ -188,6 +188,38 @@ class CarpoolsController < ApplicationController
     end
   end
 
+  def register_update
+    # ride has already been created
+    
+    ride = Ride.find(params[:id])
+    
+    # TODO this and Geocoding update should be abstracted into a model instance method
+    ride.address1 = params[:address_1]
+    ride.address2 = params[:address_2]
+    ride.city     = params[:city]
+    ride.state    = params[:state]
+    ride.zip      = params[:zip]
+    
+    coordinates = Geocoder.coordinates(ride.address_single_line)
+    @latitude  = coordinates[0]
+    @longitude = coordinates[1]
+    
+    ride.latitude   = @latitude
+    ride.longitude  = @longitude
+     
+    # @status, @accuracy, @status are legacy code variables possibly used in the HTML/JS. :(
+    # TODO - go back and remove
+    @status    = 620
+    @status    = 0
+    @accuracy  = 0
+    
+    if ride.save!
+      redirect_to "/carpool/#{ride.event.conference_id}"
+    else
+      redirect_to "/carpool/register/#{ride.id}"
+    end
+  end
+
   def register
     if !params[:id].nil?
       ride=Ride.find(params[:id])
