@@ -1,9 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml"> 
-<head> 
-	<title>Campus Crusade Carpool Coordinator</title> 
-	<script type="text/javascript" src="http://www.google.com/jsapi?key=<%=GOOGLE_MAPS2_KEY%>"></script>
-	
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+	<title>Campus Crusade Carpool Coordinator</title>
+	<script type="text/javascript" src="http://www.google.com/jsapi?key=<%= Rails.configuration.google_maps2_key %>"></script>
+
 	<script type="text/javascript">
 			google.load("maps", "2", {"other_params":"sensor=false"});
 			var map;
@@ -11,7 +11,7 @@
 			var marker;
 			var state = 0;
 			var mapped = 0;
-			
+
 			function initialize() {
 				map = new google.maps.Map2(document.getElementById("map"));
 				geocoder = new GClientGeocoder();
@@ -31,7 +31,7 @@
 				check_address();
 			}
 			google.setOnLoadCallback(initialize);
-			
+
 			function situation_callback() {
 				document.getElementById("driver_address").style.display = "none";
 				document.getElementById("rider_address").style.display = "none";
@@ -63,7 +63,7 @@
 					document.getElementById("submit").disabled = "";
 				}
 			}
-			
+
 			function special_info_callback() {
 				if (document.getElementById("special_info_check_yes").checked) {
 					document.getElementById("special_info").style.display = "";
@@ -71,7 +71,7 @@
 					document.getElementById("special_info").style.display = "none";
 				}
 			}
-			
+
 			function check_address() {
 				document.getElementById("map").style.display = "none";
 				document.getElementById("map_description").style.display = "none";
@@ -106,7 +106,7 @@
 
 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.6.0/build/reset/reset-min.css" />
 </style>
-	<script type="text/javascript"> 
+	<script type="text/javascript">
 	<!--
 		google.load("maps", "2", {"other_params":"sensor=false"});
 		var map;
@@ -114,7 +114,7 @@
 		var marker;
 		var state = 0;
 		var mapped = 0;
-		
+
 		function initialize() {
 			map = new google.maps.Map2(document.getElementById("map"));
 			geocoder = new GClientGeocoder();
@@ -134,7 +134,7 @@
 			check_address();
 		}
 		google.setOnLoadCallback(initialize);
-		
+
 		function situation_callback() {
 			document.getElementById("driver_address").style.display = "none";
 			document.getElementById("rider_address").style.display = "none";
@@ -166,7 +166,7 @@
 				document.getElementById("submit").disabled = "";
 			}
 		}
-		
+
 		function special_info_callback() {
 			if (document.getElementById("special_info_check_yes").checked) {
 				document.getElementById("special_info").style.display = "";
@@ -174,7 +174,7 @@
 				document.getElementById("special_info").style.display = "none";
 			}
 		}
-		
+
 		function check_address() {
 			document.getElementById("map").style.display = "none";
 			document.getElementById("map_description").style.display = "none";
@@ -206,7 +206,7 @@
 			});
 		}
 	</script>
-	
+
 	<style type="text/css">
 		body{
 			margin:10px;
@@ -349,7 +349,7 @@
 					<td><%= select_tag "time_hour",options_for_select({"1" => "01", "2" => "02", "3" => "03", "4" => "04", "5" => "05", "6" => "06", "7" => "07", "8" => "08", "9" => "09", "10" => "10", "11" => "11", "12" => "12"}.sort{|a,b| a[1] <=> b[1]}, :selected => "%02d" % params[:time_hour].to_i)%>:<%=select_tag "time_minute",options_for_select({"00" => "00", "15" => "15", "30" => "30", "45" => "45"}.sort{|a,b| a[1] <=> b[1]}, :selected => "%02d" % params[:time_minute].to_i)%> <%=select_tag "time_am_pm", options_for_select({"AM"=>"AM","PM"=>"PM"}.sort{|a,b| a[1] <=> b[1]}, :selected => params[:time_am_pm])%></td>
 				</tr>
 			</tbody>
-			
+
 			<tbody id="driver">
 				<tr>
 					<th colspan="2">How many extra spots do you have in your car?</th>
@@ -387,7 +387,7 @@
 				<tr>
 					<td><label for="address_1">Address Line 1:</label></td>
 					<td><%=text_field_tag "address_1", params[:address_1], :onchange => "check_address();"%></td>
-				</tr>	
+				</tr>
 				<tr>
 					<td><label for="address_2">Address Line 2 (Optional):</label></td>
 					<td><%=text_field_tag "address_2", (params[:address_2] if params[:address_2] != 'null'), :onchange => "check_address();"%></td>

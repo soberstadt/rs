@@ -1,13 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml"> 
-<head> 
-	<title>Rideshare Admin</title> 
-	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.6.0/build/reset/reset-min.css" /> 
-	
-	<script type="text/javascript" src="http://www.google.com/jsapi?key=<%=GOOGLE_MAPS2_KEY%>"></script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+	<title>Rideshare Admin</title>
+	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.6.0/build/reset/reset-min.css" />
+
+	<script type="text/javascript" src="http://www.google.com/jsapi?key=<%= Rails.configuration.google_maps2_key %>"></script>
 	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-	<script type="text/javascript"> 
-	
+	<script type="text/javascript">
+
 		google.load("maps", "2", {"other_params":"sensor=false"});
 		var map;
 		var geocoder;
@@ -22,7 +22,7 @@
 		var icon;
 		//icons['driver']=new Array();
 		//icons['rider']=new Array();
-		
+
 		function initialize() {
 			map=new google.maps.Map2(document.getElementById("map"));
 			geocoder = new GClientGeocoder();
@@ -159,7 +159,7 @@
 		}
 		google.setOnLoadCallback(initialize);
 	</script>
-</head> 
+</head>
 <body onload="<%="displayMessage('flash');" if @message%>setTimeout(updateList, 250);" onunload="GUnload()">
 <div id="size_box"></div>
 <table style="position:absolute;top:5px;left:5px;height:25px;">
@@ -223,7 +223,7 @@
 </div>
 <div id="update_address_message" class="message" style="width:400px;height:215px;">
 	<h2 id="update_address_name"></h2>
-		<% form_tag :url => {:action => :update_address}, :success => 'updateAddressCallback(request)', :failure => 'alert("Failed to update address.")', :remote => true do %>	
+		<% form_tag :url => {:action => :update_address}, :success => 'updateAddressCallback(request)', :failure => 'alert("Failed to update address.")', :remote => true do %>
 			<input type="hidden" name="rideID" id="update_address_rideID" />
 			<table>
 				<tr><td><label for="update_address_address1">Address Line 1</label>:&nbsp;</td><td><input type="text" name="address1" id="update_address_address1" size="30" /></td></tr>
@@ -326,5 +326,5 @@
 	</table>
 <!--</div>-->
 <!--<div id="copyright" style="position:absolute;left:504px;bottom:5px;right:5px;height:17px;border:1px solid #000000;padding:2px;font-size:13px;text-align:center;">&copy;2009-2011 USCM</div>-->
-</body> 
-</html> 
+</body>
+</html>

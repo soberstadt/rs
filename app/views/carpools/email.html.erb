@@ -1,8 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml"> 
-  <head> 
-    <title>Campus Crusade Carpool Coordinator</title> 
-    <script type="text/javascript" src="http://www.google.com/jsapi?key=<%=GOOGLE_MAPS2_KEY%>"></script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+  <head>
+    <title>Campus Crusade Carpool Coordinator</title>
+    <script type="text/javascript" src="http://www.google.com/jsapi?key=<%= Rails.configuration.google_maps2_key %>"></script>
     <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.6.0/build/reset/reset-min.css" />
   </head>
 
@@ -16,7 +16,7 @@
       <strong>Each participant will receive an E-Mail with the following information for the car they are assigned to:</strong><br />
       <div class="example_email">
         <table class="report">
-          <thead>   
+          <thead>
             <tr><th colspan="7"><h3 style="width:auto;background-color:#e5e5e5">John Smith</h3></th></tr>
             <tr>
               <th>Name</th>
@@ -60,18 +60,18 @@
           </tbody>
         </table>
       </div>
-      
+
       <strong>Please enter in any additional info for registrants (the default text can be changed)</strong>
       <br />
       <br />
-      
+
       <% if @event.email_content.empty? %>
         <% @event.email_content = "Riders, please call your drivers (the top person in the table) to confirm your pickup time and location.\r\n\r\nConference Name: "+@event.event_name+"\r\nStart Date & Time: \r\nEnd Date & Time: \r\nOn Site Registration Begins/Ends: \r\nAddress: \r\nStuff to Bring: \r\nOther Instructions: \r\n" %>
       <% end %>
       <%= text_area_tag "content", @event.email_content, :size => "125x10"%>
       <br />
       <%= submit_tag "Save", :id => "submit" %> or <%= submit_tag "Send Emails", :id => "submit" %>
-      
+
     <%end%>
   </body>
 </html>

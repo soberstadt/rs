@@ -1,6 +1,6 @@
 class CarpoolsController < ApplicationController
   before_filter :dev_hack_session
-  
+
   def index
     if session[:event_id].to_i != params[:id].to_i || params[:id].nil?
 			unless params[:id].nil?
@@ -15,21 +15,21 @@ class CarpoolsController < ApplicationController
     else
       @drivers = Ride.drivers_by_event_id(session[:event_local_id])
       @riders = Ride.riders_by_event_id(session[:event_local_id])
-      @hidden_rides = Ride.hidden_drivers_by_event_id(session[:event_local_id])      
-      
+      @hidden_rides = Ride.hidden_drivers_by_event_id(session[:event_local_id])
+
       if @riders.size == 0 || @drivers.size == 0
         redirect_to :action => :empty
       end
-      
+
       @drivers.sort! { |a,b| (!a.special_info.blank? && !b.special_info.blank?) || (a.special_info.blank? && b.special_info.blank?)?(a.person.full_name+"" <=> b.person.full_name+""):((a.special_info.blank? && !b.special_info.blank?)?(1):(-1))}
       @riders.sort! { |a,b| (!a.special_info.blank? && !b.special_info.blank?) || (a.special_info.blank? && b.special_info.blank?)?(a.person.full_name+"" <=> b.person.full_name+""):((a.special_info.blank? && !b.special_info.blank?)?(1):(-1))}
-      
+
       @spaces=0
       @riders_done=0
       @drivers.each do |driver|
         @spaces += driver.number_passengers
 				@riders_done+=driver.current_passengers_number
-      end 
+      end
       @latitude_avg=0
       @longitude_avg=0
       count=0
@@ -94,7 +94,7 @@ class CarpoolsController < ApplicationController
     else
       @event = Event.find(session[:event_local_id])
       @drivers = Ride.where(:drive_willingness => 1).where(:event_id => session[:event_local_id]).includes(:person)
-      
+
       @event.email_content = params[:content]
       @event.save!
       if params[:commit] == "Save"
@@ -109,13 +109,13 @@ class CarpoolsController < ApplicationController
     end
     render :action => "email" and return
   end
-  
+
   def get_coordinates
     @rides = Ride.where(:latitude => 0, :longitude => 0)
     sleep_time=1;
     @rides.each do |ride|
       address=(ride.address2 =~ /^\d/) ? ride.address2 : ride.address1
-      @status, @accuracy, @latitude, @longitude=open("http://maps.google.com/maps/geo?q="+CGI::escape(address+", "+ride.city+", "+ride.state+" "+ride.zip)+"&output=csv&sensor=false&key="+GOOGLE_MAPS2_KEY).gets.split(',')
+      @status, @accuracy, @latitude, @longitude=open("http://maps.google.com/maps/geo?q="+CGI::escape(address+", "+ride.city+", "+ride.state+" "+ride.zip)+"&output=csv&sensor=false&key=" + Rails.configuration.google_maps2_key).gets.split(',')
       sleep(sleep_time)
       if @status == 620
         sleep_time+=1
@@ -127,7 +127,7 @@ class CarpoolsController < ApplicationController
     end
     redirect_to :action => :index
   end
-  
+
   def update_addresses
     params[:ride].each do |ride|
       temp=Ride.find(ride[1]['id'])
@@ -136,7 +136,7 @@ class CarpoolsController < ApplicationController
     end
     get_coordinates
   end
-  
+
   def update_address
     temp=Ride.find(params[:rideID])
     temp.address1=params[:address1]
@@ -148,7 +148,7 @@ class CarpoolsController < ApplicationController
     sleep_time=0
     while @status == 620
       address=(temp.address2 =~ /^\d/) ? temp.address2 : temp.address1
-      @status, @accuracy, @latitude, @longitude=open("http://maps.google.com/maps/geo?q="+CGI::escape(address+", "+temp.city+", "+temp.state+" "+temp.zip)+"&output=csv&sensor=false&key="+GOOGLE_MAPS2_KEY).gets.split(',')
+      @status, @accuracy, @latitude, @longitude=open("http://maps.google.com/maps/geo?q="+CGI::escape(address+", "+temp.city+", "+temp.state+" "+temp.zip)+"&output=csv&sensor=false&key=" + Rails.configuration.google_maps2_key).gets.split(',')
       sleep(sleep_time)
       if @status == 620
         sleep_time+=1
@@ -160,7 +160,7 @@ class CarpoolsController < ApplicationController
     temp.save!
     render :text => @latitude+','+@longitude
   end
-  
+
   def add_rider
     begin
       rider=Ride.find(params[:rider].to_i)
@@ -176,7 +176,7 @@ class CarpoolsController < ApplicationController
       render :text => "failure"
     end
   end
-  
+
   def remove_rider
     begin
       rider=Ride.find(params[:rider].to_i)
@@ -187,13 +187,13 @@ class CarpoolsController < ApplicationController
       render :text => "failure"
     end
   end
-  
+
   def register
     if !params[:id].nil?
       ride=Ride.find(params[:id])
       if session[:event_id] != ride.event.conference_id
         render :text => "" and return
-      end 
+      end
       person=ride.person
       @event=ride.event
       params[:redirect]="/"+ride.event.conference_id.to_s
@@ -262,26 +262,26 @@ class CarpoolsController < ApplicationController
       return
     end
     if params[:key] # && Digest::MD5.hexdigest(params[:key]) == @event.password
-      # if request.env['REQUEST_METHOD'] == 'GET' && request.env['HTTP_REFERER'] && (request.env['HTTP_REFERER'].include?('conferenceregistrationtool.com') || request.env['HTTP_REFERER'].include?('crs.int.uscm.org')) 
+      # if request.env['REQUEST_METHOD'] == 'GET' && request.env['HTTP_REFERER'] && (request.env['HTTP_REFERER'].include?('conferenceregistrationtool.com') || request.env['HTTP_REFERER'].include?('crs.int.uscm.org'))
         session[:event_id] = @event.conference_id
         session[:event_local_id] = @event.id
         redirect_to :action => :index, :id => @event.conference_id
       # end
     end
   end
-  
+
   def empty
   end
-  
-  
-  private 
-  
-  def dev_hack_session  
+
+
+  private
+
+  def dev_hack_session
     if Rails.env.development?
-      
+
       # event_id is the rideshare_event.conference_id
       session[:event_id]= params[:event_id] if params[:event_id]
-      
+
       # event_local_id is the rideshare_event.event_id
       session[:event_local_id] = params[:event_local_id] if params[:event_local_id]
     end

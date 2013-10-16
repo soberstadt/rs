@@ -18,3 +18,5 @@ public/stylesheets
 /log/*.log
 /tmp
 vendor/ruby
+config/settings.local.yml
+database.yml
